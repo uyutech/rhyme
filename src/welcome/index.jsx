@@ -15,11 +15,13 @@ let $rainbow = $('#rainbow');
 function resize() {
   let width = $window.width();
   let height = $window.height();
-  console.log(width / height, RATIO);
+  // console.log(width / height, RATIO);
   if(width / height >= RATIO) {
+    $rainbow.css('width', '22%');
     $rainbow.css('top', width * 0.28);
   }
   else {
+    $rainbow.css('width', height * 0.5);
     $rainbow.css('top', height * 0.55);
   }
 }
