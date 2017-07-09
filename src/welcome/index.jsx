@@ -25,3 +25,8 @@ function resize() {
 }
 resize();
 $window.on('resize', resize);
+
+let $yuyue = $('#yuyue');
+$yuyue.on('click', function() {
+  console.log(1);
+});

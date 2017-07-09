@@ -78,6 +78,7 @@ body{
   position:absolute;
   left:50%;
   top:50%;
+  z-index:999;
   .c{
     position:relative;
     left:-188px;
@@ -86,6 +87,20 @@ body{
     height:320px;
     background:url(logo.png) no-repeat;
     background-size:contain;
+    a{
+      position:absolute;
+      left:14px;
+      top:128px;
+      display:block;
+      width:25px;
+      height:110px;
+      background:#000;
+      opacity:0;
+      white-space:nowrap;
+      overflow:hidden;
+      z-index:999;
+      cursor:pointer;
+    }
   }
 }
 
