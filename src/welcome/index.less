@@ -74,15 +74,18 @@ body{
   position:absolute;
   left:50%;
   top:50%;
+  width:100%;
   z-index:999;
   .c{
     position:relative;
-    left:-188px;
+    //left:-188px;
     top:-160px;
     width:376px;
     height:320px;
+    max-width:100%;
     background:url(logo.png) no-repeat;
     background-size:contain;
+    transform:translateX(-50%);
     a{
       position:absolute;
       left:14px;
@@ -92,6 +95,7 @@ body{
       height:110px;
       background:#000;
       opacity:0;
+      filter:alpha(opacity=0);
       white-space:nowrap;
       overflow:hidden;
       z-index:999;

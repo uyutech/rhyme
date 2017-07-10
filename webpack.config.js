@@ -21,7 +21,7 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            options: { presets: ['es2015'] }
+            options: { presets: ['es2015-loose'] }
           },
           {
             loader: 'migi-loader'
@@ -33,7 +33,7 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            options: { presets: ['es2015'] }
+            options: { presets: ['es2015-loose'] }
           }
         ]
       },
