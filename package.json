@@ -23,7 +23,7 @@
     "less-loader": "^3.0.0",
     "migi-loader": "^3.4.0",
     "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.4.2"
+    "webpack-dev-server": "~2.4.2"
   },
   "scripts": {
     "start": "export NODE_ENV=production && rm -rf ./www && webpack",
