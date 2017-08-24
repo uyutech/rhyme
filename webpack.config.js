@@ -5,7 +5,8 @@ const webpack = require("webpack");
 module.exports = {
   entry: {
     common: './src/common/index.js',
-    welcome: './src/welcome/index.jsx'
+    index: './src/index/index.jsx',
+    loading: './src/loading/index.jsx'
   },
   output: {
     path: __dirname + '/www',
@@ -21,7 +22,7 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            options: { presets: ['es2015-loose'] }
+            options: { presets: ['es2015'] }
           },
           {
             loader: 'migi-loader'
@@ -33,7 +34,7 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            options: { presets: ['es2015-loose'] }
+            options: { presets: ['es2015'] }
           }
         ]
       },
@@ -46,7 +47,7 @@ module.exports = {
         use: 'file-loader?name=[path][name].[ext]'
       },
       {
-        test: /\.(html?)|(\.mp4)$/,
+        test: /\.(html?)$/,
         use: 'file-loader?name=[name].[ext]'
       }
     ]
