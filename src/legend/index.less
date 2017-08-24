@@ -1,0 +1,102 @@
+/**
+ * Created by army8735 on 2017/8/24.
+ */
+
+.page{
+  > .main{
+    min-height:100%;
+    border-top:1px solid #C7A751;
+    border-bottom:1px solid #C7A751;
+    background:url(bg.jpg) no-repeat center;
+    background-size:cover;
+    ul{
+      margin:0 auto;
+      padding:60px 0;
+      width:990px;
+      li{
+        position:relative;
+        float:left;
+        margin-right:10px;
+        padding-right:120px;
+        &:last-child{
+          margin-right:0;
+        }
+        &:before{
+          display:block;
+          margin-left:10px;
+          width:100px;
+          height:8px;
+          background:#730000;
+          content:' ';
+        }
+        &:after{
+          display:block;
+          margin-left:10px;
+          width:100px;
+          height:8px;
+          background:#730000;
+          content:' ';
+        }
+        .c{
+          position:relative;
+          display:block;
+          padding-top:200px;
+          width:120px;
+          height:430px;
+          border:1px solid #c8a853;
+          background:#f9eedf;
+          background-repeat:no-repeat;
+          background-position:35px 20px;
+          box-sizing:border-box;
+          overflow:hidden;
+          &:hover{
+            overflow:visible;
+          }
+        }
+        &.immortals{
+          .c{
+            background-image:url(immortals.png);
+          }
+        }
+        &.spirits{
+          .c{
+            background-image:url(spirits.png);
+          }
+        }
+        &.mutants{
+          .c{
+            background-image:url(mutants.png);
+          }
+        }
+        &.ethereals{
+          .c{
+            background-image:url(ethereals.png);
+          }
+        }
+        .h{
+          position:absolute;
+          top:0;
+          right:0;
+          display:block;
+          width:120px;
+          span{
+            display:block;
+            height:135px;
+            &.muhan{
+              background:url(muhan.png) no-repeat center;
+            }
+            &.hetu{
+              background:url(hetu.png) no-repeat center;
+            }
+            &.sixia{
+              background:url(sixia.png) no-repeat center;
+            }
+            &.mi{
+              background:url(mi.png) no-repeat center;
+            }
+          }
+        }
+      }
+    }
+  }
+}

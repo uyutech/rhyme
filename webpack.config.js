@@ -5,7 +5,10 @@ const webpack = require("webpack");
 module.exports = {
   entry: {
     common: './src/common/index.js',
+    history: './src/history/index.jsx',
+    geography: './src/geography/index.jsx',
     index: './src/index/index.jsx',
+    legend: './src/legend/index.jsx',
     loading: './src/loading/index.jsx'
   },
   output: {
