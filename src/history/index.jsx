@@ -3,6 +3,7 @@
  */
 
 import './history.html';
+import './about.html';
 import './index.less';
 
 let $con = $('#con');

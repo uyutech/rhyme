@@ -3,6 +3,9 @@
  */
 
 .page{
+  &:before{
+    height:600px;
+  }
   > .main{
     padding:50px 0;
     .con{
@@ -45,6 +48,7 @@
               top:50%;
               width:60%;
               height:60%;
+              background:#f9eedf;
               border:1px solid #9e8356;
               box-sizing:border-box;
               transform:translateY(-50%) rotateZ(45deg);
@@ -65,7 +69,6 @@
       }
     }
     &.muhan{
-      height:589px;
       background:url(muhan_bg.jpg) no-repeat center;
       background-size:cover;
       .con{
@@ -84,7 +87,6 @@
       }
     }
     &.sixia{
-      height:500px;
       background:url(sixia_bg.jpg) no-repeat center;
       background-size:cover;
       .con{
@@ -103,7 +105,6 @@
       }
     }
     &.hetu{
-      height:580px;
       background:url(hetu_bg.jpg) no-repeat center;
       background-size:cover;
       .con{
@@ -122,7 +123,6 @@
       }
     }
     &.mi{
-      height:523px;
       background:url(mi_bg.jpg) no-repeat center;
       background-size:cover;
       .con{
@@ -138,6 +138,14 @@
           background-size:contain;
           transform:translateY(-50%);
         }
+      }
+    }
+    &.jiemeng{
+      background:url(jiemeng_bg.jpg) no-repeat center;
+      background-size:cover;
+      .con{
+        background:#f9eedf url(jiemeng_info.jpg) no-repeat center;
+        background-size:contain;
       }
     }
   }

@@ -3,12 +3,22 @@
  */
 
 .page{
+  &:before{
+    display:block;
+    height:400px;
+    content:' ';
+  }
   > .main{
+    position:absolute;
+    left:0;
+    top:23px;
+    bottom:61px;
+    width:100%;
+    box-sizing:border-box;
     border-top:1px solid #c7a751;
     border-bottom:1px solid #c7a751;
     background:url(bg.jpg) no-repeat center;
     background-size:cover;
-    min-height:100%;
     .wait{
       position:absolute;
       left:0;

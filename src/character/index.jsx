@@ -6,6 +6,7 @@ import './char_muhan.html';
 import './char_sixia.html';
 import './char_hetu.html';
 import './char_mi.html';
+import './char_jiemeng.html';
 import './index.less';
 
 
