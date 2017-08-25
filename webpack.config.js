@@ -5,6 +5,7 @@ const webpack = require("webpack");
 module.exports = {
   entry: {
     common: './src/common/index.js',
+    character: './src/character/index.jsx',
     history: './src/history/index.jsx',
     geography: './src/geography/index.jsx',
     index: './src/index/index.jsx',

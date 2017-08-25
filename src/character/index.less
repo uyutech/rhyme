@@ -1,0 +1,144 @@
+/**
+ * Created by army8735 on 2017/8/24.
+ */
+
+.page{
+  > .main{
+    padding:50px 0;
+    .con{
+      position:absolute;
+      left:0;
+      top:50%;
+      width:100%;
+      height:300px;
+      border-bottom:1px solid #e0ce9e;
+      border-top:1px solid #e0ce9e;
+      transform:translateY(-50%);
+      .btn{
+        position:absolute;
+        left:52%;
+        top:-60px;
+        li{
+          float:left;
+          vertical-align:middle;
+          &:before,&:last-child:after{
+            display:inline-block;
+            width:5px;
+            height:5px;
+            background:#9e8356;
+            transform:rotateZ(45deg);
+            content:' ';
+            vertical-align:middle;
+          }
+          a{
+            position:relative;
+            display:inline-block;
+            width:50px;
+            height:50px;
+            line-height:50px;
+            color:#000;
+            text-align:center;
+            vertical-align:middle;
+            &:before{
+              position:absolute;
+              left:20%;
+              top:50%;
+              width:60%;
+              height:60%;
+              border:1px solid #9e8356;
+              box-sizing:border-box;
+              transform:translateY(-50%) rotateZ(45deg);
+              content:' ';
+            }
+            span{
+              position:relative;
+            }
+            &.comment{
+              color:#fff;
+              &:before{
+                background:#730000;
+                border:none;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.muhan{
+      height:589px;
+      background:url(muhan_bg.jpg) no-repeat center;
+      background-size:cover;
+      .con{
+        background:#f9eedf url(muhan_info.png) no-repeat center;
+        background-size:contain;
+        .img{
+          position:absolute;
+          right:49%;
+          top:50%;
+          width:300px;
+          height:589px;
+          background:url(muhan.png) no-repeat center;
+          background-size:contain;
+          transform:translateY(-50%);
+        }
+      }
+    }
+    &.sixia{
+      height:500px;
+      background:url(sixia_bg.jpg) no-repeat center;
+      background-size:cover;
+      .con{
+        background:#f9eedf url(sixia_info.png) no-repeat center;
+        background-size:contain;
+        .img{
+          position:absolute;
+          right:45%;
+          top:50%;
+          width:367px;
+          height:500px;
+          background:url(sixia.png) no-repeat center;
+          background-size:contain;
+          transform:translateY(-50%);
+        }
+      }
+    }
+    &.hetu{
+      height:580px;
+      background:url(hetu_bg.jpg) no-repeat center;
+      background-size:cover;
+      .con{
+        background:#f9eedf url(hetu_info.png) no-repeat center;
+        background-size:contain;
+        .img{
+          position:absolute;
+          right:43%;
+          top:50%;
+          width:367px;
+          height:580px;
+          background:url(hetu.png) no-repeat center;
+          background-size:contain;
+          transform:translateY(-50%);
+        }
+      }
+    }
+    &.mi{
+      height:523px;
+      background:url(mi_bg.jpg) no-repeat center;
+      background-size:cover;
+      .con{
+        background:#f9eedf url(mi_info.png) no-repeat center;
+        background-size:contain;
+        .img{
+          position:absolute;
+          right:48%;
+          top:50%;
+          width:304px;
+          height:523px;
+          background:url(mi.png) no-repeat center;
+          background-size:contain;
+          transform:translateY(-50%);
+        }
+      }
+    }
+  }
+}
