@@ -106,6 +106,7 @@ botNav.on('change', function(type) {
           }
           character.user(name);
           last = character;
+          last.show();
           topNav.name = chineseName;
         });
       }
@@ -143,6 +144,7 @@ botNav.on('change', function(type) {
           }
           character.user('jiemeng');
           last = character;
+          last.show();
           topNav.name = '结梦谷';
         });
       }
