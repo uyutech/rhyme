@@ -23,7 +23,7 @@ class Loading extends migi.Component {
       <div class="con">
         <div class="start-line"/>
         <div class="end-line"/>
-        <a href={ 'LOGIN_URL' || '#' } class="enter" onClick={ this.click }/>
+        <a href={ window.LOGIN_URL || '#' } class="enter" onClick={ this.click }/>
       </div>
     </div>;
   }
