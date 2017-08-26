@@ -14,6 +14,7 @@ import Geography from './geography/Geography.jsx';
 import History from './history/History.jsx';
 import Legend from './legend/Legend.jsx';
 import Character from './character/Character.jsx';
+import Rhyme from './rhyme/Rhyme.jsx';
 import About from './history/About.jsx';
 
 let $page = $('#page');
@@ -39,6 +40,7 @@ let geography;
 let history;
 let legend;
 let character;
+let rhyme;
 let about;
 
 let botNav = migi.render(
@@ -61,6 +63,7 @@ botNav.on('change', function(type) {
       }
       last = index;
       migi.eventBus.emit('changeBgi', 'index');
+      topNav.name = '首页';
       break;
     case 'geography':
       if(!geography) {
@@ -71,6 +74,7 @@ botNav.on('change', function(type) {
       }
       last = geography;
       migi.eventBus.emit('changeBgi', 'geography');
+      topNav.name = '地理';
       break;
     case 'history':
       if(!history) {
@@ -81,6 +85,7 @@ botNav.on('change', function(type) {
       }
       last = history;
       migi.eventBus.emit('changeBgi', 'history');
+      topNav.name = '历史';
       break;
     case 'legend':
       if(!legend) {
@@ -88,7 +93,7 @@ botNav.on('change', function(type) {
           <Legend/>,
           '#page'
         );
-        legend.on('choose', function(name) {
+        legend.on('choose', function(name, chineseName) {
           botNav.clear();
           if(last) {
             last.hide();
@@ -101,10 +106,23 @@ botNav.on('change', function(type) {
           }
           character.user(name);
           last = character;
+          topNav.name = chineseName;
         });
       }
       last = legend;
       migi.eventBus.emit('changeBgi', 'legend');
+      topNav.name = '传记';
+      break;
+    case 'rhyme':
+      if(!rhyme) {
+        rhyme = migi.render(
+          <Rhyme/>,
+          '#page'
+        );
+      }
+      last = rhyme;
+      migi.eventBus.emit('changeBgi', 'rhyme');
+      topNav.name = '歌谣';
       break;
     case 'about':
       if(!about) {
@@ -125,10 +143,12 @@ botNav.on('change', function(type) {
           }
           character.user('jiemeng');
           last = character;
+          topNav.name = '结梦谷';
         });
       }
       last = about;
       migi.eventBus.emit('changeBgi', 'history');
+      topNav.name = '关于';
       break;
   }
   if(last) {

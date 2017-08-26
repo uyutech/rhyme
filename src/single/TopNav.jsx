@@ -12,12 +12,13 @@ class TopNav extends migi.Component {
   hide() {
     $(this.element).addClass('fn-hide');
   }
+  @bind name
   render() {
     return <div class="top-nav fn-hide">
       <div class="ti">
         <b class="bg"/>
         <b class="border"/>
-        <span>首页</span>
+        <span>{ this.name || '首页' }</span>
       </div>
     </div>;
   }

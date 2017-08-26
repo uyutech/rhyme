@@ -139,7 +139,7 @@ class Character extends migi.Component{
       else {
         self.ref.comment.message = res.message || util.ERROR_MESSAGE;
       }
-    }, function (res) {
+    }, function(res) {console.log(111);
       self.ref.comment.message = res.message || util.ERROR_MESSAGE;
     });
   }
