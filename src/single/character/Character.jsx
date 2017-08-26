@@ -139,7 +139,7 @@ class Character extends migi.Component{
       else {
         self.ref.comment.message = res.message || util.ERROR_MESSAGE;
       }
-    }, function(res) {console.log(111);
+    }, function(res) {
       self.ref.comment.message = res.message || util.ERROR_MESSAGE;
     });
   }
@@ -176,6 +176,7 @@ class Character extends migi.Component{
   clickReplay() {
     this.replayId = null;
     this.replayName = null;
+    this.rootId = null;
   }
   input(e, vd) {
     let v = $(vd.element).val().trim();
@@ -202,7 +203,7 @@ class Character extends migi.Component{
           self.hasContent = false;
           if(RootID === -1) {
             self.ref.comment.addNew(res.data);
-            self.message = '';
+            self.ref.comment.message = '';
           }
           else {
             self.ref.comment.addChild(res.data);
