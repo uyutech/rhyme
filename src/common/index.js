@@ -5,6 +5,7 @@
 import 'migi-es6-shim';
 import 'migi';
 import $ from './jquery-3.2.1';
+import util from './util';
 
 import './index.less';
 
@@ -34,3 +35,4 @@ window.requestAnimationFrame = function() {
 }();
 
 window.$ = $;
+window.util = util;

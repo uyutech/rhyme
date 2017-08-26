@@ -8,6 +8,7 @@ import './index.less';
 import TopNav from './TopNav.jsx';
 import BotNav from './BotNav.jsx';
 
+import Loading from './loading/Loading.jsx';
 import Index from './index/Index.jsx';
 import Geography from './geography/Geography.jsx';
 import History from './history/History.jsx';
@@ -26,6 +27,11 @@ let last;
 let topNav = migi.render(
   <TopNav/>,
   document.body
+);
+
+let loading = migi.render(
+  <Loading/>,
+  '#page'
 );
 
 let index;
@@ -94,6 +100,7 @@ botNav.on('change', function(type) {
             );
           }
           character.user(name);
+          last = character;
         });
       }
       last = legend;
@@ -114,11 +121,22 @@ botNav.on('change', function(type) {
     last.show();
   }
 });
-botNav.emit('change', 'index');
-// if(!character) {
-//   character = migi.render(
-//     <Character/>,
-//     '#page'
-//   );
-// }
-// character.user('hetu');
+
+loading.on('fin', function() {
+  loading.clean();
+  botNav.emit('change', 'index');
+  topNav.show();
+  botNav.show();
+});
+// loading.emit('fin');
+// botNav.emit('change', 'index');
+topNav.show();
+botNav.show();
+loading.clean();
+if(!character) {
+  character = migi.render(
+    <Character/>,
+    '#page'
+  );
+}
+character.user('hetu');

@@ -5,12 +5,12 @@ const webpack = require("webpack");
 module.exports = {
   entry: {
     common: './src/common/index.js',
-    character: './src/character/index.jsx',
-    history: './src/history/index.jsx',
-    geography: './src/geography/index.jsx',
-    index: './src/index/index.jsx',
-    legend: './src/legend/index.jsx',
-    loading: './src/loading/index.jsx',
+    // character: './src/character/index.jsx',
+    // history: './src/history/index.jsx',
+    // geography: './src/geography/index.jsx',
+    // index: './src/index/index.jsx',
+    // legend: './src/legend/index.jsx',
+    // loading: './src/loading/index.jsx',
     single: './src/single/index.jsx'
   },
   output: {

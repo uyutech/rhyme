@@ -6,6 +6,12 @@ class BotNav extends migi.Component {
   constructor(...data) {
     super(...data);
   }
+  show() {
+    $(this.element).removeClass('fn-hide');
+  }
+  hide() {
+    $(this.element).addClass('fn-hide');
+  }
   click(e, vd, tvd) {
     e.preventDefault();
     let li = tvd.parent;
@@ -20,7 +26,7 @@ class BotNav extends migi.Component {
     $(this.element).find('.cur').removeClass('cur');
   }
   render() {
-    return <div class="bot-nav">
+    return <div class="bot-nav fn-hide">
       <ul class="fn-clear" onClick={ { a: this.click } }>
         <li class="geography"><a href="#" title="世界地理">世界地理</a></li>
         <li class="history"><a href="#" title="历史故事">历史故事</a></li>

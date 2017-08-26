@@ -6,8 +6,14 @@ class TopNav extends migi.Component {
   constructor(...data) {
     super(...data);
   }
+  show() {
+    $(this.element).removeClass('fn-hide');
+  }
+  hide() {
+    $(this.element).addClass('fn-hide');
+  }
   render() {
-    return <div class="top-nav">
+    return <div class="top-nav fn-hide">
       <div class="ti">
         <b class="bg"/>
         <b class="border"/>
