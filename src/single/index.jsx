@@ -112,6 +112,20 @@ botNav.on('change', function(type) {
           <About/>,
           '#page'
         );
+        about.on('jiemeng', function() {
+          botNav.clear();
+          if(last) {
+            last.hide();
+          }
+          if(!character) {
+            character = migi.render(
+              <Character/>,
+              '#page'
+            );
+          }
+          character.user('jiemeng');
+          last = character;
+        });
       }
       last = about;
       migi.eventBus.emit('changeBgi', 'history');
@@ -130,13 +144,13 @@ loading.on('fin', function() {
 });
 // loading.emit('fin');
 // botNav.emit('change', 'index');
-topNav.show();
-botNav.show();
-loading.clean();
-if(!character) {
-  character = migi.render(
-    <Character/>,
-    '#page'
-  );
-}
-character.user('hetu');
+// topNav.show();
+// botNav.show();
+// loading.clean();
+// if(!character) {
+//   character = migi.render(
+//     <Character/>,
+//     '#page'
+//   );
+// }
+// character.user('hetu');

@@ -10,8 +10,28 @@ let ajax;
 let HASH = {
   'hetu': {
     Skip: -1,
-    authorId: 1,
+    authorId: window.HETU_ID,
     state: window.FOLLOW_HETU,
+  },
+  'sixia': {
+    Skip: -1,
+    authorId: window.SIXIA_ID,
+    state: window.FOLLOW_SIXIA,
+  },
+  'muhan': {
+    Skip: -1,
+    authorId: window.MUHAN_ID,
+    state: window.FOLLOW_MUHAN,
+  },
+  'mi': {
+    Skip: -1,
+    authorId: window.MI_ID,
+    state: window.FOLLOW_MI,
+  },
+  'jiemeng': {
+    Skip: -1,
+    authorId: window.JIEMENG_ID,
+    state: window.FOLLOW_JIEMENG,
   }
 };
 let $wrap;
@@ -35,7 +55,7 @@ class Character extends migi.Component{
       });
     });
   }
-  @bind name = 'hetu'
+  @bind name
   @bind showComment
   @bind rootId = null
   @bind replayId = null
@@ -54,6 +74,7 @@ class Character extends migi.Component{
     this.ref.comment.abort();
   }
   clickFollow(e, vd) {
+    e.preventDefault();
     let self = this;
     if(HASH[self.name].state === '1') {
       util.postJSON('/author/RemoveAuthorToUser', { Author: HASH[self.name].authorId }, function(res) {
@@ -97,10 +118,7 @@ class Character extends migi.Component{
       ajax.abort();
     }
     this.ref.comment.abort();
-    HASH[this.name] = {
-      Skip: -1,
-      authorId: 1,
-    };
+    HASH[this.name].Skip = -1;
   }
   load() {
     let self = this;
@@ -108,9 +126,15 @@ class Character extends migi.Component{
     ajax = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: HASH[self.name].authorId , Skip: HASH[self.name].Skip, Take }, function(res) {
       if(res.success) {
         let data = res.data;
-        self.ref.comment.message = '';
-        self.ref.comment.showComment(res.data.data);
-        HASH[self.name].Skip = data.data[data.data.length - 1].Send_ID;
+        if(data.Size) {
+          self.ref.comment.message = '';
+          self.ref.comment.showComment(res.data.data);
+          HASH[self.name].Skip = data.data[data.data.length - 1].Send_ID;
+        }
+        else {
+          self.ref.comment.showComment(res.data.data);
+          self.ref.comment.message = '暂无评论';
+        }
       }
       else {
         self.ref.comment.message = res.message || util.ERROR_MESSAGE;
@@ -178,6 +202,7 @@ class Character extends migi.Component{
           self.hasContent = false;
           if(RootID === -1) {
             self.ref.comment.addNew(res.data);
+            self.message = '';
           }
           else {
             self.ref.comment.addChild(res.data);
@@ -198,7 +223,7 @@ class Character extends migi.Component{
       <div class="con">
         <div class="img"/>
         <ul class="btn fn-clear">
-          <li><a href="#" onClick={ this.clickFollow }><span>{ HASH[this.name].state === '1' ? '取关' : '关注' }</span></a></li>
+          <li><a href="#" onClick={ this.clickFollow }><span>{ HASH[this.name] && HASH[this.name].state === '1' ? '取关' : '关注' }</span></a></li>
           <li><a href="#" class="comment" onClick={ this.clickComment }><span>留言</span></a></li>
         </ul>
       </div>
