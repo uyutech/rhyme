@@ -10,7 +10,8 @@ module.exports = {
     geography: './src/geography/index.jsx',
     index: './src/index/index.jsx',
     legend: './src/legend/index.jsx',
-    loading: './src/loading/index.jsx'
+    loading: './src/loading/index.jsx',
+    single: './src/single/index.jsx'
   },
   output: {
     path: __dirname + '/www',
@@ -48,7 +49,7 @@ module.exports = {
       },
       {
         test: /(\.jpg)|(\.jpeg)|(\.gif)|(\.png)$/,
-        use: 'file-loader?name=[path][name].[ext]'
+        use: 'url-loader?limit=10240&name=[path][name].[ext]'
       },
       {
         test: /\.(html?)$/,
