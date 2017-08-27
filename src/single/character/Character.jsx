@@ -238,7 +238,7 @@ class Character extends migi.Component{
         <div class="img"/>
         <ul class="btn fn-clear">
           <li><a href="#" onClick={ this.clickFollow }><span>{ HASH[this.name] && HASH[this.name].state === '1' ? '取关' : '关注' }</span></a></li>
-          <li><a href="#" class="comment" onClick={ this.clickComment }><span>留言</span></a></li>
+          <li><a href="#" class="comment" onClick={ this.clickComment }><span>{ this.name === 'jiemeng' ? '留言' : '表白' }</span></a></li>
         </ul>
       </div>
       <div class={ 'comments' + (this.showComment ? '' : ' fn-hide') } ref="comments">

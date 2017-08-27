@@ -68,10 +68,10 @@ class Comment extends migi.Component {
           $message.addClass('more').text(res.message || util.ERROR_MESSAGE);
         });
       });
-      $root.on('click', '.profile,pre', function() {
-        let $profile = $(this);
-        self.emit('chooseSubComment', $profile.attr('rid'), $profile.attr('cid'), $profile.attr('name'));
-      });
+      // $root.on('click', '.profile,pre', function() {
+      //   let $profile = $(this);
+      //   self.emit('chooseSubComment', $profile.attr('rid'), $profile.attr('cid'), $profile.attr('name'));
+      // });
     });
   }
   @bind message
@@ -180,7 +180,7 @@ class Comment extends migi.Component {
       <div class="c">
           <pre cid={ item.Send_ID } rid={ item.Send_ID } name={ item.Send_UserName }>{ item.Send_Content }<span
             class="placeholder"/></pre>
-        <div class="slide" cid={ item.Send_ID } rid={ item.Send_ID }>
+        <div class="slide fn-hide" cid={ item.Send_ID } rid={ item.Send_ID }>
           <small>{ item.sub_Count }</small>
           <span>收起</span></div>
       </div>
