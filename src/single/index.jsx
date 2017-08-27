@@ -207,8 +207,8 @@ botNav.on('change', function(type) {
 loading.on('fin', function() {
   loading.clean();
   botNav.emit('change', 'weibo');
-  topNav.show();
-  botNav.show();
+  // topNav.show();
+  // botNav.show();
 });
 if(window.LUCK_MES) {
   loading.hide();
