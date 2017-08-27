@@ -13,17 +13,19 @@ class Loading extends migi.Component {
     $(this.element).addClass('fn-hide');
   }
   click(e) {
-    if(window.IS_LOGIN === 'True') {
-      e.preventDefault();
-      this.emit('fin');
-    }
+    e.preventDefault();
+    this.emit('fin');
+    // if(window.IS_LOGIN === 'True') {
+    //   e.preventDefault();
+    //   this.emit('fin');
+    // }
   }
   render() {
     return <div class="main loading">
       <div class="con">
         <div class="start-line"/>
         <div class="end-line"/>
-        <a href={ window.LOGIN_URL || '#' } class="enter" onClick={ this.click }><span>•<br/>异世开启<br/>•</span></a>
+        <a href="#" class="enter" onClick={ this.click }><span>•<br/>异世开启<br/>•</span></a>
       </div>
     </div>;
   }

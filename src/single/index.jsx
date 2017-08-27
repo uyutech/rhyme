@@ -9,6 +9,8 @@ import TopNav from './TopNav.jsx';
 import BotNav from './BotNav.jsx';
 
 import Loading from './loading/Loading.jsx';
+import Weibo from './weibo/Weibo.jsx';
+import Luck from './weibo/Luck.jsx';
 import Index from './index/Index.jsx';
 import Geography from './geography/Geography.jsx';
 import History from './history/History.jsx';
@@ -35,6 +37,8 @@ let loading = migi.render(
   '#page'
 );
 
+let weibo;
+let luck;
 let index;
 let geography;
 let history;
@@ -60,6 +64,31 @@ botNav.on('change', function(type) {
   }
 
   switch (type) {
+    case 'weibo':
+      if(!weibo) {
+        weibo = migi.render(
+          <Weibo/>,
+          '#page'
+        );
+      }
+      last = weibo;
+      migi.eventBus.emit('changeBgi', 'weibo');
+      topNav.name = '登录';
+      break;
+    case 'luck':
+      if(!luck) {
+        luck = migi.render(
+          <Luck/>,
+          '#page'
+        );
+        luck.on('ok', function() {
+          botNav.emit('change', 'index');
+        });
+      }
+      last = luck;
+      migi.eventBus.emit('changeBgi', 'luck');
+      topNav.name = '提示';
+      break;
     case 'index':
       if(!index) {
         index = migi.render(
@@ -164,20 +193,34 @@ botNav.on('change', function(type) {
   if(last) {
     last.show();
   }
-  if(type !== 'index' && window.IS_MOBILE) {
-    botNav.hideMenu();
+  if(window.IS_MOBILE) {
+    if(type !== 'index') {
+      botNav.hideMenu();
+    }
+    else {
+      botNav.showMenu();
+    }
   }
   $page.scrollTop(0);
 });
 
 loading.on('fin', function() {
   loading.clean();
-  botNav.emit('change', 'index');
+  botNav.emit('change', 'weibo');
   topNav.show();
   botNav.show();
 });
-if(window.IS_LOGIN === 'True') {
-  loading.emit('fin');
+if(window.LUCK_MES) {
+  loading.hide();
+  botNav.emit('change', 'luck');
+  topNav.show();
+  botNav.show();
+}
+else if(window.IS_LOGIN === 'True') {
+  loading.hide();
+  botNav.emit('change', 'index');
+  topNav.show();
+  botNav.show();
 }
 // botNav.emit('change', 'index');
 // topNav.show();

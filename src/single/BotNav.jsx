@@ -28,6 +28,9 @@ class BotNav extends migi.Component {
   clickLogo() {
     $(this.ref.list.element).toggleClass('alt');
   }
+  showMenu() {
+    $(this.ref.list.element).removeClass('alt');
+  }
   hideMenu() {
     $(this.ref.list.element).addClass('alt');
   }
