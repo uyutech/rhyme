@@ -70,6 +70,9 @@ class Character extends migi.Component{
   }
   hide() {
     $(this.element).addClass('fn-hide');
+    this.rootId = null;
+    this.replayId = null;
+    this.replayName = null;
     this.showComment = false;
     this.ref.comment.abort();
   }
@@ -119,6 +122,9 @@ class Character extends migi.Component{
     }
     this.ref.comment.abort();
     HASH[this.name].Skip = -1;
+    this.rootId = null;
+    this.replayId = null;
+    this.replayName = null;
   }
   load() {
     let self = this;
