@@ -194,7 +194,7 @@ botNav.on('change', function(type) {
     last.show();
   }
   if(window.IS_MOBILE) {
-    if(type !== 'index') {
+    if(type !== 'index' && type !== 'luck') {
       botNav.hideMenu();
     }
     else {
