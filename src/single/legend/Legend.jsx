@@ -34,18 +34,18 @@ class Legend extends migi.Component {
             <span class="hetu"/>
           </a>
         </li>
-        <li class="ethereals" rel="sixia" cname="司夏">
-          <a href="#" class="c">
-          </a>
-          <a href="#" class="h">
-            <span class="sixia"/>
-          </a>
-        </li>
-        <li class="mutants" rel="mi" cname="弥">
+        <li class="ethereals" rel="mi" cname="弥">
           <a href="#" class="c">
           </a>
           <a href="#" class="h">
             <span class="mi"/>
+          </a>
+        </li>
+        <li class="mutants" rel="sixia" cname="司夏">
+          <a href="#" class="c">
+          </a>
+          <a href="#" class="h">
+            <span class="sixia"/>
           </a>
         </li>
       </ul>
