@@ -75,6 +75,10 @@ class Character extends migi.Component{
     this.replayName = null;
     this.showComment = false;
     this.ref.comment.abort();
+    Object.keys(HASH).forEach(function(key) {
+      HASH[key].Skip = -1;
+      HASH[key].end = false;
+    });
   }
   clickFollow(e, vd) {
     e.preventDefault();
@@ -122,6 +126,7 @@ class Character extends migi.Component{
     }
     this.ref.comment.abort();
     HASH[this.name].Skip = -1;
+    HASH[this.name].end = false;
     this.rootId = null;
     this.replayId = null;
     this.replayName = null;

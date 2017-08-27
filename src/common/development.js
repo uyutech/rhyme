@@ -7,8 +7,8 @@ export default {
     setTimeout(function() {
       url = url.replace(/\.json$/, '.js');
       let res = require('../../mock/' + url);
-      console.log(res);
-      success(res);
+      console.log(res.default || res);
+      success(res.default || res);
     }, 20);
   },
 };
