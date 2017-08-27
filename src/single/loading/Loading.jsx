@@ -27,6 +27,10 @@ class Loading extends migi.Component {
         <div class="end-line"/>
         <a href="#" class="enter" onClick={ this.click }><span>•<br/>异世开启<br/>•</span></a>
       </div>
+      <div class="cp">
+        <p>All Rights Reserved 结梦谷</p>
+        <p>浙ICP备17029501号-1</p>
+      </div>
     </div>;
   }
 }
