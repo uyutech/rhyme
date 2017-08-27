@@ -48,6 +48,12 @@ let botNav = migi.render(
   document.body
 );
 
+if(window.IS_MOBILE) {
+  topNav.on('clickLogo', function() {
+    botNav.clickLogo();
+  });
+}
+
 botNav.on('change', function(type) {
   if(last) {
     last.hide();
@@ -108,6 +114,7 @@ botNav.on('change', function(type) {
           last = character;
           last.show();
           topNav.name = chineseName;
+          $page.scrollTop(0);
         });
       }
       last = legend;
@@ -145,7 +152,8 @@ botNav.on('change', function(type) {
           character.user('jiemeng');
           last = character;
           last.show();
-          topNav.name = '结梦谷';
+          topNav.name = '结梦';
+          $page.scrollTop(0);
         });
       }
       last = about;
@@ -156,6 +164,10 @@ botNav.on('change', function(type) {
   if(last) {
     last.show();
   }
+  if(type !== 'index' && window.IS_MOBILE) {
+    botNav.hideMenu();
+  }
+  $page.scrollTop(0);
 });
 
 loading.on('fin', function() {
@@ -164,7 +176,9 @@ loading.on('fin', function() {
   topNav.show();
   botNav.show();
 });
-// loading.emit('fin');
+if(window.IS_LOGIN === 'True') {
+  loading.emit('fin');
+}
 // botNav.emit('change', 'index');
 // topNav.show();
 // botNav.show();

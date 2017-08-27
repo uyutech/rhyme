@@ -28,6 +28,9 @@ class BotNav extends migi.Component {
   clickLogo() {
     $(this.ref.list.element).toggleClass('alt');
   }
+  hideMenu() {
+    $(this.ref.list.element).addClass('alt');
+  }
   render() {
     return <div class="bot-nav fn-hide">
       <ul ref="list" class="fn-clear" onClick={ { a: this.click } }>

@@ -34,5 +34,6 @@ window.requestAnimationFrame = function() {
     };
 }();
 
+window.IS_MOBILE = IS_MOBILE;
 window.$ = $;
 window.util = util;

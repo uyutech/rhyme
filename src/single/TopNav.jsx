@@ -13,12 +13,15 @@ class TopNav extends migi.Component {
     $(this.element).addClass('fn-hide');
   }
   @bind name
+  clickLogo() {
+    this.emit('clickLogo');
+  }
   render() {
     return <div class="top-nav fn-hide">
       <div class="ti">
         <b class="bg"/>
         <b class="border"/>
-        <span>{ this.name || '首页' }</span>
+        <span onClick={ this.clickLogo }>{ this.name || '首页' }</span>
       </div>
     </div>;
   }
