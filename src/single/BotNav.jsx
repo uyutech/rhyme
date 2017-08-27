@@ -25,9 +25,12 @@ class BotNav extends migi.Component {
   clear() {
     $(this.element).find('.cur').removeClass('cur');
   }
+  clickLogo() {
+    $(this.ref.list.element).toggleClass('alt');
+  }
   render() {
     return <div class="bot-nav fn-hide">
-      <ul class="fn-clear" onClick={ { a: this.click } }>
+      <ul ref="list" class="fn-clear" onClick={ { a: this.click } }>
         <li class="geography"><a href="#" title="世界地理">世界地理</a></li>
         <li class="history"><a href="#" title="历史故事">历史故事</a></li>
         <li class="logo"/>
@@ -35,7 +38,7 @@ class BotNav extends migi.Component {
         <li class="rhyme"><a href="#" title="浮世歌谣">浮世歌谣</a></li>
         <li class="about"><a href="#" title="关于异世">关于异世</a></li>
       </ul>
-      <div class="logo"/>
+      <div class="logo" onClick={ this.clickLogo }/>
     </div>;
   }
 }

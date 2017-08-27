@@ -19,7 +19,7 @@ class Legend extends migi.Component {
   }
   render() {
     return <div class="main legend">
-      <ul class="fn-clear" onClick={ { a: this.click } }>
+      <ul ref="list" class="fn-clear" onClick={ { a: this.click } }>
         <li class="immortals" rel="muhan" cname="慕寒">
           <a href="#" class="c">
           </a>
