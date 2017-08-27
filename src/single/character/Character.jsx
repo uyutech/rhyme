@@ -148,9 +148,11 @@ class Character extends migi.Component{
         }
       }
       else {
+        self.ref.comment.showComment();
         self.ref.comment.message = res.message || util.ERROR_MESSAGE;
       }
     }, function(res) {
+      self.ref.comment.showComment();
       self.ref.comment.message = res.message || util.ERROR_MESSAGE;
     });
   }

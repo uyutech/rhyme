@@ -15,7 +15,7 @@ class History extends migi.Component{
   render() {
     return <div class="main history">
       <div class="con">
-        <h3><span>•异世纪年•</span></h3>
+        <h3><span>•<br/>异世纪年<br/>•</span></h3>
         <div class="c">
           <p>“物生谓之化，物极谓之变。”</p>
           <p class="end">——《素问·天元纪大论》</p>
