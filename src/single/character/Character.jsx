@@ -250,7 +250,7 @@ class Character extends migi.Component{
           <div class="form">
             <div class={ 'reply' + (this.replayId ? '' : ' fn-hide') } onClick={ this.clickReplay }>{ this.replayName }</div>
             <div class="inputs">
-              <input ref="input" type="text" placeholder="留言..." onInput={ this.input }/>
+              <input ref="input" maxlength="120" type="text" placeholder="留言..." onInput={ this.input }/>
             </div>
             <button onClick={ this.click } class={ this.hasContent && !this.sending ? '' : 'dis' }>确定</button>
           </div>
