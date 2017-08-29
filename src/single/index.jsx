@@ -4,6 +4,7 @@
 
 import './single.html';
 import './index.less';
+import '../404.html';
 
 import TopNav from './TopNav.jsx';
 import BotNav from './BotNav.jsx';

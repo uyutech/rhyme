@@ -9,7 +9,7 @@ export default {
     // 兼容无host
     if (!/^http(s)?:\/\//.test(url)) {
       // url = 'http://192.168.0.66/' + url.replace(/^\//, '');
-      url = 'http://test.rhymesland.com/' + url.replace(/^\//, '');
+      url = '/' + url.replace(/^\//, '');
       // url = 'http://139.224.235.70/' + url.replace(/^\//, '');
     }
     console.log('ajax: ' + url + ', ' + JSON.stringify(data));
