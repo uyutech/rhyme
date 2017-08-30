@@ -4,8 +4,10 @@
 
 import Comment from './Comment.jsx';
 
+let Skip = 0;
 let Take = 10;
 let SortType = 0;
+let CurrentCount = 0;
 let loadingMore;
 let ajax;
 let HASH = {
@@ -57,7 +59,9 @@ class Character extends migi.Component{
       self.ref.comment.on('switchType', function(rel) {
         HASH[self.name].Skip = -1;
         HASH[self.name].end = false;
+        CurrentCount = 0;
         SortType = rel;
+        Skip = 0;
         self.load();
         self.ref.comment.showComment();
       });
@@ -83,6 +87,8 @@ class Character extends migi.Component{
     this.replayName = null;
     this.showComment = false;
     this.ref.comment.abort();
+    Skip = 0;
+    CurrentCount = 0;
     Object.keys(HASH).forEach(function(key) {
       HASH[key].Skip = -1;
       HASH[key].end = false;
@@ -133,6 +139,8 @@ class Character extends migi.Component{
       ajax.abort();
     }
     this.ref.comment.abort();
+    Skip = 0;
+    CurrentCount = 0;
     HASH[this.name].Skip = -1;
     HASH[this.name].end = false;
     this.rootId = null;
@@ -142,13 +150,15 @@ class Character extends migi.Component{
   load() {
     let self = this;
     self.ref.comment.message = '读取中...';
-    ajax = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: HASH[self.name].authorId , Skip: HASH[self.name].Skip, Take, SortType }, function(res) {
+    ajax = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: HASH[self.name].authorId , Skip, Take, SortType, CurrentCount }, function(res) {
       if(res.success) {
         let data = res.data;
+        CurrentCount = data.Size;
+        Skip += 10;
         if(data.Size) {
           self.ref.comment.message = '';
           self.ref.comment.showComment(res.data.data);
-          HASH[self.name].Skip = data.data[data.data.length - 1].Send_ID;
+          // HASH[self.name].Skip = data.data[data.data.length - 1].Send_ID;
         }
         else {
           self.ref.comment.showComment(res.data.data);
@@ -168,11 +178,13 @@ class Character extends migi.Component{
     let self = this;
     if(this.showComment && !loadingMore && !HASH[self.name].end && $wrap.scrollTop() + $wrap.height() + 30 > $cp.height()) {
       loadingMore = true;
-      ajax = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: HASH[self.name].authorId, Skip: HASH[self.name].Skip, Take, SortType }, function(res) {
+      ajax = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: HASH[self.name].authorId, Skip, Take, SortType, CurrentCount }, function(res) {
         if(res.success) {
           let data = res.data;
+          CurrentCount = data.Size;
+          Skip += 10;
           if(data.data.length) {
-            HASH[self.name].Skip = data.data[data.data.length - 1].Send_ID;
+            // HASH[self.name].Skip = data.data[data.data.length - 1].Send_ID;
             self.ref.comment.addMore(data.data);
             if(data.data.length < Take) {
               self.ref.comment.message = '';
