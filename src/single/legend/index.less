@@ -10,12 +10,13 @@
   ul{
     margin:0 auto;
     padding:0.6rem 0;
-    width:990px;
+    width:9.9rem;
     li{
       position:relative;
       float:left;
       margin-right:0.1rem;
       padding-right:1.20rem;
+      transition:transform 0.2s;
       &:last-child{
         margin-right:0;
       }
@@ -34,6 +35,12 @@
         height:8px;
         background:#730000;
         content:' ';
+      }
+      &:hover{
+        transform:translateY(0.2rem);
+        .h{
+          opacity:1;
+        }
       }
       .c{
         position:relative;
@@ -77,6 +84,8 @@
         right:0;
         display:block;
         width:120px;
+        opacity:0;
+        transition:opacity 0.2s;
         span{
           display:block;
           height:135px;
@@ -107,6 +116,11 @@
     overflow-x:scroll;
     ul{
       padding:0.5rem 0;
+      li{
+        .h{
+          opacity:1;
+        }
+      }
     }
   }
 }

@@ -7,7 +7,9 @@ import Comment from './Comment.jsx';
 let Skip = 0;
 let Take = 10;
 let SortType = 0;
+let MyComment = 0;
 let CurrentCount = 0;
+let commentType = 2;
 let loadingMore;
 let ajax;
 let HASH = {
@@ -55,15 +57,7 @@ class Character extends migi.Component{
         self.rootId = rid;
         self.replayId = cid;
         self.replayName = name;
-      });
-      self.ref.comment.on('switchType', function(rel) {
-        HASH[self.name].Skip = -1;
-        HASH[self.name].end = false;
-        CurrentCount = 0;
-        SortType = rel;
-        Skip = 0;
-        self.load();
-        self.ref.comment.showComment();
+        commentType = 3;
       });
     });
   }
@@ -87,8 +81,10 @@ class Character extends migi.Component{
     this.replayName = null;
     this.showComment = false;
     this.ref.comment.abort();
+    this.ref.comment.showComment();
     Skip = 0;
     CurrentCount = 0;
+    commentType = 2;
     Object.keys(HASH).forEach(function(key) {
       HASH[key].Skip = -1;
       HASH[key].end = false;
@@ -139,8 +135,10 @@ class Character extends migi.Component{
       ajax.abort();
     }
     this.ref.comment.abort();
+    this.ref.comment.showComment();
     Skip = 0;
     CurrentCount = 0;
+    commentType = 2;
     HASH[this.name].Skip = -1;
     HASH[this.name].end = false;
     this.rootId = null;
@@ -150,7 +148,7 @@ class Character extends migi.Component{
   load() {
     let self = this;
     self.ref.comment.message = '读取中...';
-    ajax = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: HASH[self.name].authorId , Skip, Take, SortType, CurrentCount }, function(res) {
+    ajax = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: HASH[self.name].authorId , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
       if(res.success) {
         let data = res.data;
         CurrentCount = data.Size;
@@ -178,7 +176,7 @@ class Character extends migi.Component{
     let self = this;
     if(this.showComment && !loadingMore && !HASH[self.name].end && $wrap.scrollTop() + $wrap.height() + 30 > $cp.height()) {
       loadingMore = true;
-      ajax = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: HASH[self.name].authorId, Skip, Take, SortType, CurrentCount }, function(res) {
+      ajax = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: HASH[self.name].authorId, Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
         if(res.success) {
           let data = res.data;
           CurrentCount = data.Size;
@@ -210,6 +208,7 @@ class Character extends migi.Component{
     this.replayId = null;
     this.replayName = null;
     this.rootId = null;
+    commentType = 2;
   }
   input(e, vd) {
     let v = $(vd.element).val().trim();
@@ -228,7 +227,7 @@ class Character extends migi.Component{
         ParentID,
         RootID,
         Content,
-        commentType: 2,
+        commentType,
         commentTypeID: HASH[self.name].authorId,
       }, function(res) {
         if(res.success) {
@@ -252,6 +251,34 @@ class Character extends migi.Component{
       });
     }
   }
+  switchType(e, vd) {
+    let $ul = $(vd.element);
+    $ul.toggleClass('alt');
+    $ul.find('li').toggleClass('cur');
+    let rel = $ul.find('.cur').attr('rel');
+    HASH[this.name].Skip = -1;
+    HASH[this.name].end = false;
+    CurrentCount = 0;
+    SortType = rel;
+    Skip = 0;
+    this.ref.comment.showComment();
+    this.ref.comment.abort();
+    this.load();
+  }
+  switchType2(e, vd) {
+    let $ul = $(vd.element);
+    $ul.toggleClass('alt');
+    $ul.find('li').toggleClass('cur');
+    let rel = $ul.find('.cur').attr('rel');
+    HASH[this.name].Skip = -1;
+    HASH[this.name].end = false;
+    CurrentCount = 0;
+    MyComment = rel;
+    Skip = 0;
+    this.ref.comment.showComment();
+    this.ref.comment.abort();
+    this.load();
+  }
   render() {
     return <div class={ 'main character ' + this.name }>
       <div class="con">
@@ -267,6 +294,14 @@ class Character extends migi.Component{
             <Comment ref="comment"/>
           </div>
           <a href="#" class="close" onClick={ this.clickClose }/>
+          <ul class="type2 fn-clear" onClick={ { li: this.switchType2 } }>
+            <li class="cur" rel="0"><span>全部</span></li>
+            <li rel="1"><span>我的</span></li>
+          </ul>
+          <ul class="type fn-clear" onClick={ { li: this.switchType } }>
+            <li class="cur" rel="0"><span>最新</span></li>
+            <li rel="1"><span>最热</span></li>
+          </ul>
           <div class="form">
             <div class={ 'reply' + (this.replayId ? '' : ' fn-hide') } onClick={ this.clickReplay }>{ this.replayName }</div>
             <div class="inputs">

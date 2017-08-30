@@ -38,6 +38,22 @@ let loading = migi.render(
   '#page'
 );
 
+let audio = migi.render(
+  <audio autoplay="autoplay" loop="loop">
+    <source src="http://rhymesland.oss-cn-shanghai.aliyuncs.com/bgm/BGM.mp3" type="audio/mpeg"/>
+  </audio>,
+  document.body
+);
+
+topNav.on('music', function(bool) {console.log(bool);
+  if(bool) {
+    audio.element.play();
+  }
+  else {
+    audio.element.pause();
+  }
+});
+
 let weibo;
 let luck;
 let index;

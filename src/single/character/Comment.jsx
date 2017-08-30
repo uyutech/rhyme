@@ -70,7 +70,9 @@ class Comment extends migi.Component {
       });
       $root.on('click', '.profile,pre', function() {
         let $profile = $(this);
-        self.emit('chooseSubComment', $profile.attr('rid'), $profile.attr('cid'), $profile.attr('name'));
+        if(!$profile.closest('.list2')[0]) {
+          self.emit('chooseSubComment', $profile.attr('rid'), $profile.attr('cid'), $profile.attr('name'));
+        }
       });
     });
   }
@@ -199,7 +201,7 @@ class Comment extends migi.Component {
         <div class="profile fn-clear" cid={ item.Send_ID } rid={ item.RootID } name={ item.Send_UserName }>
           <img class="pic" src={ item.Send_UserHeadUrl || 'http://rhymesland.oss-cn-shanghai.aliyuncs.com/blank.png' }/>
           <div class="txt">
-            <div><span class="name2">{ item.Send_ToUserName }</span><b class="arrow"/><small class="time">{ item.Send_Time }</small><span class="name">{ item.Send_UserName }</span></div>
+            <div><span class="name2 fn-hide">{ item.Send_ToUserName }</span><b class="arrow fn-hide"/><small class="time">{ item.Send_Time }</small><span class="name">{ item.Send_UserName }</span></div>
             <p>{ item.sign }</p>
           </div>
         </div>
@@ -218,12 +220,6 @@ class Comment extends migi.Component {
   render() {
     let self = this;
     return <div class="cp_comment">
-      <div class="bar fn-clear">
-        <ul class="type fn-clear" onClick={ { li: this.switchType } }>
-          <li class="cur" rel="0"><span>最新</span></li>
-          <li rel="1"><span>最热</span></li>
-        </ul>
-      </div>
       <ul class="list" ref="list"/>
       <p class={ 'message' + (this.message ? '' : ' fn-hide') }>{ this.message }</p>
     </div>;
