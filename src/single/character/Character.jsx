@@ -5,6 +5,7 @@
 import Comment from './Comment.jsx';
 
 let Take = 10;
+let SortType = 0;
 let loadingMore;
 let ajax;
 let HASH = {
@@ -52,6 +53,13 @@ class Character extends migi.Component{
         self.rootId = rid;
         self.replayId = cid;
         self.replayName = name;
+      });
+      self.ref.comment.on('switchType', function(rel) {
+        HASH[self.name].Skip = -1;
+        HASH[self.name].end = false;
+        SortType = rel;
+        self.load();
+        self.ref.comment.showComment();
       });
     });
   }
@@ -134,7 +142,7 @@ class Character extends migi.Component{
   load() {
     let self = this;
     self.ref.comment.message = '读取中...';
-    ajax = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: HASH[self.name].authorId , Skip: HASH[self.name].Skip, Take }, function(res) {
+    ajax = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: HASH[self.name].authorId , Skip: HASH[self.name].Skip, Take, SortType }, function(res) {
       if(res.success) {
         let data = res.data;
         if(data.Size) {
@@ -160,7 +168,7 @@ class Character extends migi.Component{
     let self = this;
     if(this.showComment && !loadingMore && !HASH[self.name].end && $wrap.scrollTop() + $wrap.height() + 30 > $cp.height()) {
       loadingMore = true;
-      ajax = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: HASH[self.name].authorId, Skip: HASH[self.name].Skip, Take }, function(res) {
+      ajax = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: HASH[self.name].authorId, Skip: HASH[self.name].Skip, Take, SortType }, function(res) {
         if(res.success) {
           let data = res.data;
           if(data.data.length) {
