@@ -18,7 +18,8 @@ export default {
       "LikeCount": 0,
       "IsLike": false,
       "sub_Count": 21,
-      "RootID": -1
+      "RootID": -1,
+      ISOwn: true
     }, {
       "Send_ID": 19,
       "Send_UserName": "army8735",

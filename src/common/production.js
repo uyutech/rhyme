@@ -8,8 +8,8 @@ export default {
   ajax: function(url, data, success, error, type) {
     // 兼容无host
     if (!/^http(s)?:\/\//.test(url)) {
-      url = 'http://192.168.0.66/' + url.replace(/^\//, '');
-      // url = '/' + url.replace(/^\//, '');
+      // url = 'http://192.168.0.17/' + url.replace(/^\//, '');
+      url = '/' + url.replace(/^\//, '');
     }
     console.log('ajax: ' + url + ', ' + JSON.stringify(data));
     function load() {

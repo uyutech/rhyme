@@ -74,6 +74,18 @@ class Comment extends migi.Component {
           self.emit('chooseSubComment', $profile.attr('rid'), $profile.attr('cid'), $profile.attr('name'));
         }
       });
+      $root.on('click', '.remove', function() {
+        let $btn = $(this);
+        let cid = $btn.attr('cid');
+        util.postJSON('author/DeleteCommentByID', { CommentID: cid }, function(res) {
+          if(res.success) {
+            $btn.closest('li').remove();
+          }
+          else {
+            alert(res.message || util.ERROR_MESSAGE);
+          }
+        });
+      });
     });
   }
   @bind message
@@ -175,8 +187,12 @@ class Comment extends migi.Component {
             <p>{ item.sign }</p>
           </div>
         </div>
-        <div class="fn">
+        <div class="fn fn-clear">
           <span cid={ item.Send_ID } class={ 'zan' + (item.IsLike ? ' has' : '') }><small>{ item.LikeCount }</small></span>
+          <a href={ '?cid=' + item.Send_ID } class="share" target="_blank">分享</a>
+          {
+            item.ISOwn ? <span cid={ item.Send_ID } class="remove" target="_blank">删除</span> : ''
+          }
         </div>
       </div>
       <div class="c">

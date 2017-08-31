@@ -1,0 +1,36 @@
+/**
+ * Created by army8735 on 2017/8/31.
+ */
+
+.page.scomment{
+  background:url(../history/bg.jpg) no-repeat center;
+  background-size:cover;
+}
+
+.main.scomment{
+  > .con{
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:100%;
+    > .c{
+      margin:0 auto;
+      padding:0.6rem 0 1.3rem;
+      width:6rem;
+      height:100%;
+      box-sizing:border-box;
+      border:1px solid #e0ce9e;
+      background:#FDFAF5;
+      .wrap{
+        overflow-y:scroll;
+        height:100%;
+        .cp_comment{
+          padding:0 0.3rem 0.2rem 0.1rem;
+          .share,.remove{
+            display:none !important;
+          }
+        }
+      }
+    }
+  }
+}

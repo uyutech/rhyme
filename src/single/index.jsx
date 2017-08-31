@@ -19,6 +19,11 @@ import Legend from './legend/Legend.jsx';
 import Character from './character/Character.jsx';
 import Rhyme from './rhyme/Rhyme.jsx';
 import About from './history/About.jsx';
+import SComment from './scomment/SComment.jsx';
+
+import qs from 'anima-querystring';
+let search = qs.parse(location.search.replace(/^\?/, ''));
+let cid = window.cid = search.cid;
 
 let $page = $('#page');
 migi.eventBus.on('changeBgi', function(name) {
@@ -63,6 +68,7 @@ let legend;
 let character;
 let rhyme;
 let about;
+let scomment;
 
 let botNav = migi.render(
   <BotNav/>,
@@ -206,6 +212,18 @@ botNav.on('change', function(type) {
       migi.eventBus.emit('changeBgi', 'history');
       topNav.name = '关于';
       break;
+    case 'comment':
+      if(!scomment) {
+        scomment = migi.render(
+          <SComment/>,
+          '#page'
+        );
+        last = scomment;
+        migi.eventBus.emit('changeBgi', 'scomment');
+        topNav.name = '留言';
+        $page.scrollTop(0);
+      }
+      break;
   }
   if(last) {
     last.show();
@@ -224,10 +242,19 @@ botNav.on('change', function(type) {
 loading.on('fin', function() {
   loading.clean();
   botNav.emit('change', 'weibo');
-  // topNav.show();
-  // botNav.show();
 });
-if(window.LUCK_MES) {
+if(cid) {
+  if(window.IS_LOGIN !== 'True') {
+    location.href = window.LOGIN_URL;
+  }
+  else {
+    loading.hide();
+    botNav.emit('change', 'comment');
+    topNav.show();
+    botNav.show();
+  }
+}
+else if(window.LUCK_MES) {
   loading.hide();
   botNav.emit('change', 'luck');
   topNav.show();
@@ -235,7 +262,7 @@ if(window.LUCK_MES) {
 }
 else if(window.IS_LOGIN === 'True') {
   loading.hide();
-  botNav.emit('change', 'legend');
+  botNav.emit('change', 'index');
   topNav.show();
   botNav.show();
 }
@@ -250,3 +277,4 @@ else if(window.IS_LOGIN === 'True') {
 //   );
 // }
 // character.user('hetu');
+// character.show();
