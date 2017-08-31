@@ -235,7 +235,7 @@ if(window.LUCK_MES) {
 }
 else if(window.IS_LOGIN === 'True') {
   loading.hide();
-  botNav.emit('change', 'index');
+  botNav.emit('change', 'legend');
   topNav.show();
   botNav.show();
 }

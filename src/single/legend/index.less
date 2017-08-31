@@ -9,7 +9,7 @@
 .main.legend{
   ul{
     margin:0 auto;
-    padding:0.6rem 0;
+    padding:0.6rem 0 0.8rem;
     width:9.9rem;
     li{
       position:relative;
@@ -38,6 +38,13 @@
       }
       &:hover{
         transform:translateY(0.2rem);
+        .c span{
+          bottom:-0.25rem;
+          height:0.5rem;
+          background:url(enter.png) no-repeat;
+          background-size:contain;
+          text-indent:0;
+        }
         .h{
           opacity:1;
         }
@@ -53,9 +60,21 @@
         background-repeat:no-repeat;
         background-position:35px 20px;
         box-sizing:border-box;
-        overflow:hidden;
-        &:hover{
-          overflow:visible;
+        span{
+          position:absolute;
+          bottom:0;
+          left:0.35rem;
+          display:block;
+          width:0.5rem;
+          height:0.25rem;
+          background:url(arrow.png) no-repeat;
+          background-size:contain;
+          color:#fff;
+          font-size:0.14rem;
+          line-height:0.5rem;
+          text-align:center;
+          text-indent:999rem;
+          overflow:hidden;
         }
       }
       &.immortals{

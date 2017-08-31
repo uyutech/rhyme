@@ -22,6 +22,7 @@ class Legend extends migi.Component {
       <ul ref="list" class="fn-clear" onClick={ { a: this.click } }>
         <li class="immortals" rel="muhan" cname="慕寒">
           <a href="#" class="c">
+            <span>生</span>
           </a>
           <a href="#" class="h">
             <span class="muhan"/>
@@ -29,6 +30,7 @@ class Legend extends migi.Component {
         </li>
         <li class="spirits" rel="hetu" cname="河图">
           <a href="#" class="c">
+            <span>化</span>
           </a>
           <a href="#" class="h">
             <span class="hetu"/>
@@ -36,6 +38,7 @@ class Legend extends migi.Component {
         </li>
         <li class="ethereals" rel="mi" cname="弥">
           <a href="#" class="c">
+            <span>极</span>
           </a>
           <a href="#" class="h">
             <span class="mi"/>
@@ -43,6 +46,7 @@ class Legend extends migi.Component {
         </li>
         <li class="mutants" rel="sixia" cname="司夏">
           <a href="#" class="c">
+            <span>变</span>
           </a>
           <a href="#" class="h">
             <span class="sixia"/>
