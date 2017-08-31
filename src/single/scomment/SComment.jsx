@@ -16,6 +16,9 @@ class SComment extends migi.Component {
   }
   hide() {
     $(this.element).addClass('fn-hide');
+    if(ajax) {
+      ajax.abort();
+    }
   }
   load() {
     let self = this;
@@ -28,6 +31,7 @@ class SComment extends migi.Component {
         let data = res.data;
         self.ref.comment.message = '';
         self.ref.comment.showComment([data]);
+        $(self.ref.comment.element).find('.slide').click();
       }
       else {
         self.ref.comment.showComment();

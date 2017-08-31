@@ -92,15 +92,14 @@ class Comment extends migi.Component {
         });
       });
       let copy = this.ref.copy.element;
-      $root.on('click', '.share', function() {
+      $root.on('click', '.share', function(e) {
+        $.cookie('share', 1);
         let $btn = $(this);
-        copy.value = $btn.attr('rel');
+        copy.value = location.protocol + '//' + location.host + $btn.attr('href');
         copy.select();
         try {
           document.execCommand('copy');
-          alert('复制成功');
         } catch (err) {
-          alert('复制失败');
         }
       });
       $root.on('click', '.remove', function() {
@@ -235,7 +234,7 @@ class Comment extends migi.Component {
         </div>
         <div class="fn fn-clear">
           <span cid={ item.Send_ID } class={ 'zan' + (item.IsLike ? ' has' : '') }><small>{ item.LikeCount }</small></span>
-          <span class="share" rel={ 'http://rhymesland.com/single.html?cid=' + item.Send_ID }>分享</span>
+          <a class="share" href={ '/?cid=' + item.Send_ID } target="_blank">分享</a>
           {
             item.ISOwn ? <span cid={ item.Send_ID } class="remove">删除</span> : ''
           }

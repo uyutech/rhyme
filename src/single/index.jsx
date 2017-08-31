@@ -252,6 +252,12 @@ if(cid) {
     botNav.emit('change', 'comment');
     topNav.show();
     botNav.show();
+    if($.cookie('share') == 1) {
+      audio.element.pause();
+      topNav.stop();
+      alert('分享链接已复制成功，可以分享给亲朋好友啦！');
+    }
+    $.removeCookie('share');
   }
 }
 else if(window.LUCK_MES) {
