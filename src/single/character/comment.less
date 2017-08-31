@@ -3,6 +3,14 @@
  */
 
 .cp_comment{
+  .copy{
+    position:fixed;
+    top:0;
+    left:-1000px;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+  }
   .bar{
     padding:0 0.1rem;
     .type{
@@ -126,6 +134,7 @@
             text-indent:999rem;
             white-space:nowrap;
             overflow:hidden;
+            cursor:pointer;
           }
           .remove{
             float:right;
@@ -237,6 +246,7 @@
               //flex:1;
               //display:flex;
               //align-items:center;
+              float:right;
               .pic{
                 float:right;
                 display:block;
@@ -283,10 +293,8 @@
               }
             }
             > .fn{
-              position:absolute;
-              left:0;
-              top:0;
-              padding:0 0.1rem 0 0;
+              float:right;
+              margin-right:0.2rem;
               .zan{
                 display:block;
                 padding-left:0.24rem;

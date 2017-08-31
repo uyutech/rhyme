@@ -10,6 +10,28 @@ let subSkipHash = {};
 let Take = 10;
 let ajax;
 
+function formatTime(time) {
+  time = new Date(time);
+  let now = Date.now();
+  let diff = now - time;
+  if(diff >= 1000 * 60 * 60 * 24 * 365) {
+    return Math.floor(diff / (1000 * 60 * 60 * 24 * 365)) + '年前';
+  }
+  if(diff >= 1000 * 60 * 60 * 24 * 30) {
+    return Math.floor(diff / (1000 * 60 * 60 * 24 * 30)) + '月前';
+  }
+  if(diff >= 1000 * 60 * 60 * 24) {
+    return Math.floor(diff / (1000 * 60 * 60 * 24)) + '天前';
+  }
+  if(diff >= 1000 * 60 * 60) {
+    return Math.floor(diff / (1000 * 60 * 60)) + '小时前';
+  }
+  if(diff >= 1000 * 60) {
+    return Math.floor(diff / (1000 * 60 * 60)) + '分钟前';
+  }
+  return '刚刚';
+}
+
 class Comment extends migi.Component {
   constructor(...data) {
     super(...data);
@@ -68,10 +90,16 @@ class Comment extends migi.Component {
           $message.addClass('more').text(res.message || util.ERROR_MESSAGE);
         });
       });
-      $root.on('click', '.profile,pre', function() {
-        let $profile = $(this);
-        if(!$profile.closest('.list2')[0]) {
-          self.emit('chooseSubComment', $profile.attr('rid'), $profile.attr('cid'), $profile.attr('name'));
+      let copy = this.ref.copy.element;
+      $root.on('click', '.share', function() {
+        let $btn = $(this);
+        copy.value = $btn.attr('rel');
+        copy.select();
+        try {
+          document.execCommand('copy');
+          alert('复制成功');
+        } catch (err) {
+          alert('复制失败');
         }
       });
       $root.on('click', '.remove', function() {
@@ -93,6 +121,7 @@ class Comment extends migi.Component {
     if(ajax) {
       ajax.abort();
     }
+    this.message = '';
     subLoadHash = {};
     subSkipHash = {};
   }
@@ -106,9 +135,11 @@ class Comment extends migi.Component {
     if($slide.hasClass('on')) {
       $slide.removeClass('on');
       $list2.css('height', 0);
+      self.emit('noSubComment');
     }
     else {
       $slide.addClass('on');
+      self.emit('chooseSubComment', $slide.attr('rid'), $slide.attr('cid'), $slide.attr('name'));
       let state = subLoadHash[rid];
       if(state === HAS_LOADED || state === IS_LOADING) {
         $list2.css('height', 'auto');
@@ -178,27 +209,27 @@ class Comment extends migi.Component {
   genComment(item) {
     return <li id={ 'comment_' + item.Send_ID }>
       <div class="t">
-        <div class="profile fn-clear" cid={ item.Send_ID } rid={ item.Send_ID } name={ item.Send_UserName }>
+        <div class="profile fn-clear">
           <img class="pic" src={ item.Send_UserHeadUrl || 'http://rhymesland.oss-cn-shanghai.aliyuncs.com/blank.png' }/>
           <div class="txt">
-            <div><span class="name">{ item.Send_UserName }</span>
-              <small class="time">{ item.Send_Time }</small>
+            <div>
+              <span class="name">{ item.Send_UserName }</span>
+              <small class="time">{ formatTime(item.Send_Time) }</small>
             </div>
             <p>{ item.sign }</p>
           </div>
         </div>
         <div class="fn fn-clear">
           <span cid={ item.Send_ID } class={ 'zan' + (item.IsLike ? ' has' : '') }><small>{ item.LikeCount }</small></span>
-          <a href={ '?cid=' + item.Send_ID } class="share" target="_blank">分享</a>
+          <span class="share" rel={ 'http://rhymesland.com/single.html?cid=' + item.Send_ID }>分享</span>
           {
-            item.ISOwn ? <span cid={ item.Send_ID } class="remove" target="_blank">删除</span> : ''
+            item.ISOwn ? <span cid={ item.Send_ID } class="remove">删除</span> : ''
           }
         </div>
       </div>
       <div class="c">
-          <pre cid={ item.Send_ID } rid={ item.Send_ID } name={ item.Send_UserName }>{ item.Send_Content }<span
-            class="placeholder"/></pre>
-        <div class="slide" cid={ item.Send_ID } rid={ item.Send_ID }>
+          <pre>{ item.Send_Content }<span class="placeholder"/></pre>
+        <div class="slide" cid={ item.Send_ID } rid={ item.Send_ID } name={ item.Send_UserName }>
           <small>{ item.sub_Count }</small>
           <span>收起</span></div>
       </div>
@@ -210,16 +241,16 @@ class Comment extends migi.Component {
   }
   genChildComment(item) {
     return <li>
-      <div class="t">
-        <div class="fn">
-          <span cid={ item.Send_ID } class={ 'zan' + (item.IsLike ? ' has' : '') }><small>{ item.LikeCount }</small></span>
-        </div>
+      <div class="t fn-clear">
         <div class="profile fn-clear" cid={ item.Send_ID } rid={ item.RootID } name={ item.Send_UserName }>
           <img class="pic" src={ item.Send_UserHeadUrl || 'http://rhymesland.oss-cn-shanghai.aliyuncs.com/blank.png' }/>
           <div class="txt">
-            <div><span class="name2 fn-hide">{ item.Send_ToUserName }</span><b class="arrow fn-hide"/><small class="time">{ item.Send_Time }</small><span class="name">{ item.Send_UserName }</span></div>
+            <div><span class="name2 fn-hide">{ item.Send_ToUserName }</span><b class="arrow fn-hide"/><small class="time">{ formatTime(item.Send_Time) }</small><span class="name">{ item.Send_UserName }</span></div>
             <p>{ item.sign }</p>
           </div>
+        </div>
+        <div class="fn">
+          <span cid={ item.Send_ID } class={ 'zan' + (item.IsLike ? ' has' : '') }><small>{ item.LikeCount }</small></span>
         </div>
       </div>
       <div class="c">
@@ -234,10 +265,10 @@ class Comment extends migi.Component {
     this.emit('switchType', $ul.find('.cur').attr('rel'));
   }
   render() {
-    let self = this;
     return <div class="cp_comment">
       <ul class="list" ref="list"/>
       <p class={ 'message' + (this.message ? '' : ' fn-hide') }>{ this.message }</p>
+      <input class="copy" ref="copy" value=""/>
     </div>;
   }
 }

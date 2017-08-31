@@ -59,6 +59,9 @@ class Character extends migi.Component{
         self.replayName = name;
         commentType = 3;
       });
+      self.ref.comment.on('noSubComment', function() {
+        self.clickReplay();
+      });
     });
   }
   @bind name
