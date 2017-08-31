@@ -68,6 +68,26 @@
         }
       }
     }
+    .left{
+      position:absolute;
+      top:0;
+      right:50%;
+      width:50%;
+      height:100%;
+      background:#f9eedf url(left.png) no-repeat right center;
+      background-size:contain;
+      transition:transform 0.2s;
+    }
+    .right{
+      position:absolute;
+      top:0;
+      left:50%;
+      width:50%;
+      height:100%;
+      background:#f9eedf url(right.png) no-repeat left center;
+      background-size:contain;
+      transition:transform 0.2s;
+    }
   }
   &.muhan{
     background:url(muhan_bg.jpg) no-repeat center;
@@ -84,6 +104,12 @@
         background:url(muhan.png) no-repeat center;
         background-size:contain;
         transform:translateY(-50%);
+      }
+      .left.on{
+        transform:translateX(-3.17rem);
+      }
+      .right.on{
+        transform:translateX(3.17rem);
       }
     }
   }
@@ -103,6 +129,12 @@
         background-size:contain;
         transform:translateY(-50%);
       }
+      .left.on{
+        transform:translateX(-3.36rem);
+      }
+      .right.on{
+        transform:translateX(3.36rem);
+      }
     }
   }
   &.hetu{
@@ -121,6 +153,12 @@
         background-size:contain;
         transform:translateY(-50%);
       }
+      .left.on{
+        transform:translateX(-3.2rem);
+      }
+      .right.on{
+        transform:translateX(3.2rem);
+      }
     }
   }
   &.mi{
@@ -138,6 +176,12 @@
         background:url(mi.png) no-repeat center;
         background-size:contain;
         transform:translateY(-50%);
+      }
+      .left.on{
+        transform:translateX(-3.19rem);
+      }
+      .right.on{
+        transform:translateX(3.19rem);
       }
     }
   }

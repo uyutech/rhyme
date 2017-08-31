@@ -14,7 +14,13 @@ class Index extends migi.Component{
   }
   render() {
     return <div class="main index">
-      <div class="logo"/>
+      <div class="logo">
+        <div class="point">
+          <span class="p1"/>
+          <span class="p2"/>
+          <span class="p3"/>
+        </div>
+      </div>
     </div>;
   }
 }

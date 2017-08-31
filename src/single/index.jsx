@@ -45,7 +45,7 @@ let audio = migi.render(
   document.body
 );
 
-topNav.on('music', function(bool) {console.log(bool);
+topNav.on('music', function(bool) {
   if(bool) {
     audio.element.play();
   }

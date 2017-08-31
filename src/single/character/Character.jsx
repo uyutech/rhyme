@@ -72,10 +72,19 @@ class Character extends migi.Component{
     this.name = name;
   }
   show() {
-    $(this.element).removeClass('fn-hide');
+    let self = this;
+    $(self.element).removeClass('fn-hide');
+    $(this.ref.left.element).removeClass('on');
+    $(this.ref.right.element).removeClass('on');
+    setTimeout(function() {
+      $(self.ref.left.element).addClass('on');
+      $(self.ref.right.element).addClass('on');
+    }, 200);
   }
   hide() {
     $(this.element).addClass('fn-hide');
+    $(this.ref.left.element).removeClass('on');
+    $(this.ref.right.element).removeClass('on');
     this.rootId = null;
     this.replayId = null;
     this.replayName = null;
@@ -148,6 +157,9 @@ class Character extends migi.Component{
   load() {
     let self = this;
     self.ref.comment.message = '读取中...';
+    if(ajax) {
+      ajax.abort();
+    }
     ajax = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: HASH[self.name].authorId , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
       if(res.success) {
         let data = res.data;
@@ -176,6 +188,9 @@ class Character extends migi.Component{
     let self = this;
     if(this.showComment && !loadingMore && !HASH[self.name].end && $wrap.scrollTop() + $wrap.height() + 30 > $cp.height()) {
       loadingMore = true;
+      if(ajax) {
+        ajax.abort();
+      }
       ajax = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: HASH[self.name].authorId, Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
         if(res.success) {
           let data = res.data;
@@ -223,7 +238,10 @@ class Character extends migi.Component{
       let ParentID = self.replayId !== null ? self.replayId : -1;
       let RootID = self.rootId !== null ? self.rootId : -1;
       self.sending = true;
-      util.postJSON('author/AddComment', {
+      if(ajax) {
+        ajax.abort();
+      }
+      ajax = util.postJSON('author/AddComment', {
         ParentID,
         RootID,
         Content,
@@ -287,6 +305,8 @@ class Character extends migi.Component{
           <li><a href="#" onClick={ this.clickFollow }><span>{ HASH[this.name] && HASH[this.name].state === '1' ? '取关' : '关注' }</span></a></li>
           <li><a href="#" class="comment" onClick={ this.clickComment }><span>{ this.name === 'jiemeng' ? '留言' : '表白' }</span></a></li>
         </ul>
+        <div class="left" ref="left"/>
+        <div class="right" ref="right"/>
       </div>
       <div class={ 'comments' + (this.showComment ? '' : ' fn-hide') } ref="comments">
         <div class="c">
@@ -305,7 +325,7 @@ class Character extends migi.Component{
           <div class="form">
             <div class={ 'reply' + (this.replayId ? '' : ' fn-hide') } onClick={ this.clickReplay }>{ this.replayName }</div>
             <div class="inputs">
-              <input ref="input" maxlength="120" type="text" placeholder="留言..." onInput={ this.input }/>
+              <input ref="input" maxlength="1000" type="text" placeholder="留言..." onInput={ this.input }/>
             </div>
             <button onClick={ this.click } class={ this.hasContent && !this.sending ? '' : 'dis' }>确定</button>
           </div>
