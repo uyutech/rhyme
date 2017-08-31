@@ -22,7 +22,7 @@ export default {
       ISOwn: true
     }, {
       "Send_ID": 19,
-      "Send_UserName": "army8735",
+      "Send_UserName": "aaa",
       "Send_ToUserName": null,
       "Send_UserHeadUrl": null,
       "Send_Content": "11",
