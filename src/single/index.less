@@ -297,16 +297,26 @@
       }
       &.logo{
         position:relative;
-        width:3.98rem;
+        width:3.9rem;
         &:before{
           position:absolute;
           left:0;
           bottom:0;
           width:100%;
-          height:1.57rem;
-          background:url(nav_logo.png) no-repeat center;
+          height:1.11rem;
+          background:url(qiu.png) no-repeat 1.25rem 0;
           background-size:contain;
           content:' ';
+        }
+        .cloud{
+          position:absolute;
+          left:0;
+          bottom:0;
+          width:3.9rem;
+          height:1.13rem;
+          background:url(cloud.png) no-repeat center;
+          background-size:contain;
+          transition:transform 2s;
         }
       }
       a{
@@ -429,6 +439,9 @@
       height:1rem;
       background:url(nav_logo.png) no-repeat center;
       background-size:contain;
+      .cloud{
+        display:none;
+      }
     }
   }
 }

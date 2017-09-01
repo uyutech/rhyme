@@ -16,6 +16,6 @@ export default {
     "LikeCount": 0,
     "IsLike": false,
     "sub_Count": 0,
-    "RootID": -1
+    "RootID": 1
   }
 };

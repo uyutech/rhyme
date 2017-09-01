@@ -14,8 +14,9 @@
     bottom:0;
     width:100%;
     > .c{
+      position:relative;
       margin:0 auto;
-      padding:0.6rem 0 1.3rem;
+      padding:0.6rem 0 1.5rem;
       width:6rem;
       height:100%;
       box-sizing:border-box;
@@ -31,6 +32,48 @@
           }
         }
       }
+      > .form{
+        position:absolute;
+        left:0;
+        bottom:1.02rem;
+        width:100%;
+        height:0.48rem;
+        display:flex;
+        padding:0 0.1rem;
+        box-sizing:border-box;
+        background:#fff;
+        border-top:1px solid #ccc;
+        align-items:center;
+        .inputs{
+          flex:1;
+          padding:0 0.1rem;
+          background:#EDF3F7;
+          height:0.28rem;
+          border:1px solid #eee;
+          border-radius:0.1rem;
+          input{
+            display:block;
+            width:100%;
+            height:100%;
+            font-size:0.14rem;
+            background:transparent;
+            border:none;
+          }
+        }
+        button{
+          margin-left:0.1rem;
+          padding:0;
+          text-align:center;
+          width:0.4rem;
+          font-size:0.14rem;
+          white-space:nowrap;
+          background:transparent;
+          border:none;
+          &.dis{
+            opacity:0.3;
+          }
+        }
+      }
     }
   }
 }
@@ -40,6 +83,10 @@
     > .con{
       > .c{
         width:auto;
+        padding-bottom:1rem;
+      }
+      .form{
+        bottom:0.502rem;
       }
     }
   }

@@ -246,6 +246,12 @@ loading.on('fin', function() {
 
 if(location.hash) {
   switch (location.hash) {
+    case '#legend':
+      loading.hide();
+      botNav.emit('change', 'legend');
+      topNav.show();
+      botNav.show();
+      break;
     case '#history':
       loading.hide();
       botNav.emit('change', 'history');
