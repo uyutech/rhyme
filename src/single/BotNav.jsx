@@ -11,8 +11,8 @@ class BotNav extends migi.Component {
       $window.on('mousemove', function(e) {
         let x = e.pageX;
         let y = e.pageY;
-        $cloud.css('-webkit-transform', `translate3d(${x/50}px,${y/50}px,0)`);
-        $cloud.css('transform', `translate3d(${x/50}px,${y/50}px,0)`);
+        $cloud.css('-webkit-transform', `translate3d(${x/50}px,${-y/50}px,0)`);
+        $cloud.css('transform', `translate3d(${x/50}px,${-y/50}px,0)`);
       });
     });
   }
