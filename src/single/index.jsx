@@ -255,7 +255,7 @@ if(cid) {
     if($.cookie('share') == 1) {
       audio.element.pause();
       topNav.stop();
-      alert('分享链接已复制成功，可以分享给亲朋好友啦！');
+      alert('分享链接已复制成功，可以分享给亲朋好友啦！如没有复制成功，也可以直接复制浏览器中的网址哦！');
     }
     $.removeCookie('share');
   }

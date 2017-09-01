@@ -28,7 +28,7 @@ function formatTime(time) {
     return Math.floor(diff / (1000 * 60 * 60)) + '小时前';
   }
   if(diff >= 1000 * 60) {
-    return Math.floor(diff / (1000 * 60 * 60)) + '分钟前';
+    return Math.floor(diff / (1000 * 60)) + '分钟前';
   }
   return '刚刚';
 }
