@@ -243,7 +243,24 @@ loading.on('fin', function() {
   loading.clean();
   botNav.emit('change', 'weibo');
 });
-if(cid) {
+
+if(location.hash) {
+  switch (location.hash) {
+    case '#history':
+      loading.hide();
+      botNav.emit('change', 'history');
+      topNav.show();
+      botNav.show();
+      break;
+    case '#about':
+      loading.hide();
+      botNav.emit('change', 'about');
+      topNav.show();
+      botNav.show();
+      break;
+  }
+}
+else if(cid) {
   if(window.IS_LOGIN !== 'True') {
     location.href = window.LOGIN_URL;
   }
