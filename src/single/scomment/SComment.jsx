@@ -31,7 +31,7 @@ class SComment extends migi.Component {
       if(res.success) {
         let data = res.data;
         self.rootId = self.replayId = data.Send_ID;
-        authorId = data.authorId;
+        authorId = data.AuthorID;
         self.ref.comment.message = '';
         self.ref.comment.showComment([data]);
         $(self.ref.comment.element).find('.slide').click();
