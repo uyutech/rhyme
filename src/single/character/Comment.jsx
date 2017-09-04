@@ -91,16 +91,18 @@ class Comment extends migi.Component {
           $message.addClass('more').text(res.message || util.ERROR_MESSAGE);
         });
       });
-      let copy = this.ref.copy.element;
       $root.on('click', '.share', function(e) {
-        $.cookie('share', 1);
+        e.preventDefault();
+        // $.cookie('share', 1);
         let $btn = $(this);
-        copy.value = location.protocol + '//' + location.host + $btn.attr('href');
-        copy.select();
-        try {
-          document.execCommand('copy');
-        } catch (err) {
-        }
+        self.emit('copy', location.protocol + '//' + location.host + $btn.attr('href'));
+        // copy.value = location.protocol + '//' + location.host + $btn.attr('href');
+        // copy.focus();
+        // copy.setSelectionRange(0, 9999);
+        // try {
+        //   document.execCommand('copy');
+        // } catch (err) {
+        // }
       });
       $root.on('click', '.remove', function() {
         let $btn = $(this);
@@ -281,7 +283,6 @@ class Comment extends migi.Component {
     return <div class="cp_comment">
       <ul class="list" ref="list"/>
       <p class={ 'message' + (this.message ? '' : ' fn-hide') }>{ this.message }</p>
-      <input class="copy" ref="copy" value=""/>
     </div>;
   }
 }

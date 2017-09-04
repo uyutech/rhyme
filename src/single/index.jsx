@@ -18,6 +18,7 @@ import History from './history/History.jsx';
 import Legend from './legend/Legend.jsx';
 import Character from './character/Character.jsx';
 import Rhyme from './rhyme/Rhyme.jsx';
+import Work from './work/Work.jsx';
 import About from './history/About.jsx';
 import SComment from './scomment/SComment.jsx';
 
@@ -67,6 +68,7 @@ let history;
 let legend;
 let character;
 let rhyme;
+let work;
 let about;
 let scomment;
 
@@ -246,23 +248,33 @@ loading.on('fin', function() {
 
 if(location.hash) {
   switch (location.hash) {
+    case '#geography':
+    case '#rhyme':
     case '#legend':
-      loading.hide();
-      botNav.emit('change', 'legend');
-      topNav.show();
-      botNav.show();
-      break;
     case '#history':
-      loading.hide();
-      botNav.emit('change', 'history');
-      topNav.show();
-      botNav.show();
-      break;
     case '#about':
       loading.hide();
-      botNav.emit('change', 'about');
+      botNav.emit('change', location.hash.slice(1));
+      botNav.hl(location.hash.slice(1));
       topNav.show();
       botNav.show();
+      break;
+    case '#muhan':
+    case '#hetu':
+    case '#mi':
+    case '#sixia':
+      loading.hide();
+      topNav.show();
+      botNav.show();
+      if(!character) {
+        character = migi.render(
+          <Character/>,
+          '#page'
+        );
+      }
+      character.user(location.hash.slice(1));
+      character.show();
+      last = character;
       break;
   }
 }
@@ -275,12 +287,12 @@ else if(cid) {
     botNav.emit('change', 'comment');
     topNav.show();
     botNav.show();
-    if($.cookie('share') == 1) {
-      audio.element.pause();
-      topNav.stop();
-      alert('分享链接已复制成功，可以分享给亲朋好友啦！如没有复制成功，也可以直接复制浏览器中的网址哦！');
-    }
-    $.removeCookie('share');
+    // if($.cookie('share') == 1) {
+    //   audio.element.pause();
+    //   topNav.stop();
+    //   alert('分享链接已复制成功，可以分享给亲朋好友啦！如没有复制成功，也可以直接复制浏览器中的网址哦！');
+    // }
+    // $.removeCookie('share');
   }
 }
 else if(window.LUCK_MES) {
@@ -307,3 +319,12 @@ else if(window.IS_LOGIN === 'True') {
 // }
 // character.user('hetu');
 // character.show();
+
+// work = migi.render(
+//   <Work/>,
+//   '#page'
+// );
+// work.id(1);
+// work.show();
+// botNav.hideMenu();
+// topNav.stop();

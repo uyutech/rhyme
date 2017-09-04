@@ -23,7 +23,7 @@ class BotNav extends migi.Component {
     $(this.element).addClass('fn-hide');
   }
   click(e, vd, tvd) {
-    e.preventDefault();
+    // e.preventDefault();
     let li = tvd.parent;
     let $li = $(li.element);
     if(!$li.hasClass('cur')) {
@@ -44,17 +44,23 @@ class BotNav extends migi.Component {
   hideMenu() {
     $(this.ref.list.element).addClass('alt');
   }
+  hl(cn) {
+    if(cn.charAt(0) === '#') {
+      cn = cn.slice(1);
+    }
+    $(this.ref.list.element).find('.' + cn).addClass('cur');
+  }
   render() {
     return <div class="bot-nav fn-hide">
       <ul ref="list" class="fn-clear" onClick={ { a: this.click } }>
-        <li class="geography"><a href="#" title="世界地理">世界地理</a></li>
-        <li class="history"><a href="#" title="历史故事">历史故事</a></li>
+        <li class="geography"><a href="#geography" title="世界地理">世界地理</a></li>
+        <li class="history"><a href="#history" title="历史故事">历史故事</a></li>
         <li class="logo">
           <b class="cloud" ref="cloud"/>
         </li>
-        <li class="legend"><a href="#" title="异闻传记">异闻传记</a></li>
-        <li class="rhyme"><a href="#" title="浮世歌谣">浮世歌谣</a></li>
-        <li class="about"><a href="#" title="关于异世">关于异世</a></li>
+        <li class="legend"><a href="#legend" title="异闻传记">异闻传记</a></li>
+        <li class="rhyme"><a href="#rhyme" title="浮世歌谣">浮世歌谣</a></li>
+        <li class="about"><a href="#about" title="关于异世">关于异世</a></li>
       </ul>
       <div class="logo" onClick={ this.clickLogo }/>
     </div>;

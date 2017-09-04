@@ -3,6 +3,7 @@
  */
 
 import env from 'ENV';
+import sort from './sort';
 
 let util = {
   isIPhone: function(){
@@ -26,6 +27,7 @@ let util = {
     error = error || function() {};
     return env.ajax(url, data, success, error, 'post');
   },
+  sort,
   ERROR_MESSAGE: '人气大爆发，请稍后再试。'
 };
 

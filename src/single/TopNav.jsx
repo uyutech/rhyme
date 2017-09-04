@@ -40,9 +40,11 @@ class TopNav extends migi.Component {
   }
   stop() {
     pause = true;
+    this.emit('music', !pause);
   }
   play() {
     pause = false;
+    this.emit('music', !pause);
   }
   render() {
     return <div class="top-nav fn-hide">
