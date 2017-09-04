@@ -226,6 +226,20 @@ botNav.on('change', function(type) {
         $page.scrollTop(0);
       }
       break;
+    case 'work':
+      if(!work) {
+        work = migi.render(
+          <Work/>,
+          '#page'
+        );
+      }
+      last = work;
+      work.id(1);
+      migi.eventBus.emit('changeBgi', 'work');
+      $page.scrollTop(0);
+      botNav.hideMenu();
+      topNav.stop();
+      break;
   }
   if(last) {
     last.show();
@@ -247,35 +261,41 @@ loading.on('fin', function() {
 });
 
 if(location.hash) {
-  switch (location.hash) {
-    case '#geography':
-    case '#rhyme':
-    case '#legend':
-    case '#history':
-    case '#about':
-      loading.hide();
-      botNav.emit('change', location.hash.slice(1));
-      botNav.hl(location.hash.slice(1));
-      topNav.show();
-      botNav.show();
-      break;
-    case '#muhan':
-    case '#hetu':
-    case '#mi':
-    case '#sixia':
-      loading.hide();
-      topNav.show();
-      botNav.show();
-      if(!character) {
-        character = migi.render(
-          <Character/>,
-          '#page'
-        );
-      }
-      character.user(location.hash.slice(1));
-      character.show();
-      last = character;
-      break;
+  if(window.IS_LOGIN !== 'True') {
+    location.href = window.LOGIN_URL;
+  }
+  else {
+    switch (location.hash) {
+      case '#geography':
+      case '#rhyme':
+      case '#legend':
+      case '#history':
+      case '#about':
+      case '#work':
+        loading.hide();
+        botNav.emit('change', location.hash.slice(1));
+        botNav.hl(location.hash.slice(1));
+        topNav.show();
+        botNav.show();
+        break;
+      case '#muhan':
+      case '#hetu':
+      case '#mi':
+      case '#sixia':
+        loading.hide();
+        topNav.show();
+        botNav.show();
+        if(!character) {
+          character = migi.render(
+            <Character/>,
+            '#page'
+          );
+        }
+        character.user(location.hash.slice(1));
+        character.show();
+        last = character;
+        break;
+    }
   }
 }
 else if(cid) {
