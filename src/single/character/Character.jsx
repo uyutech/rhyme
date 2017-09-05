@@ -182,7 +182,7 @@ class Character extends migi.Component{
       if(res.success) {
         let data = res.data;
         CurrentCount = data.Size;
-        Skip += 10;
+        Skip += Take;
         if(data.Size) {
           self.ref.comment.message = '';
           self.ref.comment.showComment(res.data.data);

@@ -265,13 +265,18 @@ if(location.hash) {
     location.href = window.LOGIN_URL;
   }
   else {
+    if(location.hash.indexOf('#work') === 0) {
+      loading.hide();
+      topNav.show();
+      botNav.emit('change', 'work');
+    }
     switch (location.hash) {
       case '#geography':
       case '#rhyme':
       case '#legend':
       case '#history':
       case '#about':
-      case '#work':
+      // case '#work':
         loading.hide();
         botNav.emit('change', location.hash.slice(1));
         botNav.hl(location.hash.slice(1));

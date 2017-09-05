@@ -7,6 +7,7 @@ let pause = false;
 class TopNav extends migi.Component {
   constructor(...data) {
     super(...data);
+    let self = this;
     this.on(migi.Event.DOM, function() {
       let music = this.ref.music.element;
       let i = 0;
@@ -19,6 +20,9 @@ class TopNav extends migi.Component {
         }
       }
       setInterval(play, 40);
+      migi.eventBus.on('changeTitle', function(t) {
+        self.name = t;
+      });
     });
   }
   show() {
@@ -26,6 +30,11 @@ class TopNav extends migi.Component {
   }
   hide() {
     $(this.element).addClass('fn-hide');
+  }
+  resize() {
+    // let width = $(this.ref.bg.element).width();console.log(width);
+    // $(this.ref.bg.element).css('height', width);
+    // $(this.ref.fg.element).css('height', width * 0.8);
   }
   @bind name
   clickLogo() {
@@ -46,13 +55,17 @@ class TopNav extends migi.Component {
     pause = false;
     this.emit('music', !pause);
   }
+  clickBack() {
+    this.emit('back');
+  }
   render() {
     return <div class="top-nav fn-hide">
       <div class="ti">
-        <b class="bg"/>
-        <b class="border"/>
+        <b class="bg" ref="bg"/>
+        <b class="fg" ref="fg"/>
         <span onClick={ this.clickLogo }>{ this.name || '首页' }</span>
       </div>
+      <b ref="back" class="back" onClick={ this.clickBack }/>
       <b ref="music" class="music" onClick={ this.clickMusic }/>
     </div>;
   }
