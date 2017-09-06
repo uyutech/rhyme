@@ -8,6 +8,7 @@ import '../404.html';
 
 import TopNav from './TopNav.jsx';
 import BotNav from './BotNav.jsx';
+import Share from './Share.jsx';
 
 import Loading from './loading/Loading.jsx';
 import Weibo from './weibo/Weibo.jsx';
@@ -77,184 +78,20 @@ let botNav = migi.render(
   document.body
 );
 
+let share = migi.render(
+  <Share/>,
+  document.body
+);
+migi.eventBus.on('share', function(url) {
+  share.url = url;
+  share.show();
+});
+
 if(window.IS_MOBILE) {
   topNav.on('clickLogo', function() {
     botNav.clickLogo();
   });
 }
-
-// function change(type) {
-//   if(last) {
-//     last.hide();
-//   }
-//
-//   switch (type) {
-//     case 'weibo':
-//       if(!weibo) {
-//         weibo = migi.render(
-//           <Weibo/>,
-//           '#page'
-//         );
-//       }
-//       last = weibo;
-//       migi.eventBus.emit('changeBgi', 'weibo');
-//       topNav.name = '登录';
-//       break;
-//     case 'luck':
-//       if(!luck) {
-//         luck = migi.render(
-//           <Luck/>,
-//           '#page'
-//         );
-//         luck.on('ok', function() {
-//           botNav.emit('change', 'index');
-//         });
-//       }
-//       last = luck;
-//       migi.eventBus.emit('changeBgi', 'luck');
-//       topNav.name = '提示';
-//       break;
-//     case 'index':
-//       if(!index) {
-//         index = migi.render(
-//           <Index/>,
-//           '#page'
-//         );
-//       }
-//       last = index;
-//       migi.eventBus.emit('changeBgi', 'index');
-//       topNav.name = '首页';
-//       break;
-//     case 'geography':
-//       if(!geography) {
-//         geography = migi.render(
-//           <Geography/>,
-//           '#page'
-//         );
-//       }
-//       last = geography;
-//       migi.eventBus.emit('changeBgi', 'geography');
-//       topNav.name = '地理';
-//       break;
-//     case 'history':
-//       if(!history) {
-//         history = migi.render(
-//           <History/>,
-//           '#page'
-//         );
-//       }
-//       last = history;
-//       migi.eventBus.emit('changeBgi', 'history');
-//       topNav.name = '历史';
-//       break;
-//     case 'legend':
-//       if(!legend) {
-//         legend = migi.render(
-//           <Legend/>,
-//           '#page'
-//         );
-//         legend.on('choose', function(name, chineseName) {
-//           botNav.clear();
-//           if(last) {
-//             last.hide();
-//           }
-//           if(!character) {
-//             character = migi.render(
-//               <Character/>,
-//               '#page'
-//             );
-//           }
-//           character.user(name);
-//           last = character;
-//           last.show();
-//           topNav.name = chineseName;
-//           $page.scrollTop(0);
-//         });
-//       }
-//       last = legend;
-//       migi.eventBus.emit('changeBgi', 'legend');
-//       topNav.name = '传记';
-//       break;
-//     case 'rhyme':
-//       if(!rhyme) {
-//         rhyme = migi.render(
-//           <Rhyme/>,
-//           '#page'
-//         );
-//       }
-//       last = rhyme;
-//       migi.eventBus.emit('changeBgi', 'rhyme');
-//       topNav.name = '歌谣';
-//       break;
-//     case 'about':
-//       if(!about) {
-//         about = migi.render(
-//           <About/>,
-//           '#page'
-//         );
-//         about.on('jiemeng', function() {
-//           botNav.clear();
-//           if(last) {
-//             last.hide();
-//           }
-//           if(!character) {
-//             character = migi.render(
-//               <Character/>,
-//               '#page'
-//             );
-//           }
-//           character.user('jiemeng');
-//           last = character;
-//           last.show();
-//           topNav.name = '结梦';
-//           $page.scrollTop(0);
-//         });
-//       }
-//       last = about;
-//       migi.eventBus.emit('changeBgi', 'history');
-//       topNav.name = '关于';
-//       break;
-//     case 'comment':
-//       if(!scomment) {
-//         scomment = migi.render(
-//           <SComment/>,
-//           '#page'
-//         );
-//         last = scomment;
-//         migi.eventBus.emit('changeBgi', 'scomment');
-//         topNav.name = '留言';
-//         $page.scrollTop(0);
-//       }
-//       break;
-//     case 'work':
-//       if(!work) {
-//         work = migi.render(
-//           <Work/>,
-//           '#page'
-//         );
-//       }
-//       last = work;
-//       work.id(2757);
-//       migi.eventBus.emit('changeBgi', 'work');
-//       $page.scrollTop(0);
-//       botNav.hideMenu();
-//       topNav.stop();
-//       break;
-//   }
-//   if(last) {
-//     last.show();
-//   }
-//   if(window.IS_MOBILE) {
-//     if(type !== 'index' && type !== 'luck') {
-//       botNav.hideMenu();
-//     }
-//     else {
-//       botNav.showMenu();
-//     }
-//   }
-//   $page.scrollTop(0);
-// }
-// botNav.on('change', change);
 
 loading.on('fin', function() {
   loading.clean();

@@ -47,8 +47,6 @@ class Character extends migi.Component{
     super(...data);
     let self = this;
     self.on(migi.Event.DOM, function() {
-      // self.load();
-      let $shareC = $(self.ref.shareC.element);
       $wrap = $(self.ref.wrap.element);
       $cp = $wrap.find('.cp_comment');
       $wrap.on('scroll', function() {
@@ -64,18 +62,7 @@ class Character extends migi.Component{
         self.clickReplay();
       });
       self.ref.comment.on('copy', function(url) {
-        $shareC.removeClass('fn-hide');
-        $shareC.find('input').val(url);
-      });
-      $shareC.find('button').on('click', function() {
-        $shareC.find('input').focus();
-        $shareC.find('input')[0].setSelectionRange(0, 9999);
-        try{
-          document.execCommand('copy');
-          alert('分享链接已复制成功，可以分享给亲朋好友啦！如没有复制成功，也可以直接复制输入框中的网址哦！');
-        } catch(err) {
-          alert('分享链接已复制成功，可以分享给亲朋好友啦！如没有复制成功，也可以直接复制输入框中的网址哦！');
-        }
+        migi.eventBus.emit('share', url);
       });
     });
   }
@@ -318,12 +305,7 @@ class Character extends migi.Component{
   }
   clickShare(e) {
     e.preventDefault();
-    let $shareC = $(this.ref.shareC.element);
-    $shareC.removeClass('fn-hide');
-    $shareC.find('input').val(location.href);
-  }
-  clickCloseShare() {
-    $(this.ref.shareC.element).addClass('fn-hide');
+    migi.eventBus.emit('share', location.href);
   }
   render() {
     return <div class={ 'main character ' + this.name }>
@@ -358,14 +340,6 @@ class Character extends migi.Component{
             </div>
             <button onClick={ this.click } class={ this.hasContent && !this.loading ? '' : 'dis' }>确定</button>
           </div>
-        </div>
-      </div>
-      <div class="share-c fn-hide" ref="shareC">
-        <div class="c">
-          <label>页面地址</label>
-          <input class="share" ref="share" type="text" value=""/>
-          <button>复制</button>
-          <span class="close" onClick={ this.clickCloseShare }/>
         </div>
       </div>
     </div>;

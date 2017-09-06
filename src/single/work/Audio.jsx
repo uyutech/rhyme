@@ -177,6 +177,9 @@ class Audio extends migi.Component {
   altLyrics() {
     this.showLyricsMode = !this.showLyricsMode;
   }
+  clickShare() {
+    migi.eventBus.emit('share', location.href);
+  }
   render() {
     return <div class="audio">
       <audio ref="audio"
@@ -191,7 +194,7 @@ class Audio extends migi.Component {
         <li class={ 'like' + (this.isLike ? ' has' : '') } onClick={ this.clickLike }/>
         <li class={ 'favor' + (this.isFavor ? ' has' : '') } onClick={ this.clickFavor }/>
         <li class="download"><a href={ this.fileUrl } download={ this.fileUrl }/></li>
-        <li class="share"/>
+        <li class="share" onClick={ this.clickShare }/>
         <li class="barrage"/>
       </ul>
       <div class="lyrics-con">
