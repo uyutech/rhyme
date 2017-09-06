@@ -234,7 +234,7 @@ botNav.on('change', function(type) {
         );
       }
       last = work;
-      work.id(1);
+      work.id(2757);
       migi.eventBus.emit('changeBgi', 'work');
       $page.scrollTop(0);
       botNav.hideMenu();
@@ -353,3 +353,7 @@ else if(window.IS_LOGIN === 'True') {
 // work.show();
 // botNav.hideMenu();
 // topNav.stop();
+
+$(window).on('hashchange', function() {
+  console.log(location.hash);
+});

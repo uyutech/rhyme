@@ -85,7 +85,7 @@ class Character extends migi.Component{
   @bind replayId = null
   @bind replayName
   @bind hasContent
-  @bind sending
+  @bind loading
   user(name) {
     this.name = name;
   }
@@ -186,7 +186,6 @@ class Character extends migi.Component{
         if(data.Size) {
           self.ref.comment.message = '';
           self.ref.comment.showComment(res.data.data);
-          // HASH[self.name].Skip = data.data[data.data.length - 1].Send_ID;
         }
         else {
           self.ref.comment.showComment(res.data.data);
@@ -215,7 +214,6 @@ class Character extends migi.Component{
           CurrentCount = data.Size;
           Skip += 10;
           if(data.data.length) {
-            // HASH[self.name].Skip = data.data[data.data.length - 1].Send_ID;
             self.ref.comment.addMore(data.data);
             if(data.data.length < Take) {
               self.ref.comment.message = '';
@@ -255,7 +253,7 @@ class Character extends migi.Component{
       let Content = $input.val();
       let ParentID = self.replayId !== null ? self.replayId : -1;
       let RootID = self.rootId !== null ? self.rootId : -1;
-      self.sending = true;
+      self.loading = true;
       if(ajax) {
         ajax.abort();
       }
@@ -280,10 +278,10 @@ class Character extends migi.Component{
         else {
           alert(res.message || util.ERROR_MESSAGE);
         }
-        self.sending = false;
+        self.loading = false;
       }, function(res) {
         alert(res.message || util.ERROR_MESSAGE);
-        self.sending = false;
+        self.loading = false;
       });
     }
   }
@@ -355,7 +353,7 @@ class Character extends migi.Component{
             <div class="inputs">
               <input ref="input" maxlength="1000" type="text" placeholder="留言..." onInput={ this.input }/>
             </div>
-            <button onClick={ this.click } class={ this.hasContent && !this.sending ? '' : 'dis' }>确定</button>
+            <button onClick={ this.click } class={ this.hasContent && !this.loading ? '' : 'dis' }>确定</button>
           </div>
         </div>
       </div>

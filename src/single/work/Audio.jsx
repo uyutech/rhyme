@@ -16,18 +16,18 @@ class Audio extends migi.Component {
     let self = this;
     self.data = data;
     self.isLike = data[0].ISLike;
+    self.isFavor = data[0].ISFavor;
     self.fileUrl = data[0].FileUrl;
     data.forEach(function(item) {
       let l = {};
-      if(LyricsParser.isLyrics(item.lyrics)) {
+      if(LyricsParser.isLyrics(item.lrc)) {
         l.is = true;
-        l.txt = LyricsParser.getTxt(item.lyrics);
-        l.data = LyricsParser.parse(item.lyrics);
-        // l.totalTime = l.data.length ? l.data[l.data.length - 1].timestamp : 0;
+        l.txt = LyricsParser.getTxt(item.lrc);
+        l.data = LyricsParser.parse(item.lrc);
       }
       else {
         l.is = false;
-        l.txt = item.lyrics;
+        l.txt = item.lrc;
       }
       item.formatLyrics = l;
     });
@@ -62,7 +62,7 @@ class Audio extends migi.Component {
           break;
         }
       }
-      if(tempIndex > lyricsIndex) {
+      if(tempIndex !== lyricsIndex) {
         // console.log(lyricsIndex, tempIndex);
         lyricsIndex = tempIndex;
         this.lineLyrics = formatLyricsData[lyricsIndex].txt;
@@ -116,37 +116,63 @@ class Audio extends migi.Component {
   @bind isLike
   @bind isFavor
   @bind workIndex = 0
-  @bind lyrics = []
   @bind hasLyrics
   @bind lineLyrics
   @bind rollLyrics = []
   @bind showLyricsMode
-  clickLike() {
+  clickLike(e, vd) {
     let self = this;
-    util.postJSON('works/AddLikeBehavior', { WorkItemsID: self.data[self.workIndex].ItemID }, function(res) {
-      if(res.success) {
-        self.isLike = res.data === 211;
-      }
-      else {
+    let $vd = $(vd.element);
+    if(!$vd.hasClass('loading')) {
+      $vd.addClass('loading');
+      util.postJSON('works/AddLikeBehavior', {WorkItemsID: self.data[self.workIndex].ItemID}, function (res) {
+        if(res.success) {
+          self.isLike = res.data === 211;
+        }
+        else {
+          alert(res.message || util.ERROR_MESSAGE);
+        }
+        $vd.removeClass('loading');
+      }, function () {
         alert(res.message || util.ERROR_MESSAGE);
-      }
-    }, function() {
-      alert(res.message || util.ERROR_MESSAGE);
-    });
+        $vd.removeClass('loading');
+      });
+    }
   }
-  clickFavor() {
+  clickFavor(e, vd) {
     let self = this;
-    util.postJSON('works/AddCollection', { WorkItemsID: self.data[self.workIndex].ItemID }, function(res) {
-      if(res.success) {
-        self.isFavor = res.data === 221;
-      }
-      else {
+    let $vd = $(vd.element);
+    if($vd.hasClass('loading')) {
+      //
+    }
+    else if($vd.hasClass('has')) {
+      util.postJSON('works/RemoveCollection', { WorkItemsID: self.data[self.workIndex].ItemID }, function (res) {
+        if(res.success) {
+          self.isFavor = false;
+        }
+        else {
+          alert(res.message || util.ERROR_MESSAGE);
+        }
+        $vd.removeClass('loading');
+      }, function () {
         alert(res.message || util.ERROR_MESSAGE);
-      }
-    }, function() {
-      alert(res.message || util.ERROR_MESSAGE);
-    });
-
+        $vd.removeClass('loading');
+      });
+    }
+    else {
+      util.postJSON('works/AddCollection', { WorkItemsID: self.data[self.workIndex].ItemID }, function (res) {
+        if(res.success) {
+          self.isFavor = true;
+        }
+        else {
+          alert(res.message || util.ERROR_MESSAGE);
+        }
+        $vd.removeClass('loading');
+      }, function () {
+        alert(res.message || util.ERROR_MESSAGE);
+        $vd.removeClass('loading');
+      });
+    }
   }
   altLyrics() {
     this.showLyricsMode = !this.showLyricsMode;
@@ -172,7 +198,7 @@ class Audio extends migi.Component {
         <div class={ 'lyrics-roll' + (!this.showLyricsMode ? '' : ' fn-hide') }>
           <div class="c" ref="lyricsRoll">
             {
-              this.rollLyrics.map(function(item) {
+              (this.rollLyrics || []).map(function(item) {
                 return <pre>{ item.txt || '&nbsp;' }</pre>
               })
             }

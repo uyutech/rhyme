@@ -23,6 +23,7 @@ class Work extends migi.Component {
           case '1':
             intro.hide();
             workComment.show();
+            workComment.load();
             break;
         }
       });

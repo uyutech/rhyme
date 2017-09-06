@@ -264,8 +264,11 @@ class Comment extends migi.Component {
             <p>{ item.sign }</p>
           </div>
         </div>
-        <div class="fn">
+        <div class="fn fn-clear">
           <span cid={ item.Send_ID } class={ 'zan' + (item.IsLike ? ' has' : '') }><small>{ item.LikeCount }</small></span>
+          {
+            item.ISOwn ? <span cid={ item.Send_ID } class="remove">删除</span> : ''
+          }
         </div>
       </div>
       <div class="c">

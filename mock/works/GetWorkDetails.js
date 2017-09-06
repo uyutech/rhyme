@@ -23,6 +23,7 @@ module.exports = {
       "PlayHis": 0,
       "LikeHis": 2,
       "ISLike": false,
+      "ISFavor": true,
       "DownloadHis": 0,
       "lyrics": `[ti:sdfs][00:00.00]作曲 : 月千宸
 [00:01.00]作词 : 沈行之
