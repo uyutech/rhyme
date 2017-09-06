@@ -12,43 +12,38 @@ class Legend extends migi.Component {
   hide() {
     $(this.element).addClass('fn-hide');
   }
-  click(e, vd, tvd) {
-    // e.preventDefault();
-    let li = tvd.parent;
-    this.emit('choose', li.props.rel, li.props.cname);
-  }
   render() {
     return <div class="main legend">
-      <ul ref="list" class="fn-clear" onClick={ { a: this.click } }>
+      <ul ref="list" class="fn-clear">
         <li class="immortals" rel="muhan" cname="慕寒">
-          <a href="#muhan" class="c">
+          <a href="#charactermuhan" class="c">
             <span>生</span>
           </a>
-          <a href="#muhan" class="h">
+          <a href="#charactermuhan" class="h">
             <span class="muhan"/>
           </a>
         </li>
         <li class="spirits" rel="hetu" cname="河图">
-          <a href="#hetu" class="c">
+          <a href="#characterhetu" class="c">
             <span>化</span>
           </a>
-          <a href="#hetu" class="h">
+          <a href="#characterhetu" class="h">
             <span class="hetu"/>
           </a>
         </li>
         <li class="ethereals" rel="mi" cname="弥">
-          <a href="#mi" class="c">
+          <a href="#charactermi" class="c">
             <span>极</span>
           </a>
-          <a href="#mi" class="h">
+          <a href="#charactermi" class="h">
             <span class="mi"/>
           </a>
         </li>
         <li class="mutants" rel="sixia" cname="司夏">
-          <a href="#sixia" class="c">
+          <a href="#charactersixia" class="c">
             <span>变</span>
           </a>
-          <a href="#sixia" class="h">
+          <a href="#charactersixia" class="h">
             <span class="sixia"/>
           </a>
         </li>

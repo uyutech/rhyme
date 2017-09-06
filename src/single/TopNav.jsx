@@ -58,6 +58,12 @@ class TopNav extends migi.Component {
   clickBack() {
     this.emit('back');
   }
+  showBack() {
+    $(this.ref.back.element).removeClass('fn-hide');
+  }
+  hideBack() {
+    $(this.ref.back.element).addClass('fn-hide');
+  }
   render() {
     return <div class="top-nav fn-hide">
       <div class="ti">
@@ -65,7 +71,7 @@ class TopNav extends migi.Component {
         <b class="fg" ref="fg"/>
         <span onClick={ this.clickLogo }>{ this.name || '首页' }</span>
       </div>
-      <b ref="back" class="back" onClick={ this.clickBack }/>
+      <b ref="back" class="back fn-hide" onClick={ this.clickBack }/>
       <b ref="music" class="music" onClick={ this.clickMusic }/>
     </div>;
   }

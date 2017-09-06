@@ -29,7 +29,7 @@ class BotNav extends migi.Component {
     if(!$li.hasClass('cur')) {
       $(vd.element).find('.cur').removeClass('cur');
       $li.addClass('cur');
-      this.emit('change', li.props.class);
+      // this.emit('change', li.props.class);
     }
   }
   clear() {
@@ -45,10 +45,13 @@ class BotNav extends migi.Component {
     $(this.ref.list.element).addClass('alt');
   }
   hl(cn) {
-    if(cn.charAt(0) === '#') {
-      cn = cn.slice(1);
+    $(this.ref.list.element).find('.cur').removeClass('cur');
+    if(cn) {
+      if(cn.charAt(0) === '#') {
+        cn = cn.slice(1);
+      }
+      $(this.ref.list.element).find('.' + cn).addClass('cur');
     }
-    $(this.ref.list.element).find('.' + cn).addClass('cur');
   }
   render() {
     return <div class="bot-nav fn-hide">

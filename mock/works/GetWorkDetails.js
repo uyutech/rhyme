@@ -25,7 +25,7 @@ module.exports = {
       "ISLike": false,
       "ISFavor": true,
       "DownloadHis": 0,
-      "lyrics": `[ti:sdfs][00:00.00]作曲 : 月千宸
+      "lrc": `[ti:sdfs][00:00.00]作曲 : 月千宸
 [00:01.00]作词 : 沈行之
 [00:09.474]出品：结梦原创音乐团队
 [00:18.78]编曲：Litterzy

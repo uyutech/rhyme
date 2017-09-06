@@ -29,7 +29,7 @@ class WorkComment extends migi.Component {
         self.rootId = rid;
         self.replayId = cid;
         self.replayName = name;
-        commentType = 3;
+        commentType = 4;
       });
       self.ref.comment.on('noSubComment', function() {
         self.clickReplay();

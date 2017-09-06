@@ -15,10 +15,6 @@ class Loading extends migi.Component {
   click(e) {
     e.preventDefault();
     this.emit('fin');
-    // if(window.IS_LOGIN === 'True') {
-    //   e.preventDefault();
-    //   this.emit('fin');
-    // }
   }
   render() {
     return <div class="main loading">

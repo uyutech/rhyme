@@ -83,7 +83,7 @@ if(window.IS_MOBILE) {
   });
 }
 
-botNav.on('change', function(type) {
+function change(type) {
   if(last) {
     last.hide();
   }
@@ -253,107 +253,217 @@ botNav.on('change', function(type) {
     }
   }
   $page.scrollTop(0);
-});
+}
+// botNav.on('change', change);
 
 loading.on('fin', function() {
   loading.clean();
-  botNav.emit('change', 'weibo');
+  weibo = migi.render(
+    <Weibo/>,
+    '#page'
+  );
 });
 
-if(location.hash) {
-  if(window.IS_LOGIN !== 'True') {
-    location.href = window.LOGIN_URL;
+function hashchange(hash) {
+  hash = hash || '';
+  if(last) {
+    last.hide();
+  }
+  //是否展示返回按钮
+  if(window.history.length) {
+    topNav.showBack();
   }
   else {
-    if(location.hash.indexOf('#work') === 0) {
-      loading.hide();
-      topNav.show();
-      botNav.emit('change', 'work');
+    topNav.hideBack();
+  }
+  $page.scrollTop(0);
+  // 移动除了个别页，其它均默认隐藏botNav的子导航
+  if(window.IS_MOBILE) {
+    botNav.hideMenu();
+  }
+  topNav.show();
+  botNav.show();
+  //work特殊处理id
+  if(hash.indexOf('#work') === 0) {
+    if(!work) {
+      work = migi.render(
+        <Work/>,
+        '#page'
+      );
     }
-    switch (location.hash) {
-      case '#geography':
-      case '#rhyme':
-      case '#legend':
-      case '#history':
-      case '#about':
-      // case '#work':
-        loading.hide();
-        botNav.emit('change', location.hash.slice(1));
-        botNav.hl(location.hash.slice(1));
-        topNav.show();
-        botNav.show();
+    last = work;
+    work.id(2757);
+    migi.eventBus.emit('changeBgi', 'work');
+    botNav.hideMenu();
+    topNav.stop();
+  }
+  //单独评论特殊处理id
+  else if(hash.indexOf('#comment') === 0) {
+    if(!scomment) {
+      scomment = migi.render(
+        <SComment/>,
+        '#page'
+      );
+    }
+    last = scomment;
+    migi.eventBus.emit('changeBgi', 'scomment');
+    topNav.name = '留言';
+  }
+  //单独人物特殊处理
+  else if(hash.indexOf('#character') === 0) {
+    if(!character) {
+      character = migi.render(
+        <Character/>,
+        '#page'
+      );
+    }
+    last = character;
+    migi.eventBus.emit('changeBgi', 'character');
+    let name = hash.slice('#character'.length);
+    switch (name) {
+      case 'muhan':
+        topNav.name = '慕寒';
         break;
-      case '#muhan':
-      case '#hetu':
-      case '#mi':
-      case '#sixia':
-        loading.hide();
-        topNav.show();
-        botNav.show();
-        if(!character) {
-          character = migi.render(
-            <Character/>,
+      case 'hetu':
+        topNav.name = '河图';
+        break;
+      case 'mi':
+        topNav.name = '弥';
+        break;
+      case 'sixia':
+        topNav.name = '司夏';
+        break;
+      case 'jiemeng':
+        topNav.name = '结梦';
+        break;
+    }
+    character.user(name);
+  }
+  //其它
+  else {
+    switch (hash) {
+      case '#luck':
+        if(!luck) {
+          luck = migi.render(
+            <Luck/>,
+            '#page'
+          );
+          luck.on('ok', function () {
+            hashchange()
+          });
+        }
+        last = luck;
+        migi.eventBus.emit('changeBgi', 'luck');
+        topNav.name = '提示';
+        botNav.showMenu();
+        break;
+      case '#geography':
+        if(!geography) {
+          geography = migi.render(
+            <Geography/>,
             '#page'
           );
         }
-        character.user(location.hash.slice(1));
-        character.show();
-        last = character;
+        last = geography;
+        migi.eventBus.emit('changeBgi', 'geography');
+        topNav.name = '地理';
+        break;
+      case '#rhyme':
+        if(!rhyme) {
+          rhyme = migi.render(
+            <Rhyme/>,
+            '#page'
+          );
+        }
+        last = rhyme;
+        migi.eventBus.emit('changeBgi', 'rhyme');
+        topNav.name = '歌谣';
+        break;
+      case '#legend':
+        if(!legend) {
+          legend = migi.render(
+            <Legend/>,
+            '#page'
+          );
+        }
+        last = legend;
+        migi.eventBus.emit('changeBgi', 'legend');
+        topNav.name = '传记';
+        break;
+      case 'rhyme':
+        if(!rhyme) {
+          rhyme = migi.render(
+            <Rhyme/>,
+            '#page'
+          );
+        }
+        last = rhyme;
+        migi.eventBus.emit('changeBgi', 'rhyme');
+        topNav.name = '歌谣';
+        break;
+      case '#history':
+        if(!history) {
+          history = migi.render(
+            <History/>,
+            '#page'
+          );
+        }
+        last = history;
+        migi.eventBus.emit('changeBgi', 'history');
+        topNav.name = '历史';
+        break;
+      case '#about':
+        if(!about) {
+          about = migi.render(
+            <About/>,
+            '#page'
+          );
+        }
+        last = about;
+        migi.eventBus.emit('changeBgi', 'history');
+        topNav.name = '关于';
+        break;
+      default:
+        if(!index) {
+          index = migi.render(
+            <Index/>,
+            '#page'
+          );
+        }
+        last = index;
+        migi.eventBus.emit('changeBgi', 'index');
+        topNav.name = '首页';
+        botNav.showMenu();
         break;
     }
   }
+  if(last) {
+    last.show();
+  }
 }
-else if(cid) {
+
+if(cid) {
   if(window.IS_LOGIN !== 'True') {
     location.href = window.LOGIN_URL;
   }
   else {
     loading.hide();
-    botNav.emit('change', 'comment');
-    topNav.show();
-    botNav.show();
-    // if($.cookie('share') == 1) {
-    //   audio.element.pause();
-    //   topNav.stop();
-    //   alert('分享链接已复制成功，可以分享给亲朋好友啦！如没有复制成功，也可以直接复制浏览器中的网址哦！');
-    // }
-    // $.removeCookie('share');
+    hashchange('#comment' + cid);
   }
 }
 else if(window.LUCK_MES) {
   loading.hide();
-  botNav.emit('change', 'luck');
-  topNav.show();
-  botNav.show();
+  hashchange('#luck');
 }
 else if(window.IS_LOGIN === 'True') {
   loading.hide();
-  botNav.emit('change', 'index');
-  topNav.show();
-  botNav.show();
+  hashchange(location.hash);
 }
-// botNav.emit('change', 'index');
-// topNav.show();
-// botNav.show();
-// loading.clean();
-// if(!character) {
-//   character = migi.render(
-//     <Character/>,
-//     '#page'
-//   );
-// }
-// character.user('hetu');
-// character.show();
 
-// work = migi.render(
-//   <Work/>,
-//   '#page'
-// );
-// work.id(1);
-// work.show();
-// botNav.hideMenu();
-// topNav.stop();
+topNav.on('back', function() {
+  window.history.back();
+});
 
 $(window).on('hashchange', function() {
-  console.log(location.hash);
+  hashchange(location.hash);
 });
