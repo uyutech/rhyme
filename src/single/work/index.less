@@ -5,7 +5,9 @@
 @import '../../common/var.less';
 
 .main.work{
+  margin:0 auto;
   padding-bottom:0.6rem;
+  width:3.75rem;
   > .media{
     position:relative;
     padding-top:0.44rem;
@@ -39,8 +41,8 @@
     .author{
       position:relative;
       margin-top:0.06rem;
-      height:0.24rem;
-      overflow:scroll;
+      //height:0.24rem;
+      overflow-x:auto;
       z-index:10;
       .c{
         width:9999rem;
@@ -423,7 +425,7 @@
     .timeline{
       position:relative;
       padding:0.1rem 0.1rem 0.05rem;
-      overflow:scroll;
+      overflow-x:auto;
       .line{
         position:absolute;
         left:0;
@@ -821,5 +823,11 @@
         }
       }
     }
+  }
+}
+
+.mobile{
+  .main.work{
+    width:100%;
   }
 }

@@ -34,6 +34,9 @@ class WorkComment extends migi.Component {
       self.ref.comment.on('noSubComment', function() {
         self.clickReplay();
       });
+      $window.on('scroll', function() {
+        self.checkMore();
+      });
       $page.on('scroll', function() {
         self.checkMore();
       });
@@ -90,7 +93,14 @@ class WorkComment extends migi.Component {
   checkMore() {
     let self = this;
     let WIN_HEIGHT = $window.height();
-    if(self.showComment && !loadingMore && !loadEnd && $page.scrollTop() + WIN_HEIGHT + 30 > $main.outerHeight()) {
+    let bool;
+    if(window.IS_MOBILE) {
+      bool = $page.scrollTop() + WIN_HEIGHT + 30 > $main.outerHeight();
+    }
+    else {
+      bool = $window.scrollTop() + WIN_HEIGHT + 30 > $page.height();
+    }
+    if(self.showComment && !self.loading && !loadingMore && !loadEnd && bool) {
       loadingMore = true;
       ajax = util.postJSON('works/GetToWorkMessage_List', { WorkID: self.id , Skip, Take }, function(res) {
         if(res.success) {
