@@ -7,20 +7,24 @@ import Comment from '../character/Comment.jsx';
 let init;
 let Skip = -1;
 let Take = 10;
-let Size = 0;
+let SortType = 0;
+let MyComment = 0;
+let CurrentCount = 0;
 let ajax;
 let commentType = 1;
+let loadingMore;
+let loadEnd;
+let $window = $(window);
+let $page = $('#page');
+let $main;
+let $body = $(document.body);
 
 class WorkComment extends migi.Component {
   constructor(...data) {
     super(...data);
-  }
-  show() {
     let self = this;
-    $(self.element).removeClass('fn-hide');
-    if(!init) {
-      init = true;
-      // self.load();
+    self.on(migi.Event.DOM, function() {
+      $main = $('.main.work');
       self.ref.comment.on('chooseSubComment', function(rid, cid, name) {
         self.rootId = rid;
         self.replayId = cid;
@@ -30,11 +34,22 @@ class WorkComment extends migi.Component {
       self.ref.comment.on('noSubComment', function() {
         self.clickReplay();
       });
-    }
+      $page.on('scroll', function() {
+        self.checkMore();
+      });
+    });
+  }
+  show() {
+    let self = this;
+    $(self.element).removeClass('fn-hide');
+    self.showComment = true;
   }
   hide() {
-    $(this.element).addClass('fn-hide');
+    let self = this;
+    $(self.element).addClass('fn-hide');
+    self.showComment = false;
   }
+  @bind showComment
   @bind rootId = null
   @bind replayId = null
   @bind replayName
@@ -43,13 +58,16 @@ class WorkComment extends migi.Component {
   @bind id
   load() {
     let self = this;
+    self.ref.comment.message = '读取中...';
+    if(ajax) {
+      ajax.abort();
+    }
     self.loading = true;
-    util.postJSON('works/GetToWorkMessage_List', { WorkID: self.id , Skip, Take }, function(res) {
+    ajax = util.postJSON('works/GetToWorkMessage_List', { WorkID: self.id , Skip, Take }, function(res) {
       if(res.success) {
         let data = res.data;
-        Size = data.Size;
         Skip += Take;
-        if(data.Size) {
+        if(data.data.length) {
           self.ref.comment.message = '';
           self.ref.comment.showComment(res.data.data);
         }
@@ -59,13 +77,46 @@ class WorkComment extends migi.Component {
         }
       }
       else {
+        self.ref.comment.showComment();
         self.ref.comment.message = res.message || util.ERROR_MESSAGE;
       }
       self.loading = false;
     }, function(res) {
+      self.ref.comment.showComment();
       self.ref.comment.message = res.message || util.ERROR_MESSAGE;
       self.loading = false;
     });
+  }
+  checkMore() {
+    let self = this;
+    let WIN_HEIGHT = $window.height();
+    if(self.showComment && !loadingMore && !loadEnd && $page.scrollTop() + WIN_HEIGHT + 30 > $main.outerHeight()) {
+      loadingMore = true;
+      ajax = util.postJSON('works/GetToWorkMessage_List', { WorkID: self.id , Skip, Take }, function(res) {
+        if(res.success) {
+          let data = res.data;
+          Skip += Take;
+          if(data.data.length) {
+            self.ref.comment.addMore(data.data);
+            if(data.data.length < Take) {
+              self.ref.comment.message = '';
+              loadEnd = true;
+            }
+          }
+          else {
+            loadEnd = true;
+            self.ref.comment.message = '';
+          }
+        }
+        else {
+          self.ref.comment.message = res.message || util.ERROR_MESSAGE;
+        }
+        self.loading = false;
+      }, function(res) {
+        self.ref.comment.message = res.message || util.ERROR_MESSAGE;
+        self.loading = false;
+      });
+    }
   }
   clickReplay() {
     this.replayId = null;

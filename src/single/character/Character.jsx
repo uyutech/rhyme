@@ -178,6 +178,7 @@ class Character extends migi.Component{
     if(ajax) {
       ajax.abort();
     }
+    self.loading = true;
     ajax = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: HASH[self.name].authorId , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
       if(res.success) {
         let data = res.data;
@@ -196,14 +197,16 @@ class Character extends migi.Component{
         self.ref.comment.showComment();
         self.ref.comment.message = res.message || util.ERROR_MESSAGE;
       }
+      self.loading = false;
     }, function(res) {
       self.ref.comment.showComment();
       self.ref.comment.message = res.message || util.ERROR_MESSAGE;
+      self.loading = false;
     });
   }
   checkMore() {
     let self = this;
-    if(this.showComment && !loadingMore && !HASH[self.name].end && $wrap.scrollTop() + $wrap.height() + 30 > $cp.height()) {
+    if(self.showComment && !loadingMore && !HASH[self.name].end && $wrap.scrollTop() + $wrap.height() + 30 > $cp.height()) {
       loadingMore = true;
       if(ajax) {
         ajax.abort();
@@ -212,7 +215,7 @@ class Character extends migi.Component{
         if(res.success) {
           let data = res.data;
           CurrentCount = data.Size;
-          Skip += 10;
+          Skip += Take;
           if(data.data.length) {
             self.ref.comment.addMore(data.data);
             if(data.data.length < Take) {
