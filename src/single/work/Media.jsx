@@ -168,6 +168,9 @@ class Media extends migi.Component {
     $(this.ref.pgb.element).css('-webkit-transform', `translate3d(${percent}%,0,0)`);
     $(this.ref.pgb.element).css('transform', `translate3d(${percent}%,0,0)`);
   }
+  stop() {
+    audio.pause();
+  }
   render() {
     return <div class="media">
       <Author ref="author"/>

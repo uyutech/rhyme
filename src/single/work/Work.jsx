@@ -34,6 +34,7 @@ class Work extends migi.Component {
   }
   hide() {
     $(this.element).addClass('fn-hide');
+    this.ref.media.stop();
   }
   id(id) {
     let self = this;

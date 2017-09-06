@@ -281,6 +281,7 @@ function hashchange(hash) {
   // 移动除了个别页，其它均默认隐藏botNav的子导航
   if(window.IS_MOBILE) {
     botNav.hideMenu();
+    botNav.showBall();
   }
   topNav.show();
   botNav.show();
@@ -297,6 +298,9 @@ function hashchange(hash) {
     migi.eventBus.emit('changeBgi', 'work');
     botNav.hideMenu();
     topNav.stop();
+    if(window.IS_MOBILE) {
+      botNav.hideBall();
+    }
   }
   //单独评论特殊处理id
   else if(hash.indexOf('#comment') === 0) {

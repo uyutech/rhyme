@@ -29,7 +29,6 @@ class BotNav extends migi.Component {
     if(!$li.hasClass('cur')) {
       $(vd.element).find('.cur').removeClass('cur');
       $li.addClass('cur');
-      // this.emit('change', li.props.class);
     }
   }
   clear() {
@@ -53,6 +52,12 @@ class BotNav extends migi.Component {
       $(this.ref.list.element).find('.' + cn).addClass('cur');
     }
   }
+  showBall() {
+    $(this.ref.logo.element).removeClass('fn-hide');
+  }
+  hideBall() {
+    $(this.ref.logo.element).addClass('fn-hide');
+  }
   render() {
     return <div class="bot-nav fn-hide">
       <ul ref="list" class="fn-clear" onClick={ { a: this.click } }>
@@ -65,7 +70,7 @@ class BotNav extends migi.Component {
         <li class="rhyme"><a href="#rhyme" title="浮世歌谣">浮世歌谣</a></li>
         <li class="about"><a href="#about" title="关于异世">关于异世</a></li>
       </ul>
-      <div class="logo" onClick={ this.clickLogo }/>
+      <div class="logo" ref="logo" onClick={ this.clickLogo }/>
     </div>;
   }
 }
