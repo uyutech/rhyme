@@ -124,7 +124,7 @@ module.exports = {
       "_5SingUrl": "http://5sing.kugou.com/yc/261711.html",
       "_BaiduUrl": null,
       "_WangyiUrl": null,
-      "ItemType": 2222,
+      "ItemType": 2110,
       "PlayHis": 0,
       "LikeHis": 2,
       "ISLike": false,

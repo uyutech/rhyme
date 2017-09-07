@@ -61,8 +61,65 @@ class Video extends migi.Component {
     this.duration = 0;
     return this;
   }
+  clickLike(e, vd) {
+    let self = this;
+    let $vd = $(vd.element);
+    if(!$vd.hasClass('loading')) {
+      $vd.addClass('loading');
+      util.postJSON('works/AddLikeBehavior', {WorkItemsID: self.data[self.workIndex].ItemID}, function (res) {
+        if(res.success) {
+          self.isLike = res.data === 211;
+        }
+        else {
+          alert(res.message || util.ERROR_MESSAGE);
+        }
+        $vd.removeClass('loading');
+      }, function () {
+        alert(res.message || util.ERROR_MESSAGE);
+        $vd.removeClass('loading');
+      });
+    }
+  }
+  clickFavor(e, vd) {
+    let self = this;
+    let $vd = $(vd.element);
+    if($vd.hasClass('loading')) {
+      //
+    }
+    else if($vd.hasClass('has')) {
+      util.postJSON('works/RemoveCollection', { WorkItemsID: self.data[self.workIndex].ItemID }, function (res) {
+        if(res.success) {
+          self.isFavor = false;
+        }
+        else {
+          alert(res.message || util.ERROR_MESSAGE);
+        }
+        $vd.removeClass('loading');
+      }, function () {
+        alert(res.message || util.ERROR_MESSAGE);
+        $vd.removeClass('loading');
+      });
+    }
+    else {
+      util.postJSON('works/AddCollection', { WorkItemsID: self.data[self.workIndex].ItemID }, function (res) {
+        if(res.success) {
+          self.isFavor = true;
+        }
+        else {
+          alert(res.message || util.ERROR_MESSAGE);
+        }
+        $vd.removeClass('loading');
+      }, function () {
+        alert(res.message || util.ERROR_MESSAGE);
+        $vd.removeClass('loading');
+      });
+    }
+  }
+  clickShare() {
+    migi.eventBus.emit('share', location.href);
+  }
   render() {
-    return <div class="video">
+    return <div class="video fn-hide">
       <video ref="video"
              onTimeupdate={ this.timeupdate }
              onLoadedmetadata={ this.loadedmetadata }

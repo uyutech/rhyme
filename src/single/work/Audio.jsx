@@ -194,7 +194,7 @@ class Audio extends migi.Component {
     return this;
   }
   render() {
-    return <div class="audio">
+    return <div class="audio fn-hide">
       <audio ref="audio"
         onTimeupdate={ this.timeupdate }
         onLoadedmetadata={ this.loadedmetadata }

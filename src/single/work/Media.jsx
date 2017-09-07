@@ -134,6 +134,9 @@ class Media extends migi.Component {
       last = video;
       $(self.ref.type.element).find('.video').addClass('cur');
     }
+    if(last) {
+      last.show();
+    }
   }
   clickTag(e, vd, tvd) {
     let $ul = $(vd.element);
@@ -192,14 +195,15 @@ class Media extends migi.Component {
     $(this.ref.pgb.element).css('transform', `translate3d(${percent}%,0,0)`);
   }
   clear() {
-    audio.clear();
-    video.clear();
+    audio.clear().hide();
+    video.clear().hide();
     duration = currentTime = 0;
     last = null;
     this.canControl = false;
     $(this.ref.play.element).removeClass('pause');
     $(this.ref.has.element).removeAttr('style');
     $(this.ref.pgb.element).removeAttr('style');
+    $(this.ref.type.element).find('li').addClass('fn-hide').removeClass('cur');
   }
   clickType(e, vd, tvd) {
     let $li = $(tvd.element);
