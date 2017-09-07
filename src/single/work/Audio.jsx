@@ -39,12 +39,15 @@ class Audio extends migi.Component {
       lyricsHeight.push(count);
       count += $o.height();
     });
+    return this;
   }
   show() {
     $(this.element).removeClass('fn-hide');
+    return this;
   }
   hide() {
     $(this.element).addClass('fn-hide');
+    return this;
   }
   timeupdate(e) {
     let currentTime = e.target.currentTime;
@@ -92,34 +95,37 @@ class Audio extends migi.Component {
     this.emit('timeupdate', currentTime);
   }
   loadedmetadata(e) {
-    let duration = e.target.duration;
+    let duration = this.duration = e.target.duration;
     this.emit('loadedmetadata', {
       duration,
     });
   }
   playing(e) {
-    let duration = e.target.duration;
+    let duration = this.duration = e.target.duration;
     this.emit('loadedmetadata', {
       duration,
     });
   }
   play() {
     this.ref.audio.element.play();
+    return this;
   }
   pause() {
     this.ref.audio.element.pause();
+    return this;
   }
   currentTime(t) {
     this.ref.audio.element.currentTime = t;
+    return this;
   }
   @bind fileUrl
   @bind isLike
   @bind isFavor
   @bind workIndex = 0
-  @bind hasLyrics
   @bind lineLyrics
   @bind rollLyrics = []
   @bind showLyricsMode
+  @bind duration
   clickLike(e, vd) {
     let self = this;
     let $vd = $(vd.element);
@@ -179,6 +185,13 @@ class Audio extends migi.Component {
   }
   clickShare() {
     migi.eventBus.emit('share', location.href);
+  }
+  clear() {
+    this.duration = 0;
+    this.fileUrl = '';
+    this.lineLyrics = '';
+    this.rollLyrics = [];
+    return this;
   }
   render() {
     return <div class="audio">

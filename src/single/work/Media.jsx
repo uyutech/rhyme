@@ -4,6 +4,7 @@
 
 import Author from './Author.jsx';
 import Audio from './Audio.jsx';
+import Video from './Video.jsx';
 import itemTemplate from './itemTemplate';
 
 let WIDTH = $(window).width();
@@ -15,13 +16,37 @@ let isMove;
 
 let audio;
 let video;
+let last;
 
 class Media extends migi.Component {
   constructor(...data) {
     super(...data);
+    let self = this;
     let style = document.createElement('style');
-    style.innerText = `body>.media>.c{height:${WIDTH / 16 * 9}px}`;
+    style.innerText = `.main.work>.media>.c{height:${WIDTH / 16 * 9}px}`;
     document.head.appendChild(style);
+    self.on(migi.Event.DOM, function() {
+      audio = self.ref.audio;
+      video = self.ref.video;
+      audio.on('timeupdate', function (data) {
+        currentTime = data;
+        let percent = currentTime / duration;
+        self.setBarPercent(percent);
+      });
+      audio.on('loadedmetadata', function (data) {
+        duration = data.duration;
+        self.canControl = true;
+      });
+      video.on('timeupdate', function (data) {
+        currentTime = data;
+        let percent = currentTime / duration;
+        self.setBarPercent(percent);
+      });
+      video.on('loadedmetadata', function (data) {
+        duration = data.duration;
+        self.canControl = true;
+      });
+    });
   }
   @bind popular = 0
   @bind canControl
@@ -33,7 +58,6 @@ class Media extends migi.Component {
     let workHash = {};
     let workList = [];
     let authorList = [];
-    let mediaList = [];
     works.forEach(function(item) {
       // 先按每个小作品类型排序其作者
       util.sort(item.Works_Item_Author, itemTemplate(item.ItemType).authorSort || function() {});
@@ -88,29 +112,28 @@ class Media extends migi.Component {
     });
     self.ref.author.setAuthor(authorList);
 
+    let hasAudio = false;
+    let hasVideo = false;
     workList.forEach(function(item) {
       if(item.bigType === 'audio') {
-        // let fileList = item.value.map(function(item2) {
-        //   return item2.FileUrl;
-        // });
-        if(!audio) {
-          audio = migi.render(
-            <Audio data={item.value}/>,
-            self.ref.c.element
-          );
-          audio.on('timeupdate', function (data) {
-            currentTime = data;
-            let percent = currentTime / duration;
-            self.setBarPercent(percent);
-          });
-          audio.on('loadedmetadata', function (data) {
-            duration = data.duration;
-            self.canControl = true;
-          });
-        }
         audio.setData(item.value);
+        hasAudio = true;
+        $(self.ref.type.element).find('.audio').removeClass('fn-hide');
+      }
+      else if(item.bigType === 'video') {
+        video.setData(item.value);
+        hasVideo = true;
+        $(self.ref.type.element).find('.video').removeClass('fn-hide');
       }
     });
+    if(hasAudio) {
+      last = audio;
+      $(self.ref.type.element).find('.audio').addClass('cur');
+    }
+    else if(hasVideo) {
+      last = video;
+      $(self.ref.type.element).find('.video').addClass('cur');
+    }
   }
   clickTag(e, vd, tvd) {
     let $ul = $(vd.element);
@@ -124,10 +147,10 @@ class Media extends migi.Component {
   clickPlay(e, vd) {
     let $play = $(vd.element);
     if($play.hasClass('pause')) {
-      audio.pause();
+      last.pause();
     }
     else {
-      audio.play();
+      last.play();
     }
     $play.toggleClass('pause');
   }
@@ -136,13 +159,13 @@ class Media extends migi.Component {
       let x = e.pageX;
       let percent = x / WIDTH;
       let currentTime = Math.floor(duration * percent);
-      audio.currentTime(currentTime);
+      last.currentTime(currentTime);
     }
   }
   start(e) {
     if(e.touches.length === 1) {
       isStart = true;
-      audio.pause();
+      last.pause();
       $(this.ref.play.element).removeClass('pause');
     }
   }
@@ -158,7 +181,7 @@ class Media extends migi.Component {
   }
   end() {
     if(isMove) {
-      audio.currentTime(currentTime);
+      last.currentTime(currentTime);
     }
     isStart = isMove = false;
   }
@@ -168,14 +191,41 @@ class Media extends migi.Component {
     $(this.ref.pgb.element).css('-webkit-transform', `translate3d(${percent}%,0,0)`);
     $(this.ref.pgb.element).css('transform', `translate3d(${percent}%,0,0)`);
   }
-  stop() {
-    audio.pause();
+  clear() {
+    audio.clear();
+    video.clear();
+    duration = currentTime = 0;
+    last = null;
+    this.canControl = false;
+    $(this.ref.play.element).removeClass('pause');
+    $(this.ref.has.element).removeAttr('style');
+    $(this.ref.pgb.element).removeAttr('style');
+  }
+  clickType(e, vd, tvd) {
+    let $li = $(tvd.element);
+    if(!$li.hasClass('cur')) {
+      $(vd.element).find('.cur').removeClass('cur');
+      $li.addClass('cur');
+      let type = tvd.props.rel;
+      if(type === 'audio') {
+        video.pause().hide();
+        last = audio.show().currentTime(0);
+      }
+      else if(type === 'video') {
+        audio.pause().hide();
+        last = video.show().currentTime(0);
+      }
+      duration = last.duration;
+      $(this.ref.play.element).removeClass('pause');
+    }
   }
   render() {
     return <div class="media">
       <Author ref="author"/>
       <div class="c" ref="c">
         <span class="popular">{ this.popular }</span>
+        <Audio ref="audio"/>
+        <Video ref="video"/>
       </div>
       <div class={ 'progress' + (this.canControl ? '' : ' dis') } onClick={ this.clickProgress }>
         <div class="has" ref="has"/>
@@ -188,9 +238,9 @@ class Media extends migi.Component {
         <div class="play" ref="play" onClick={ this.clickPlay }/>
         <div class="next dis"/>
       </div>
-      <ul class="type">
-        <li class="cur" rel="0"><span>音频</span></li>
-        <li rel="1"><span>视频</span></li>
+      <ul class="type" ref="type" onClick={ { li: this.clickType } }>
+        <li class="audio fn-hide" rel="audio">音频</li>
+        <li class="video fn-hide" rel="video">视频</li>
       </ul>
       <div class="tags" ref="tags" onClick={ { li: this.clickTag } }>
         <ul>

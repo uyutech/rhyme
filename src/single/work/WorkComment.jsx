@@ -51,6 +51,7 @@ class WorkComment extends migi.Component {
     let self = this;
     $(self.element).addClass('fn-hide');
     self.showComment = false;
+    Skip = -1;
   }
   @bind showComment
   @bind rootId = null
@@ -61,6 +62,7 @@ class WorkComment extends migi.Component {
   @bind id
   load() {
     let self = this;
+    self.ref.comment.showComment();
     self.ref.comment.message = '读取中...';
     if(ajax) {
       ajax.abort();
