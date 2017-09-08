@@ -10,7 +10,7 @@ module.exports = {
     "WorksID": 1,
     "Title": "星海洋",
     "sub_Title": null,
-    "cover_Pic": "http://192.168.0.7/rjrjs.jpg",
+    "cover_Pic": "http://zhuanquan-pic.oss-cn-beijing.aliyuncs.com/rjrjs.jpg",
     "Popular": 0,
     "Works_Items": [{
       "ItemID": 1,

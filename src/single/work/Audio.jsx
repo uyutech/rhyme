@@ -208,7 +208,6 @@ class Audio extends migi.Component {
         <li class={ 'favor' + (this.isFavor ? ' has' : '') } onClick={ this.clickFavor }/>
         <li class="download"><a href={ this.fileUrl } download={ this.fileUrl }/></li>
         <li class="share" onClick={ this.clickShare }/>
-        <li class="barrage"/>
       </ul>
       <div class="lyrics-con">
         <div class={ 'lyrics-roll' + (!this.showLyricsMode ? '' : ' fn-hide') }>

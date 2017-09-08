@@ -29,6 +29,11 @@ let cid = window.cid = search.cid;
 
 let $page = $('#page');
 migi.eventBus.on('changeBgi', function(name) {
+  if(/^https?:/.test(name)) {
+    $page.css('background-image', `url(${name})`);
+    return;
+  }
+  $page.removeAttr('style');
   $page[0].className = 'page';
   $page.addClass(name);
 });
@@ -131,8 +136,9 @@ function hashchange(hash) {
       );
     }
     last = work;
-    work.id(2757);
-    migi.eventBus.emit('changeBgi', 'work');
+    let id = hash.slice('#work'.length);
+    work.setId(id);
+    migi.eventBus.emit('changeBgi', 'work' + id);
     botNav.hideMenu();
     topNav.stop();
     if(window.IS_MOBILE) {
@@ -299,7 +305,6 @@ else if(window.LUCK_MES) {
 }
 else if(window.IS_LOGIN === 'True') {
   loading.hide();
-  let hash = location.hash;
   hashchange(location.hash);
 }
 

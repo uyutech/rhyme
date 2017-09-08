@@ -2,6 +2,8 @@
  * Created by army8735 on 2017/9/7.
  */
 
+let de = document.documentElement;
+
 class Video extends migi.Component {
   constructor(...data) {
     super(...data);
@@ -37,6 +39,10 @@ class Video extends migi.Component {
     this.emit('loadedmetadata', {
       duration,
     });
+    this.emit('playing');
+  }
+  onpause() {
+    this.emit('pause');
   }
   play() {
     this.ref.video.element.play();
@@ -118,11 +124,27 @@ class Video extends migi.Component {
   clickShare() {
     migi.eventBus.emit('share', location.href);
   }
+  clickScreen() {
+    let video = this.ref.video.element;
+    if(de.requestFullscreen) {
+      video.requestFullscreen();
+    }
+    else if(de.mozRequestFullscreen) {
+      video.mozRequestFullscreen();
+    }
+    else if(de.webkitRequestFullscreen) {
+      video.webkitRequestFullscreen();
+    }
+    else if(de.msRequestFullscreen) {
+      video.msRequestFullscreen();
+    }
+  }
   render() {
     return <div class="video fn-hide">
       <video ref="video"
              onTimeupdate={ this.timeupdate }
              onLoadedmetadata={ this.loadedmetadata }
+             onPause={ this.onpause }
              onPlaying={ this.playing }
              preload="meta"
              playsinline="true"
@@ -135,7 +157,7 @@ class Video extends migi.Component {
         <li class={ 'favor' + (this.isFavor ? ' has' : '') } onClick={ this.clickFavor }/>
         <li class="download"><a href={ this.fileUrl } download={ this.fileUrl }/></li>
         <li class="share" onClick={ this.clickShare }/>
-        <li class="barrage"/>
+        <li class="screen" onClick={ this.clickScreen }/>
       </ul>
     </div>;
   }

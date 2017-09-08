@@ -22,10 +22,13 @@ class Media extends migi.Component {
   constructor(...data) {
     super(...data);
     let self = this;
-    let style = document.createElement('style');
-    style.innerText = `.main.work>.media>.c{height:${WIDTH / 16 * 9}px}`;
-    document.head.appendChild(style);
     self.on(migi.Event.DOM, function() {
+      let style = document.createElement('style');
+      let width = $(this.element).width();
+      style.innerText = `.main.work>.media>.c{height:${width / 16 * 9}px}`;
+      document.head.appendChild(style);
+
+      let $play = $(this.ref.play.element);
       audio = self.ref.audio;
       video = self.ref.video;
       audio.on('timeupdate', function (data) {
@@ -37,6 +40,12 @@ class Media extends migi.Component {
         duration = data.duration;
         self.canControl = true;
       });
+      audio.on('playing', function() {
+        $play.addClass('pause');
+      });
+      audio.on('pause', function() {
+        $play.removeClass('pause');
+      });
       video.on('timeupdate', function (data) {
         currentTime = data;
         let percent = currentTime / duration;
@@ -46,11 +55,23 @@ class Media extends migi.Component {
         duration = data.duration;
         self.canControl = true;
       });
+      video.on('playing', function() {
+        $play.addClass('pause');
+      });
+      video.on('pause', function() {
+        $play.removeClass('pause');
+      });
     });
   }
   @bind popular = 0
   @bind canControl
   setCover(url) {
+    if(window.IS_MOBILE) {
+      // $(this.element).css('background-image', `url(${url})`);
+    }
+    else {
+      // migi.eventBus.emit('changeBgi', 'rjrjs');
+    }
     $(this.element).css('background-image', `url(${url})`);
   }
   setWorks(works) {
@@ -110,7 +131,7 @@ class Media extends migi.Component {
       });
       authorList.push(nAuthors);
     });
-    self.ref.author.setAuthor(authorList);
+    // self.ref.author.setAuthor(authorList);
 
     let hasAudio = false;
     let hasVideo = false;
@@ -225,9 +246,7 @@ class Media extends migi.Component {
   }
   render() {
     return <div class="media">
-      <Author ref="author"/>
       <div class="c" ref="c">
-        <span class="popular">{ this.popular }</span>
         <Audio ref="audio"/>
         <Video ref="video"/>
       </div>
