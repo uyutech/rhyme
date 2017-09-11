@@ -62,7 +62,7 @@ class WorkComment extends migi.Component {
   @bind id
   load() {
     let self = this;
-    self.ref.comment.showComment();
+    // self.ref.comment.showComment();
     self.ref.comment.message = '读取中...';
     if(ajax) {
       ajax.abort();

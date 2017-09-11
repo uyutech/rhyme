@@ -10,8 +10,6 @@ import TopNav from './TopNav.jsx';
 import BotNav from './BotNav.jsx';
 import Share from './Share.jsx';
 
-import Loading from './loading/Loading.jsx';
-import Weibo from './weibo/Weibo.jsx';
 import Luck from './weibo/Luck.jsx';
 import Index from './index/Index.jsx';
 import Geography from './geography/Geography.jsx';
@@ -45,11 +43,6 @@ let topNav = migi.render(
   document.body
 );
 
-let loading = migi.render(
-  <Loading/>,
-  '#page'
-);
-
 let audio = migi.render(
   <audio autoplay="autoplay" loop="loop">
     <source src="http://rhymesland.oss-cn-shanghai.aliyuncs.com/bgm/BGM.mp3" type="audio/mpeg"/>
@@ -66,7 +59,6 @@ topNav.on('music', function(bool) {
   }
 });
 
-let weibo;
 let luck;
 let index;
 let geography;
@@ -97,14 +89,6 @@ if(window.IS_MOBILE) {
     botNav.clickLogo();
   });
 }
-
-loading.on('fin', function() {
-  loading.clean();
-  weibo = migi.render(
-    <Weibo/>,
-    '#page'
-  );
-});
 
 function hashchange(hash) {
   hash = hash || '';
@@ -291,11 +275,9 @@ function hashchange(hash) {
 }
 
 if(cid) {
-  loading.hide();
   hashchange('#comment' + cid);
 }
 else {
-  loading.hide();
   hashchange(location.hash);
 }
 

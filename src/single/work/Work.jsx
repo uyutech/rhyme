@@ -9,6 +9,7 @@ import WorkComment from './WorkComment.jsx';
 
 let ajax;
 let commentType = 1;
+let firstLoadComment = true;
 
 class Work extends migi.Component {
   constructor(...data) {
@@ -27,7 +28,10 @@ class Work extends migi.Component {
           case '1':
             intro.hide();
             workComment.show();
-            workComment.load();
+            if(firstLoadComment) {
+              firstLoadComment = false;
+              workComment.load();
+            }
             break;
         }
       });
@@ -49,6 +53,7 @@ class Work extends migi.Component {
   hide() {
     $(this.element).addClass('fn-hide');
     this.ref.media.clear();
+    firstLoadComment = true;
     if(ajax) {
       ajax.abort();
       commentType = 1;
