@@ -5,8 +5,7 @@ const webpack = require("webpack");
 module.exports = {
   entry: {
     common: './src/common/index.js',
-    single: './src/single/index.jsx',
-    work: './src/work/index.jsx'
+    single: './src/single/index.jsx'
   },
   output: {
     path: __dirname + '/www',

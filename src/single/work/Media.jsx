@@ -25,7 +25,7 @@ class Media extends migi.Component {
     self.on(migi.Event.DOM, function() {
       let style = document.createElement('style');
       let width = $(this.element).width();
-      style.innerText = `.main.work>.media>.c{height:${width / 16 * 9}px}`;
+      style.innerText = `.main.work>.media>.c{height:${Math.round(width / 16 * 9)}px}`;
       document.head.appendChild(style);
 
       let $play = $(this.ref.play.element);
@@ -249,6 +249,7 @@ class Media extends migi.Component {
       <div class="c" ref="c">
         <Audio ref="audio"/>
         <Video ref="video"/>
+        <div class="left"/>
       </div>
       <div class={ 'progress' + (this.canControl ? '' : ' dis') } onClick={ this.clickProgress }>
         <div class="has" ref="has"/>

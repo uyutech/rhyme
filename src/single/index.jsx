@@ -291,19 +291,10 @@ function hashchange(hash) {
 }
 
 if(cid) {
-  if(window.IS_LOGIN !== 'True') {
-    location.href = window.LOGIN_URL;
-  }
-  else {
-    loading.hide();
-    hashchange('#comment' + cid);
-  }
-}
-else if(window.LUCK_MES) {
   loading.hide();
-  hashchange('#luck');
+  hashchange('#comment' + cid);
 }
-else if(window.IS_LOGIN === 'True') {
+else {
   loading.hide();
   hashchange(location.hash);
 }
