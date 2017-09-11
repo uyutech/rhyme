@@ -38,9 +38,14 @@ class Media extends migi.Component {
       });
       audio.on('loadedmetadata', function (data) {
         duration = data.duration;
-        self.canControl = true;
+        if(last === audio) {
+          self.canControl = true;
+        }
       });
-      audio.on('playing', function() {
+      audio.on('playing', function(data) {
+        duration = data.duration;
+      });
+      audio.on('play', function() {
         $play.addClass('pause');
       });
       audio.on('pause', function() {
@@ -53,9 +58,14 @@ class Media extends migi.Component {
       });
       video.on('loadedmetadata', function (data) {
         duration = data.duration;
-        self.canControl = true;
+        if(last === video) {
+          self.canControl = true;
+        }
       });
-      video.on('playing', function() {
+      video.on('playing', function(data) {
+        duration = data.duration;
+      });
+      video.on('play', function() {
         $play.addClass('pause');
       });
       video.on('pause', function() {
@@ -240,6 +250,7 @@ class Media extends migi.Component {
         audio.pause().hide();
         last = video.show().currentTime(0);
       }
+      this.canControl = last.hasLoaded;
       duration = last.duration;
       $(this.ref.play.element).removeClass('pause');
     }

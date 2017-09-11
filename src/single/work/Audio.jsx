@@ -96,13 +96,14 @@ class Audio extends migi.Component {
   }
   loadedmetadata(e) {
     let duration = this.duration = e.target.duration;
+    this.hasLoaded = true;
     this.emit('loadedmetadata', {
       duration,
     });
   }
   playing(e) {
     let duration = this.duration = e.target.duration;
-    this.emit('loadedmetadata', {
+    this.emit('playing', {
       duration,
     });
   }
@@ -126,6 +127,7 @@ class Audio extends migi.Component {
   @bind rollLyrics = []
   @bind showLyricsMode
   @bind duration
+  @bind hasLoaded
   clickLike(e, vd) {
     let self = this;
     let $vd = $(vd.element);
@@ -191,6 +193,7 @@ class Audio extends migi.Component {
     this.fileUrl = '';
     this.lineLyrics = '';
     this.rollLyrics = [];
+    this.hasLoaded = false;
     return this;
   }
   render() {

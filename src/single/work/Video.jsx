@@ -30,16 +30,16 @@ class Video extends migi.Component {
   }
   loadedmetadata(e) {
     let duration = this.duration = e.target.duration;
+    this.hasLoaded = true;
     this.emit('loadedmetadata', {
       duration,
     });
   }
   playing(e) {
     let duration = this.duration = e.target.duration;
-    this.emit('loadedmetadata', {
+    this.emit('playing', {
       duration,
     });
-    this.emit('playing');
   }
   onpause() {
     this.emit('pause');
@@ -61,10 +61,12 @@ class Video extends migi.Component {
   @bind isFavor
   @bind workIndex = 0
   @bind duration
+  @bind hasLoaded
   clear() {
     this.fileUrl = '';
     this.workIndex = 0;
     this.duration = 0;
+    this.hasLoaded = false;
     return this;
   }
   clickLike(e, vd) {
