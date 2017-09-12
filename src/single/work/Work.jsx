@@ -49,6 +49,9 @@ class Work extends migi.Component {
   }
   show() {
     $(this.element).removeClass('fn-hide');
+    setTimeout(function() {
+      this.ref.media.open();
+    }.bind(this), 100);
   }
   hide() {
     $(this.element).addClass('fn-hide');
@@ -61,6 +64,7 @@ class Work extends migi.Component {
       this.replayId = null;
       this.replayName = null;
     }
+    this.ref.media.close();
   }
   @bind rootId = null
   @bind replayId = null

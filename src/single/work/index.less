@@ -21,7 +21,7 @@
     background-position:center;
     background-size:cover;
     background-repeat:no-repeat;
-    overflow:hidden;
+    //overflow:hidden;
     &.show{
       &:before,&:after{
         //content:' ';
@@ -90,7 +90,7 @@
       position:relative;
       height:2.1rem;
       z-index:10;
-      overflow:hidden;
+      //overflow:hidden;
       &.hide-control{
         .popular{
           opacity:0;
@@ -243,6 +243,38 @@
           }
         }
       }
+      .left{
+        position:absolute;
+        left:-9999rem;
+        right:100%;
+        top:0;
+        bottom:0;
+        background:#f9eedf url(../character/left.png) no-repeat right center;
+        background-size:contain;
+        border:1px solid #e0ce9e;
+        border-right:none;
+        transform:translateX(2.1rem);
+        transition:transform 0.2s;
+        &.on{
+          transform:translateX(0);
+        }
+      }
+      .right{
+        position:absolute;
+        left:100%;
+        right:-9999rem;
+        top:0;
+        bottom:0;
+        background:#f9eedf url(../character/right.png) no-repeat left center;
+        background-size:contain;
+        border:1px solid #e0ce9e;
+        border-left:none;
+        transform:translateX(-2.1rem);
+        transition:transform 0.2s;
+        &.on{
+          transform:translateX(0);
+        }
+      }
     }
     .progress{
       position:relative;
@@ -350,6 +382,7 @@
     .tags{
       position:relative;
       z-index:10;
+      overflow:hidden;
       ul{
         padding-left:0.1rem;
         li{

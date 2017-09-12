@@ -255,12 +255,21 @@ class Media extends migi.Component {
       $(this.ref.play.element).removeClass('pause');
     }
   }
+  open() {
+    $(this.ref.left.element).addClass('on');
+    $(this.ref.right.element).addClass('on');
+  }
+  close() {
+    $(this.ref.left.element).removeClass('on');
+    $(this.ref.right.element).removeClass('on');
+  }
   render() {
     return <div class="media">
       <div class="c" ref="c">
         <Audio ref="audio"/>
         <Video ref="video"/>
-        <div class="left"/>
+        <div class="left" ref="left"/>
+        <div class="right" ref="right"/>
       </div>
       <div class={ 'progress' + (this.canControl ? '' : ' dis') } onClick={ this.clickProgress }>
         <div class="has" ref="has"/>
