@@ -167,6 +167,7 @@ class Media extends migi.Component {
     }
     if(last) {
       last.show();
+      this.emit('switchSubWork', last.data);
     }
   }
   clickTag(e, vd, tvd) {
@@ -253,15 +254,20 @@ class Media extends migi.Component {
       this.canControl = last.hasLoaded;
       duration = last.duration;
       $(this.ref.play.element).removeClass('pause');
+      this.emit('switchSubWork', last.data);
     }
   }
   open() {
     $(this.ref.left.element).addClass('on');
     $(this.ref.right.element).addClass('on');
+    return this;
   }
   close() {
     $(this.ref.left.element).removeClass('on');
     $(this.ref.right.element).removeClass('on');
+    $(this.ref.tags.element).find('.cur').removeClass('cur');
+    $(this.ref.tags.element).find('li').eq(0).addClass('cur');
+    return this;
   }
   render() {
     return <div class="media">

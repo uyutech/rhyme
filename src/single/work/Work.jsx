@@ -35,6 +35,9 @@ class Work extends migi.Component {
             break;
         }
       });
+      media.on('switchSubWork', function(data) {
+        self.subWorkID = data[0].ItemID;
+      });
       let comment = self.ref.workComment.ref.comment;
       comment.on('chooseSubComment', function(rid, cid, name) {
         self.rootId = rid;
@@ -65,6 +68,8 @@ class Work extends migi.Component {
       this.replayName = null;
     }
     this.ref.media.close();
+    this.ref.intro.show();
+    this.ref.workComment.hide();
     $(this.ref.form.element).addClass('fn-hide');
   }
   @bind rootId = null
@@ -73,6 +78,7 @@ class Work extends migi.Component {
   @bind hasContent
   @bind id
   @bind loading
+  @bind subWorkID
   setId(id) {
     let self = this;
     self.id = id;
@@ -120,8 +126,7 @@ class Work extends migi.Component {
         ParentID,
         RootID,
         Content,
-        commentType,
-        commentTypeID: self.id,
+        subWorkID: self.subWorkID,
       }, function(res) {
         if(res.success) {
           $input.val('');

@@ -305,8 +305,7 @@ class Character extends migi.Component{
         ParentID,
         RootID,
         Content,
-        commentType,
-        commentTypeID: HASH[self.name].authorId,
+        AuthorCommentID: HASH[self.name].authorId,
       }, function(res) {
         if(res.success) {
           $input.val('');
