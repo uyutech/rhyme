@@ -310,7 +310,7 @@ class Character extends migi.Component{
   render() {
     return <div class={ 'main character ' + this.name }>
       <div class="con">
-        <div class="img"/>
+        <div class="img" ref="img"/>
         <ul class="btn fn-clear">
           <li><a href="#" onClick={ this.clickFollow }><span>{ HASH[this.name] && HASH[this.name].state === '1' ? '取关' : '关注' }</span></a></li>
           <li><a href="#" class="comment" onClick={ this.clickComment }><span>{ this.name === 'jiemeng' ? '留言' : '表白' }</span></a></li>

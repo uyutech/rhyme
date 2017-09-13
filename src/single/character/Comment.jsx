@@ -45,7 +45,7 @@ class Comment extends migi.Component {
         util.postJSON('author/AddWorkCommentLike', { CommentID }, function(res) {
           if(res.success) {
             let data = res.data;
-            if(data.State === 211) {
+            if(data.State === 'likeWordsUser') {
               $span.addClass('has');
             }
             else {
