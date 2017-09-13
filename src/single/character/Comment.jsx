@@ -42,7 +42,7 @@ class Comment extends migi.Component {
       $root.on('click', '.zan', function() {
         let $span = $(this);
         let CommentID = $span.attr('cid');
-        util.postJSON('author/AddWorkCommentLike', { CommentID }, function(res) {
+        util.postJSON(self.props.zanUrl, { CommentID }, function(res) {
           if(res.success) {
             let data = res.data;
             if(data.State === 'likeWordsUser') {
@@ -62,7 +62,7 @@ class Comment extends migi.Component {
         let $message = $(this);
         let rid = $message.attr('rid');
         $message.removeClass('more').text('读取中...');
-        ajax = util.postJSON('author/GetTocomment_T_List', { RootID: rid, Skip: subSkipHash[rid], Take }, function(res) {
+        ajax = util.postJSON(self.props.subUrl, { RootID: rid, Skip: subSkipHash[rid], Take }, function(res) {
           if(res.success) {
             let data = res.data;
             if(data.data.length) {
@@ -107,7 +107,7 @@ class Comment extends migi.Component {
       $root.on('click', '.remove', function() {
         let $btn = $(this);
         let cid = $btn.attr('cid');
-        util.postJSON('author/DeleteCommentByID', { CommentID: cid }, function(res) {
+        util.postJSON(self.props.delUrl, { CommentID: cid }, function(res) {
           if(res.success) {
             $btn.closest('li').remove();
           }
@@ -162,7 +162,7 @@ class Comment extends migi.Component {
       else {
         $list2.css('height', 'auto');
         subLoadHash[rid] = IS_LOADING;
-        ajax = util.postJSON('author/GetTocomment_T_List', { RootID: rid, Skip: -1, Take }, function(res) {
+        ajax = util.postJSON(self.props.subUrl, { RootID: rid, Skip: -1, Take }, function(res) {
           if(res.success) {
             subLoadHash[rid] = HAS_LOADED;
             let s = '';

@@ -25,15 +25,6 @@ class WorkComment extends migi.Component {
     let self = this;
     self.on(migi.Event.DOM, function() {
       $main = $('.main.work');
-      // self.ref.comment.on('chooseSubComment', function(rid, cid, name) {
-      //   self.rootId = rid;
-      //   self.replayId = cid;
-      //   self.replayName = name;
-      //   commentType = 4;
-      // });
-      // self.ref.comment.on('noSubComment', function() {
-      //   self.clickReplay();
-      // });
       $window.on('scroll', function() {
         self.checkMore();
       });
@@ -79,6 +70,7 @@ class WorkComment extends migi.Component {
         else {
           self.ref.comment.showComment(res.data.data);
           self.ref.comment.message = '暂无评论';
+          loadEnd = true;
         }
       }
       else {
@@ -132,7 +124,7 @@ class WorkComment extends migi.Component {
   }
   render() {
     return <div class="comments fn-hide">
-      <Comment ref="comment"/>
+      <Comment ref="comment" zanUrl="works/AddWorkCommentLike" subUrl="works/GetTocomment_T_List" delUrl="works/DeleteCommentByID"/>
     </div>;
   }
 }

@@ -112,7 +112,7 @@ class Work extends migi.Component {
       if(ajax) {
         ajax.abort();
       }
-      ajax = util.postJSON('author/AddComment', {
+      ajax = util.postJSON('works/AddComment', {
         ParentID,
         RootID,
         Content,

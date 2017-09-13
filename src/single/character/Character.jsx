@@ -17,21 +17,37 @@ let HASH = {
     Skip: -1,
     authorId: window.HETU_ID,
     state: window.FOLLOW_HETU,
+    img: `//${location.host}/src/single/character/hetu_a.png`,
+    w: 367,
+    h: 580,
+    n: 181
   },
   'sixia': {
     Skip: -1,
     authorId: window.SIXIA_ID,
     state: window.FOLLOW_SIXIA,
+    img: `//${location.host}/src/single/character/sixia_a.png`,
+    w: 367,
+    h: 472,
+    n: 181
   },
   'muhan': {
     Skip: -1,
     authorId: window.MUHAN_ID,
     state: window.FOLLOW_MUHAN,
+    img: `//${location.host}/src/single/character/muhan_a.png`,
+    w: 300,
+    h: 574,
+    n: 181
   },
   'mi': {
     Skip: -1,
     authorId: window.MI_ID,
     state: window.FOLLOW_MI,
+    img: `//${location.host}/src/single/character/mi_a.png`,
+    w: 300,
+    h: 499,
+    n: 181
   },
   'jiemeng': {
     Skip: -1,
@@ -39,6 +55,8 @@ let HASH = {
     state: window.FOLLOW_JIEMENG,
   }
 };
+let index = 0;
+let showAnimate;
 let $wrap;
 let $cp;
 
@@ -74,7 +92,41 @@ class Character extends migi.Component{
   @bind hasContent
   @bind loading
   user(name) {
-    this.name = name;
+    let self = this;
+    self.name = name;
+    let hash = HASH[name];
+    showAnimate = true;
+    index = 0;
+    if(hash.animate) {
+      hash.animate();
+    }
+    else if(hash.img) {
+      let bg = self.ref.img.element;
+      let img = new Image();
+      img.onload = function() {
+        if(self.name !== name) {
+          return;
+        }
+        function anm() {
+          if(!showAnimate) {
+            return;
+          }
+          let x = hash.w * (index % 20);
+          let y = hash.h * Math.floor(index / 20);
+          bg.style.backgroundImage = `url(${hash.img})`;
+          bg.style.backgroundPosition = `${-x}px ${-y}px`;
+          bg.style.backgroundSize = 'auto';
+          index++;
+          if(index >= hash.n) {
+            index = 0;
+          }
+          requestAnimationFrame(anm);
+        }
+        hash.animate = anm;
+        anm();
+      };
+      img.src = hash.img;
+    }
   }
   show() {
     let self = this;
@@ -84,7 +136,7 @@ class Character extends migi.Component{
     setTimeout(function() {
       $(self.ref.left.element).addClass('on');
       $(self.ref.right.element).addClass('on');
-    }, 200);
+    }, 100);
   }
   hide() {
     $(this.element).addClass('fn-hide');
@@ -103,6 +155,8 @@ class Character extends migi.Component{
       HASH[key].Skip = -1;
       HASH[key].end = false;
     });
+    showAnimate = false;
+    this.ref.img.element.removeAttribute('style');
   }
   clickFollow(e, vd) {
     e.preventDefault();
@@ -322,7 +376,7 @@ class Character extends migi.Component{
       <div class={ 'comments' + (this.showComment ? '' : ' fn-hide') } ref="comments">
         <div class="c">
           <div class="wrap" ref="wrap">
-            <Comment ref="comment"/>
+            <Comment ref="comment" zanUrl="author/AddWorkCommentLike" subUrl="author/GetTocomment_T_List" delUrl="author/DeleteCommentByID"/>
           </div>
           <a href="#" class="close" onClick={ this.clickClose }/>
           <ul class="type2 fn-clear" onClick={ { li: this.switchType2 } }>

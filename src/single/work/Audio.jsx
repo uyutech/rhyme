@@ -34,10 +34,9 @@ class Audio extends migi.Component {
     self.rollLyrics = data[0].formatLyrics.data;
     let count = 0;
     $lyricsRoll = $(self.ref.lyricsRoll.element);
-    $lyricsRoll.find('pre').each(function(i, o) {
-      let $o = $(o);
+    $lyricsRoll.find('pre').each(function() {
       lyricsHeight.push(count);
-      count += $o.height();
+      count += 20;
     });
     return this;
   }
@@ -74,23 +73,6 @@ class Audio extends migi.Component {
         $lyricsRoll.css('-webkit-transform', `translate3d(0,${-lyricsHeight[lyricsIndex]}px,0)`);
         $lyricsRoll.css('transform', `translate3d(0,${-lyricsHeight[lyricsIndex]}px,0)`);
       }
-      // let start = 0;
-      // if(lyricsIndex > 0) {
-      //   start = lyricsHeight[lyricsIndex];
-      // }
-      // let end = lyricsHeight[lyricsIndex + 1] || start;
-      // let percent;
-      // if(lyricsIndex && formatLyricsData[lyricsIndex + 1]) {
-      //   percent = (currentTime * 1000 - formatLyricsData[lyricsIndex].timestamp)
-      //     / (formatLyricsData[lyricsIndex + 1].timestamp - formatLyricsData[lyricsIndex].timestamp);
-      // }
-      // else if(formatLyricsData[lyricsIndex + 1]) {
-      //   percent = currentTime * 1000 / formatLyricsData[lyricsIndex + 1].timestamp;
-      // }
-      // let top = start + (end - start) * percent;
-      // // console.log(lyricsIndex, percent, start, end, top);
-      // $lyricsRoll.css('-webkit-transform', `translate3d(0,${-top}px,0)`);
-      // $lyricsRoll.css('transform', `translate3d(0,${-top}px,0)`);
     }
     this.emit('timeupdate', currentTime);
   }

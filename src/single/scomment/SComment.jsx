@@ -98,7 +98,7 @@ class SComment extends migi.Component {
       <div class="con">
         <div class="c">
           <div class="wrap">
-            <Comment ref="comment"/>
+            <Comment ref="comment" zanUrl="author/AddWorkCommentLike" subUrl="author/GetTocomment_T_List" delUrl="author/DeleteCommentByID"/>
           </div>
           <div class="form">
             <div class="inputs">
