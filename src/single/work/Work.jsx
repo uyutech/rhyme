@@ -65,6 +65,7 @@ class Work extends migi.Component {
       this.replayName = null;
     }
     this.ref.media.close();
+    $(this.ref.form.element).addClass('fn-hide');
   }
   @bind rootId = null
   @bind replayId = null
@@ -85,8 +86,11 @@ class Work extends migi.Component {
         media.popular = data.Popular;
         intro.tags = data.ReturnTagData || [];
         migi.eventBus.emit('changeTitle', data.Title);
+        $(self.ref.form.element).removeClass('fn-hide');
       }
-      else {}
+      else {
+        alert(res.message);
+      }
     });
     self.ref.workComment.id = id;
   }
@@ -145,7 +149,7 @@ class Work extends migi.Component {
       <Media ref="media"/>
       <Intro ref="intro"/>
       <WorkComment ref="workComment"/>
-      <div class="form">
+      <div class="form fn-hide" ref="form">
         <div class="c">
           <div class={ 'reply' + (this.replayId ? '' : ' fn-hide') } onClick={ this.clickReplay }>{ this.replayName }</div>
           <div class="inputs">

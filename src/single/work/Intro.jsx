@@ -28,7 +28,7 @@ class Intro extends migi.Component {
         <p>出品：<a href="http://weibo.com/u/6276065571" target="_blank">结梦原创音乐团队</a></p>
         <p>演唱：<a href="http://weibo.com/740120222" target="_blank">慕寒</a>&nbsp;
           <a href="http://weibo.com/arielmelody" target="_blank">司夏</a>&nbsp;
-          <a href="http://weibo.com/u/1750157883" target="_blank">河图</a>
+          <a href="http://weibo.com/u/1750157883" target="_blank">河图</a>&nbsp;
           <a href="http://weibo.com/ichigolily" target="_blank">Midaho</a></p>
         <p>作曲：<a href="http://weibo.com/u/2423021884" target="_blank">月千宸</a>&nbsp;
         编曲：<a href="http://weibo.com/litterzy" target="_blank">Litterzy</a>&nbsp;
