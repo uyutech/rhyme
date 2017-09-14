@@ -6,10 +6,6 @@ module.exports = {
   entry: {
     common: './src/common/index.js',
     single: './src/single/index.jsx',
-    mi_a: './src/single/character/mi_a.png',
-    sixia_a: './src/single/character/sixia_a.png',
-    hetu_a: './src/single/character/hetu_a.png',
-    muhan_a: './src/single/character/muhan_a.png'
   },
   output: {
     path: __dirname + '/www',

@@ -16,7 +16,7 @@ let HASH = {
     Skip: -1,
     authorId: window.HETU_ID,
     state: window.FOLLOW_HETU,
-    img: `//${location.host}/src/single/character/hetu_a.png`,
+    img: `//zhuanquan-pic.oss-cn-beijing.aliyuncs.com/hetu_a.png`,
     w: 367,
     h: 580,
     n: 181
@@ -25,7 +25,7 @@ let HASH = {
     Skip: -1,
     authorId: window.SIXIA_ID,
     state: window.FOLLOW_SIXIA,
-    img: `//${location.host}/src/single/character/sixia_a.png`,
+    img: `//zhuanquan-pic.oss-cn-beijing.aliyuncs.com/sixia_a.png`,
     w: 367,
     h: 472,
     n: 181
@@ -34,7 +34,7 @@ let HASH = {
     Skip: -1,
     authorId: window.MUHAN_ID,
     state: window.FOLLOW_MUHAN,
-    img: `//${location.host}/src/single/character/muhan_a.png`,
+    img: `//zhuanquan-pic.oss-cn-beijing.aliyuncs.com/muhan_a.png`,
     w: 300,
     h: 574,
     n: 181
@@ -43,7 +43,7 @@ let HASH = {
     Skip: -1,
     authorId: window.MI_ID,
     state: window.FOLLOW_MI,
-    img: `//${location.host}/src/single/character/mi_a.png`,
+    img: `//zhuanquan-pic.oss-cn-beijing.aliyuncs.com/mi_a.png`,
     w: 300,
     h: 499,
     n: 181
