@@ -11,7 +11,7 @@ export default {
       url = 'http://192.168.0.3/' + url.replace(/^\//, '');
       // url = '/' + url.replace(/^\//, '');
     }
-    console.log('ajax: ' + url + ', ' + JSON.stringify(data));
+    // console.log('ajax: ' + url + ', ' + JSON.stringify(data));
     function load() {
       return $.ajax({
         url: url,
@@ -26,15 +26,15 @@ export default {
           xhr.withCredentials = true;
         },
         success: function (data, state, xhr) {
-          console.log('ajax success: ' + url + ', ' + JSON.stringify(data));
-          if(!data.success && data.code === 1000) {
-            location.href = window.LOGIN_URL;
-            return;
-          }
+          // console.log('ajax success: ' + url + ', ' + JSON.stringify(data));
+          // if(!data.success && data.code === 1000) {
+          //   migi.eventBus.emit('NEED_LOGIN');
+          //   return;
+          // }
           success(data, state, xhr);
         },
         error: function (data) {
-          console.error('ajax error: ' + url + ', ' + JSON.stringify(data));
+          // console.error('ajax error: ' + url + ', ' + JSON.stringify(data));
           if(!error.__hasExec) {
             error.__hasExec = true;
             error(data || {});

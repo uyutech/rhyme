@@ -9,6 +9,7 @@ import '../404.html';
 import TopNav from './TopNav.jsx';
 import BotNav from './BotNav.jsx';
 import Share from './Share.jsx';
+import NeedLogin from './NeedLogin.jsx';
 
 import Luck from './weibo/Luck.jsx';
 import Index from './index/Index.jsx';
@@ -82,6 +83,15 @@ let share = migi.render(
 migi.eventBus.on('share', function(url) {
   share.url = url;
   share.show();
+});
+
+let needLogin = migi.render(
+  <NeedLogin/>,
+  document.body
+);
+migi.eventBus.on('NEED_LOGIN', function(message) {
+  needLogin.message = message;
+  needLogin.show();
 });
 
 if(window.IS_MOBILE) {

@@ -9,7 +9,6 @@ let Take = 10;
 let SortType = 0;
 let MyComment = 0;
 let CurrentCount = 0;
-let commentType = 2;
 let loadingMore;
 let ajax;
 let HASH = {
@@ -74,7 +73,6 @@ class Character extends migi.Component{
         self.rootId = rid;
         self.replayId = cid;
         self.replayName = name;
-        commentType = 3;
       });
       self.ref.comment.on('noSubComment', function() {
         self.clickReplay();
@@ -150,7 +148,6 @@ class Character extends migi.Component{
     this.ref.comment.showComment();
     Skip = 0;
     CurrentCount = 0;
-    commentType = 2;
     Object.keys(HASH).forEach(function(key) {
       HASH[key].Skip = -1;
       HASH[key].end = false;
@@ -168,6 +165,9 @@ class Character extends migi.Component{
           self.name = self.name;
           alert('取关成功');
         }
+        else if(res.code === 1000) {
+          migi.eventBus.emit('NEED_LOGIN');
+        }
         else {
           alert(res.message || util.ERROR_MESSAGE);
         }
@@ -181,6 +181,9 @@ class Character extends migi.Component{
           HASH[self.name].state = '1';
           self.name = self.name;
           alert('关注成功');
+        }
+        else if(res.code === 1000) {
+          migi.eventBus.emit('NEED_LOGIN');
         }
         else {
           alert(res.message || util.ERROR_MESSAGE);
@@ -206,7 +209,6 @@ class Character extends migi.Component{
     this.ref.comment.showComment();
     Skip = 0;
     CurrentCount = 0;
-    commentType = 2;
     HASH[this.name].Skip = -1;
     HASH[this.name].end = false;
     this.rootId = null;
@@ -235,6 +237,9 @@ class Character extends migi.Component{
         }
       }
       else {
+        if(res.code === 1000) {
+          migi.eventBus.emit('NEED_LOGIN');
+        }
         self.ref.comment.showComment();
         self.ref.comment.message = res.message || util.ERROR_MESSAGE;
       }
@@ -283,11 +288,11 @@ class Character extends migi.Component{
     this.replayId = null;
     this.replayName = null;
     this.rootId = null;
-    commentType = 2;
   }
   input(e, vd) {
     let v = $(vd.element).val().trim();
     this.hasContent = v.length > 0;
+    migi.eventBus.emit('NEED_LOGIN');
   }
   click(e) {
     e.preventDefault();
@@ -317,6 +322,9 @@ class Character extends migi.Component{
           else {
             self.ref.comment.addChild(res.data);
           }
+        }
+        else if(res.code === 1000) {
+          migi.eventBus.emit('NEED_LOGIN');
         }
         else {
           alert(res.message || util.ERROR_MESSAGE);

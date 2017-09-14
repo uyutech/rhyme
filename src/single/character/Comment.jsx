@@ -53,6 +53,12 @@ class Comment extends migi.Component {
             }
             $span.find('small').text(data.LikeCount);
           }
+          else if(res.code === 1000) {
+            migi.eventBus.emit('NEED_LOGIN');
+          }
+          else {
+            alert(res.message || util.ERROR_MESSAGE);
+          }
         });
       });
       $root.on('click', '.slide', function() {
@@ -110,6 +116,9 @@ class Comment extends migi.Component {
         util.postJSON(self.props.delUrl, { CommentID: cid }, function(res) {
           if(res.success) {
             $btn.closest('li').remove();
+          }
+          else if(res.code === 1000) {
+            migi.eventBus.emit('NEED_LOGIN');
           }
           else {
             alert(res.message || util.ERROR_MESSAGE);

@@ -109,6 +109,7 @@ class Work extends migi.Component {
   input(e, vd) {
     let v = $(vd.element).val().trim();
     this.hasContent = v.length > 0;
+    migi.eventBus.emit('NEED_LOGIN');
   }
   click(e) {
     e.preventDefault();
@@ -138,6 +139,9 @@ class Work extends migi.Component {
           else {
             self.ref.workComment.ref.comment.addChild(res.data);
           }
+        }
+        else if(res.code === 1000) {
+          migi.eventBus.emit('NEED_LOGIN');
         }
         else {
           alert(res.message || util.ERROR_MESSAGE);

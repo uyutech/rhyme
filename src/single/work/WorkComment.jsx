@@ -11,7 +11,6 @@ let SortType = 0;
 let MyComment = 0;
 let CurrentCount = 0;
 let ajax;
-let commentType = 1;
 let loadingMore;
 let loadEnd;
 let $window = $(window);
@@ -59,9 +58,10 @@ class WorkComment extends migi.Component {
       ajax.abort();
     }
     self.loading = true;
-    ajax = util.postJSON('works/GetToWorkMessage_List', { WorkID: self.id , Skip, Take }, function(res) {
+    ajax = util.postJSON('works/GetToWorkMessage_List', { WorkID: self.id , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
       if(res.success) {
         let data = res.data;
+        CurrentCount = data.Size;
         Skip += Take;
         if(data.data.length) {
           self.ref.comment.message = '';
@@ -96,9 +96,10 @@ class WorkComment extends migi.Component {
     }
     if(self.showComment && !self.loading && !loadingMore && !loadEnd && bool) {
       loadingMore = true;
-      ajax = util.postJSON('works/GetToWorkMessage_List', { WorkID: self.id , Skip, Take }, function(res) {
+      ajax = util.postJSON('works/GetToWorkMessage_List', { WorkID: self.id , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
         if(res.success) {
           let data = res.data;
+          CurrentCount = data.Size;
           Skip += Take;
           if(data.data.length) {
             self.ref.comment.addMore(data.data);
@@ -122,8 +123,40 @@ class WorkComment extends migi.Component {
       });
     }
   }
+  switchType(e, vd) {
+    let $ul = $(vd.element);
+    $ul.toggleClass('alt');
+    $ul.find('li').toggleClass('cur');
+    let rel = $ul.find('.cur').attr('rel');
+    CurrentCount = 0;
+    SortType = rel;
+    Skip = 0;
+    this.ref.comment.showComment();
+    this.ref.comment.abort();
+    this.load();
+  }
+  switchType2(e, vd) {
+    let $ul = $(vd.element);
+    $ul.toggleClass('alt');
+    $ul.find('li').toggleClass('cur');
+    let rel = $ul.find('.cur').attr('rel');
+    CurrentCount = 0;
+    MyComment = rel;
+    Skip = 0;
+    this.ref.comment.showComment();
+    this.ref.comment.abort();
+    this.load();
+  }
   render() {
     return <div class="comments fn-hide">
+      <ul class="type2 fn-clear" onClick={ { li: this.switchType2 } }>
+        <li class="cur" rel="0"><span>全部</span></li>
+        <li rel="1"><span>我的</span></li>
+      </ul>
+      <ul class="type fn-clear" onClick={ { li: this.switchType } }>
+        <li class="cur" rel="0"><span>最新</span></li>
+        <li rel="1"><span>最热</span></li>
+      </ul>
       <Comment ref="comment" zanUrl="works/AddWorkCommentLike" subUrl="works/GetTocomment_T_List" delUrl="works/DeleteCommentByID"/>
     </div>;
   }
