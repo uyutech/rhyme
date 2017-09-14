@@ -10,6 +10,7 @@ import WorkComment from './WorkComment.jsx';
 let ajax;
 let commentType = 1;
 let firstLoadComment = true;
+let barrageTime = 0;
 
 class Work extends migi.Component {
   constructor(...data) {
@@ -37,6 +38,10 @@ class Work extends migi.Component {
       });
       media.on('switchSubWork', function(data) {
         self.subWorkID = data[0].ItemID;
+        barrageTime = 0;
+      });
+      media.on('timeupdate', function(data) {
+        barrageTime = data;
       });
       let comment = self.ref.workComment.ref.comment;
       comment.on('chooseSubComment', function(rid, cid, name) {
@@ -84,6 +89,7 @@ class Work extends migi.Component {
     self.id = id;
     let media = self.ref.media;
     let intro = self.ref.intro;
+    intro.setId(id);
     util.postJSON('works/GetWorkDetails', { WorksID: id }, function(res) {
       if(res.success) {
         let data = res.data;
@@ -130,6 +136,7 @@ class Work extends migi.Component {
         RootID,
         Content,
         subWorkID: self.subWorkID,
+        BarrageTime: barrageTime
       }, function(res) {
         if(res.success) {
           $input.val('');

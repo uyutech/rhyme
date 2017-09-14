@@ -4,7 +4,6 @@
 
 import Comment from '../character/Comment.jsx';
 
-let init;
 let Skip = -1;
 let Take = 10;
 let SortType = 0;
@@ -117,9 +116,11 @@ class WorkComment extends migi.Component {
           self.ref.comment.message = res.message || util.ERROR_MESSAGE;
         }
         self.loading = false;
+        loadingMore = false;
       }, function(res) {
         self.ref.comment.message = res.message || util.ERROR_MESSAGE;
         self.loading = false;
+        loadingMore = false;
       });
     }
   }
@@ -131,6 +132,11 @@ class WorkComment extends migi.Component {
     CurrentCount = 0;
     SortType = rel;
     Skip = 0;
+    if(ajax) {
+      ajax.abort();
+    }
+    loadEnd = false;
+    this.loading = false;
     this.ref.comment.showComment();
     this.ref.comment.abort();
     this.load();
@@ -143,6 +149,11 @@ class WorkComment extends migi.Component {
     CurrentCount = 0;
     MyComment = rel;
     Skip = 0;
+    if(ajax) {
+      ajax.abort();
+    }
+    loadEnd = false;
+    this.loading = false;
     this.ref.comment.showComment();
     this.ref.comment.abort();
     this.load();

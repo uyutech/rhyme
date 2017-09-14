@@ -480,6 +480,7 @@
   .page{
     min-width:0;
     margin-bottom:0;
+    padding:0;
     height:100%;
     overflow-y:scroll;
     &:after{
@@ -581,6 +582,31 @@
       input{
         display:block;
         margin:0.1rem 0;
+      }
+    }
+  }
+  .need-login{
+    .c{
+      padding-top:0.7rem;
+      width:3rem;
+      height:2.24rem;
+      background:url(login_m.png) no-repeat center;
+      background-size:contain;
+      p{
+        font-size:0.12rem;
+      }
+      .weibo{
+        width:1rem;
+        height:0.38rem;
+        &:before,&:after{
+          height:0.08rem;
+        }
+      }
+      .close{
+        top:0.12rem;
+        right:0.12rem;
+        width:0.16rem;
+        height:0.16rem;
       }
     }
   }

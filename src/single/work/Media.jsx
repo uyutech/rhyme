@@ -35,6 +35,7 @@ class Media extends migi.Component {
         currentTime = data;
         let percent = currentTime / duration;
         self.setBarPercent(percent);
+        self.emit('timeupdate', Math.floor(currentTime * 1000));
       });
       audio.on('loadedmetadata', function (data) {
         duration = data.duration;
@@ -55,6 +56,7 @@ class Media extends migi.Component {
         currentTime = data;
         let percent = currentTime / duration;
         self.setBarPercent(percent);
+        self.emit('timeupdate', Math.floor(currentTime * 1000));
       });
       video.on('loadedmetadata', function (data) {
         duration = data.duration;
@@ -76,13 +78,12 @@ class Media extends migi.Component {
   @bind popular = 0
   @bind canControl
   setCover(url) {
-    if(window.IS_MOBILE) {
-      // $(this.element).css('background-image', `url(${url})`);
+    if(url) {
+      $(this.element).css('background-image', `url(${url})`);
     }
     else {
-      // migi.eventBus.emit('changeBgi', 'rjrjs');
+      $(this.element).removeAttr('style');
     }
-    $(this.element).css('background-image', `url(${url})`);
   }
   setWorks(works) {
     let self = this;

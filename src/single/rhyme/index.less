@@ -22,6 +22,34 @@
       border-radius:100%;
       background:url(rjrjs.jpg) no-repeat center;
       background-size:contain;
+      &:after{
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        border-radius:100%;
+        display:block;
+        content:' ';
+        background:url(rjrjs_on.jpg) no-repeat center;
+        background-size:contain;
+        opacity:0;
+        transition:opacity 0.2s;
+      }
+      &:hover:after{
+        opacity:1;
+      }
+    }
+    .jrj{
+      position:absolute;
+      bottom:3.16rem;
+      left:1.2rem;
+      display:block;
+      width:1.29rem;
+      height:1.29rem;
+      border-radius:100%;
+      background:url(jrj.jpg) no-repeat center;
+      background-size:contain;
     }
   }
 }
@@ -37,6 +65,15 @@
         position:absolute;
         top:2.97rem;
         right:0.09rem;
+        display:block;
+        width:0.64rem;
+        height:0.64rem;
+        border-radius:100%;
+      }
+      .jrj{
+        position:absolute;
+        top:3.06rem;
+        left:0.55rem;
         display:block;
         width:0.64rem;
         height:0.64rem;

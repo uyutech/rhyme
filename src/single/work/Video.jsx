@@ -78,6 +78,9 @@ class Video extends migi.Component {
         if(res.success) {
           self.isLike = res.data === 211;
         }
+        else if(res.code === 1000) {
+          migi.eventBus.emit('NEED_LOGIN');
+        }
         else {
           alert(res.message || util.ERROR_MESSAGE);
         }
@@ -99,6 +102,9 @@ class Video extends migi.Component {
         if(res.success) {
           self.isFavor = false;
         }
+        else if(res.code === 1000) {
+          migi.eventBus.emit('NEED_LOGIN');
+        }
         else {
           alert(res.message || util.ERROR_MESSAGE);
         }
@@ -112,6 +118,9 @@ class Video extends migi.Component {
       util.postJSON('works/AddCollection', { WorkItemsID: self.data[self.workIndex].ItemID }, function (res) {
         if(res.success) {
           self.isFavor = true;
+        }
+        else if(res.code === 1000) {
+          migi.eventBus.emit('NEED_LOGIN');
         }
         else {
           alert(res.message || util.ERROR_MESSAGE);

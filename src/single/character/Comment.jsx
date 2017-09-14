@@ -99,16 +99,8 @@ class Comment extends migi.Component {
       });
       $root.on('click', '.share', function(e) {
         e.preventDefault();
-        // $.cookie('share', 1);
         let $btn = $(this);
         self.emit('copy', location.protocol + '//' + location.host + $btn.attr('href'));
-        // copy.value = location.protocol + '//' + location.host + $btn.attr('href');
-        // copy.focus();
-        // copy.setSelectionRange(0, 9999);
-        // try {
-        //   document.execCommand('copy');
-        // } catch (err) {
-        // }
       });
       $root.on('click', '.remove', function() {
         let $btn = $(this);
