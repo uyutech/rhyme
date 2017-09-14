@@ -292,7 +292,9 @@ class Character extends migi.Component{
   input(e, vd) {
     let v = $(vd.element).val().trim();
     this.hasContent = v.length > 0;
-    migi.eventBus.emit('NEED_LOGIN');
+    if(!window.IS_LOGIN) {
+      migi.eventBus.emit('NEED_LOGIN');
+    }
   }
   click(e) {
     e.preventDefault();
