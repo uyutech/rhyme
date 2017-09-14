@@ -49,6 +49,7 @@ class TopNav extends migi.Component {
   }
   stop() {
     pause = true;
+    this.ref.music.element.className = 'music';
     this.emit('music', !pause);
   }
   play() {

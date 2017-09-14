@@ -140,6 +140,7 @@ function hashchange(hash) {
     last = scomment;
     migi.eventBus.emit('changeBgi', 'scomment');
     topNav.name = '留言';
+    topNav.play();
   }
   //单独人物特殊处理
   else if(hash.indexOf('#character') === 0) {
@@ -170,6 +171,7 @@ function hashchange(hash) {
         break;
     }
     character.user(name);
+    topNav.play();
   }
   //其它
   else {
@@ -268,6 +270,7 @@ function hashchange(hash) {
         botNav.showMenu();
         break;
     }
+    topNav.play();
   }
   if(last) {
     last.show();
