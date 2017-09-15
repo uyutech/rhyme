@@ -10,8 +10,8 @@ let $lyricsRoll;
 
 let shareId;
 let hash = {
-  '2757': 'http://rhymesland.com/rhymes/rjrjs.html',
-  '2758': 'http://rhymesland.com/rhymes/jrj.html'
+  '2757': 'http://rhymesland.com/rhymes/rjrjs',
+  '2758': 'http://rhymesland.com/rhymes/jrj'
 };
 
 class Audio extends migi.Component {

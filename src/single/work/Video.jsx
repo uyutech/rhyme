@@ -11,8 +11,8 @@ let hash = {
 
 let shareId;
 let hash2 = {
-  '2757': 'http://rhymesland.com/rhymes/rjrjs.html',
-  '2758': 'http://rhymesland.com/rhymes/jrj.html'
+  '2757': 'http://rhymesland.com/rhymes/rjrjs',
+  '2758': 'http://rhymesland.com/rhymes/jrj'
 };
 
 class Video extends migi.Component {
