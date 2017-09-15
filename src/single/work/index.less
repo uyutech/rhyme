@@ -941,7 +941,7 @@
       padding:0 0.1rem;
       box-sizing:border-box;
       height:100%;
-      background:#FFF;
+      background:@colorBg;
       border:1px solid #CCC;
       border-bottom:none;
       align-items:center;
@@ -966,7 +966,7 @@
       .inputs{
         flex:1;
         padding:0 0.1rem;
-        background:#EDF3F7;
+        background:@colorM;
         height:0.28rem;
         border:1px solid #EEE;
         border-radius:0.1rem;
@@ -977,6 +977,10 @@
           font-size:0.14rem;
           background:transparent;
           border:none;
+          color:@colorTxt;
+          &::placeholder{
+            color:@colorBg;
+          }
         }
       }
       button{
@@ -985,6 +989,7 @@
         font-size:0.14rem;
         background:transparent;
         border:none;
+        color:@colorTxt;
         &.dis{
           opacity:0.3;
         }
