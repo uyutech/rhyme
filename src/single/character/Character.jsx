@@ -25,27 +25,30 @@ let HASH = {
     Skip: -1,
     authorId: window.SIXIA_ID,
     state: window.FOLLOW_SIXIA,
+    // img: `//192.168.0.7/sixia_a.png`,
     img: `//zhuanquan-pic.oss-cn-beijing.aliyuncs.com/sixia_a.png`,
-    w: 367,
-    h: 472,
+    w: 400,
+    h: 600,
     n: 181
   },
   'muhan': {
     Skip: -1,
     authorId: window.MUHAN_ID,
     state: window.FOLLOW_MUHAN,
+    // img: `//192.168.0.7/muhan_a.png`,
     img: `//zhuanquan-pic.oss-cn-beijing.aliyuncs.com/muhan_a.png`,
-    w: 300,
-    h: 574,
+    w: 400,
+    h: 600,
     n: 181
   },
   'mi': {
     Skip: -1,
     authorId: window.MI_ID,
     state: window.FOLLOW_MI,
-    img: `//zhuanquan-pic.oss-cn-beijing.aliyuncs.com/mi_a.png`,
-    w: 300,
-    h: 499,
+    // img: '//192.168.0.7/mi_a.png',
+    img: `//${location.host}/src/single/character/mi_a.png`,
+    w: 400,
+    h: 600,
     n: 181
   },
   'jiemeng': {
@@ -118,7 +121,8 @@ class Character extends migi.Component{
           if(index >= hash.n) {
             index = 0;
           }
-          requestAnimationFrame(anm);
+          // requestAnimationFrame(anm);
+          setTimeout(anm, 20);
         }
         hash.animate = anm;
         anm();

@@ -59,7 +59,11 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      ENV: process.env.NODE_ENV == 'development' ? './development.js' : './production.js',
+      ENV: process.env.NODE_ENV === 'development'
+        ? './development.js'
+        : (process.env.NODE_ENV === 'production'
+          ? './production.js'
+          : './dev.js'),
     },
   },
 };

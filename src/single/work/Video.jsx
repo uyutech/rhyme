@@ -4,6 +4,11 @@
 
 let de = document.documentElement;
 
+let hash = {
+  '2758': 'http://zhuanquan-pic.oss-cn-beijing.aliyuncs.com/rjrjs_cover.jpg',
+  '2761': 'http://zhuanquan-pic.oss-cn-beijing.aliyuncs.com/jrj_cover.jpg'
+};
+
 class Video extends migi.Component {
   constructor(...data) {
     super(...data);
@@ -14,6 +19,7 @@ class Video extends migi.Component {
     self.isLike = data[0].ISLike;
     self.isFavor = data[0].ISFavor;
     self.fileUrl = data[0].FileUrl;
+    self.cover = hash[data[0].ItemID];
     return this;
   }
   show() {
@@ -56,6 +62,7 @@ class Video extends migi.Component {
     this.ref.video.element.currentTime = t;
     return this;
   }
+  @bind cover
   @bind fileUrl
   @bind isLike
   @bind isFavor
@@ -67,6 +74,7 @@ class Video extends migi.Component {
     this.workIndex = 0;
     this.duration = 0;
     this.hasLoaded = false;
+    $(this.ref.poster.element).removeClass('fn-hide');
     return this;
   }
   clickLike(e, vd) {
@@ -150,9 +158,14 @@ class Video extends migi.Component {
       video.msRequestFullscreen();
     }
   }
+  clickPoster() {
+    this.play();
+    $(this.ref.poster.element).addClass('fn-hide');
+  }
   render() {
     return <div class="video fn-hide">
       <video ref="video"
+             poster={ this.cover }
              onTimeupdate={ this.timeupdate }
              onLoadedmetadata={ this.loadedmetadata }
              onPause={ this.onpause }
@@ -163,6 +176,9 @@ class Video extends migi.Component {
              src={ this.fileUrl }>
         your browser does not support the audio tag
       </video>
+      <div ref="poster" class="poster"
+        style={ 'background-image:url(' + (this.cover || 'http://rhymesland.oss-cn-shanghai.aliyuncs.com/blank.png') + ')' }
+        onClick={ this.clickPoster }/>
       <ul class="btn">
         <li class={ 'like' + (this.isLike ? ' has' : '') } onClick={ this.clickLike }/>
         <li class={ 'favor' + (this.isFavor ? ' has' : '') } onClick={ this.clickFavor }/>
