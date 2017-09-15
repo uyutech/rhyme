@@ -7,12 +7,13 @@ import Audio from './Audio.jsx';
 import Video from './Video.jsx';
 import itemTemplate from './itemTemplate';
 
-let WIDTH = $(window).width();
+let WIDTH;
 let currentTime = 0;
 let duration = 0;
 
 let isStart;
 let isMove;
+let offsetX;
 
 let audio;
 let video;
@@ -23,6 +24,7 @@ class Media extends migi.Component {
     super(...data);
     let self = this;
     self.on(migi.Event.DOM, function() {
+      WIDTH = $(this.element).width();
       let style = document.createElement('style');
       let width = $(this.element).width();
       style.innerText = `.main.work>.media>.c{height:${Math.round(width / 16 * 9)}px}`;
@@ -73,6 +75,9 @@ class Media extends migi.Component {
       video.on('pause', function() {
         $play.removeClass('pause');
       });
+
+      $(document).on('mousemove', this.move2.bind(this));
+      $(document).on('mouseup', this.up.bind(this));
     });
   }
   @bind popular = 0
@@ -192,7 +197,8 @@ class Media extends migi.Component {
   }
   clickProgress(e) {
     if(e.target.className !== 'point') {
-      let x = e.pageX;
+      offsetX = $(this.ref.progress.element).offset().left;
+      let x = e.pageX - offsetX;
       let percent = x / WIDTH;
       let currentTime = Math.floor(duration * percent);
       last.currentTime(currentTime);
@@ -220,6 +226,26 @@ class Media extends migi.Component {
       last.currentTime(currentTime);
     }
     isStart = isMove = false;
+  }
+  down(e) {
+    e.preventDefault();
+    isStart = true;
+    offsetX = $(this.ref.progress.element).offset().left;
+  }
+  move2(e) {
+    if(isStart) {
+      e.preventDefault();
+      let x = e.pageX;
+      let diff = x - offsetX;
+      diff = Math.max(0, diff);
+      diff = Math.min(WIDTH, diff);
+      let percent = diff / WIDTH;
+      this.setBarPercent(percent);
+      currentTime = Math.floor(duration * percent);
+    }
+  }
+  up() {
+    isStart = false;
   }
   setBarPercent(percent) {
     percent *= 100;
@@ -278,10 +304,11 @@ class Media extends migi.Component {
         <div class="left" ref="left"/>
         <div class="right" ref="right"/>
       </div>
-      <div class={ 'progress' + (this.canControl ? '' : ' dis') } onClick={ this.clickProgress }>
+      <div class={ 'progress' + (this.canControl ? '' : ' dis') } onClick={ this.clickProgress } ref="progress">
         <div class="has" ref="has"/>
         <div class="pbg" ref="pgb">
-          <div class="point" ref="point" onTouchStart={ this.start } onTouchMove={ this.move } onTouchEnd={ this.end }/>
+          <div class="point" ref="point" onMouseDown={ this.down }
+               onTouchStart={ this.start } onTouchMove={ this.move } onTouchEnd={ this.end }/>
         </div>
       </div>
       <div class={ 'bar' + (this.canControl ? '' : ' dis') }>

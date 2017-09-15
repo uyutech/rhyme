@@ -141,6 +141,12 @@ class Video extends migi.Component {
       });
     }
   }
+  clickDownload(e) {
+    if(window.IS_LOGIN !== 'True') {
+      e.preventDefault();
+      migi.eventBus.emit('NEED_LOGIN');
+    }
+  }
   clickShare() {
     migi.eventBus.emit('share', location.href);
   }
@@ -184,7 +190,7 @@ class Video extends migi.Component {
       <ul class="btn">
         <li class={ 'like' + (this.isLike ? ' has' : '') } onClick={ this.clickLike }/>
         <li class={ 'favor' + (this.isFavor ? ' has' : '') } onClick={ this.clickFavor }/>
-        <li class="download"><a href={ this.fileUrl } download={ this.fileUrl }/></li>
+        <li class="download"><a href={ this.fileUrl } download={ this.fileUrl } onClick={ this.clickDownload }/></li>
         <li class="share" onClick={ this.clickShare }/>
         <li class="screen" onClick={ this.clickScreen }/>
       </ul>

@@ -119,6 +119,11 @@ class Work extends migi.Component {
       migi.eventBus.emit('NEED_LOGIN');
     }
   }
+  focus() {
+    if(window.IS_LOGIN !== 'True') {
+      migi.eventBus.emit('NEED_LOGIN');
+    }
+  }
   click(e) {
     e.preventDefault();
     let self = this;
@@ -171,7 +176,7 @@ class Work extends migi.Component {
         <div class="c">
           <div class={ 'reply' + (this.replayId ? '' : ' fn-hide') } onClick={ this.clickReplay }>{ this.replayName }</div>
           <div class="inputs">
-            <input ref="input" type="text" placeholder="回复..." onInput={ this.input }/>
+            <input ref="input" type="text" placeholder="回复..." onInput={ this.input } onFocus={ this.focus }/>
           </div>
           <button onClick={ this.click } class={ this.hasContent && !this.loading ? '' : 'dis' }>确定</button>
         </div>
