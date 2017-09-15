@@ -292,7 +292,7 @@ function hashchange(hash) {
 
 let cookieHash = $.cookie('hash');
 if(cookieHash) {
-  hashchange('#' + cookieHash);
+  location.hash = cookieHash;
   $.removeCookie('hash');
 }
 else if(cid) {
