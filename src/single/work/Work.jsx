@@ -115,7 +115,7 @@ class Work extends migi.Component {
   input(e, vd) {
     let v = $(vd.element).val().trim();
     this.hasContent = v.length > 0;
-    if(!window.IS_LOGIN) {
+    if(window.IS_LOGIN !== 'True') {
       migi.eventBus.emit('NEED_LOGIN');
     }
   }

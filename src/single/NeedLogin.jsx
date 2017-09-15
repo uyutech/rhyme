@@ -12,6 +12,9 @@ class NeedLogin extends migi.Component {
   hide() {
     $(this.element).addClass('fn-hide');
   }
+  clickLogin() {
+    $.cookie('hash', location.hash.replace(/^$/, ''));
+  }
   clickClose(e) {
     e.preventDefault();
     this.hide();
@@ -21,8 +24,8 @@ class NeedLogin extends migi.Component {
     return <div class="need-login fn-hide">
       <div class="c">
         <p>{ this.message || '您还没有登录，不能进行相关操作噢~' }</p>
-        <p>或选择 <a href={ window.LOGIN_URL }>立即登录</a></p>
-        <a href={ window.LOGIN_URL } class="weibo"/>
+        <p>或选择 <a href={ window.LOGIN_URL } onClick={ this.clickLogin }>立即登录</a></p>
+        <a href={ window.LOGIN_URL } onClick={ this.clickLogin } class="weibo"/>
         <a href="#" class="close" onClick={ this.clickClose }/>
       </div>
     </div>;

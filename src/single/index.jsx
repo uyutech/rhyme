@@ -287,7 +287,12 @@ function hashchange(hash) {
   }
 }
 
-if(cid) {
+let cookieHash = $.cookie('hash');
+if(cookieHash) {
+  hashchange(cookieHash);
+  $.removeCookie('hash');
+}
+else if(cid) {
   hashchange('#comment' + cid);
 }
 else {

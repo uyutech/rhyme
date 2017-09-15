@@ -52,6 +52,7 @@ class Video extends migi.Component {
   }
   play() {
     this.ref.video.element.play();
+    $(this.ref.poster.element).addClass('fn-hide');
     return this;
   }
   pause() {
@@ -160,6 +161,7 @@ class Video extends migi.Component {
   }
   clickPoster() {
     this.play();
+    this.emit('play');
     $(this.ref.poster.element).addClass('fn-hide');
   }
   render() {
