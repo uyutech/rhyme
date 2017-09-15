@@ -1,0 +1,110 @@
+/**
+ * Created by army8735 on 2017/9/15.
+ */
+
+body{
+  background:linear-gradient(165deg,#C6EDF1,#4C8DAF);
+  color:#fff;
+}
+
+header{
+  margin:0 auto;
+  padding:0.1rem 0 0.1rem 1rem;
+  width:12.7rem;
+  height:0.44rem;
+  line-height:0.44rem;
+  background:url(logo.png) no-repeat 0 center;
+  background-size:auto 0.44rem;
+  font-size:0.14rem;
+}
+
+.content{
+  margin:0.3rem auto;
+  padding-top:1.5rem;
+  background:url(app_logo.png) no-repeat center 0;
+  background-size:auto 1.36rem;
+  text-align:center;
+  h1{
+    font-size:0.2rem;
+    font-weight:400;
+  }
+  p{
+    margin-top:0.2rem;
+    font-size:0.14rem;
+  }
+  .tag{
+    position:relative;
+    margin:0.3rem auto 0;
+    width:3rem;
+    font-size:0.12rem;
+    &:before{
+      position:absolute;
+      left:0;
+      top:0.08rem;
+      width:1rem;
+      border-top:1px solid #fff;
+      content:' ';
+    }
+    &:after{
+      position:absolute;
+      right:0;
+      top:0.08rem;
+      width:1rem;
+      border-top:1px solid #fff;
+      content:' ';
+    }
+  }
+  .download{
+    margin-top:0.2rem;
+    li{
+      display:inline-block;
+      margin:0 0.1rem;
+      padding:0 0.1rem;
+      height:0.42rem;
+      line-height:0.42rem;
+      border:1px solid #fff;
+      border-radius:0.05rem;
+      font-size:0.14rem;
+      &.web{
+        padding-left:0.7rem;
+        background:url(www.png) no-repeat 0.1rem center;
+        background-size:0.53rem auto;
+      }
+      &.ios{
+        padding-left:0.4rem;
+        background:url(ios.png) no-repeat 0.1rem center;
+        background-size:0.24rem auto;
+      }
+      &.android{
+        padding-left:0.4rem;
+        background:url(android.png) no-repeat 0.1rem center;
+        background-size:0.22rem auto;
+      }
+    }
+  }
+  .info{
+    margin:0.4rem auto;
+    width:11.6rem;
+    text-align:left;
+    li{
+      float:left;
+      margin-right:0.4rem;
+      width:2.6rem;
+      &:last-child{
+        margin-right:0;
+      }
+      h3{
+        font-size:0.18rem;
+        font-weight:400;
+      }
+      p{
+        font-size:0.12rem;
+      }
+    }
+  }
+}
+
+footer{
+  font-size:0.12rem;
+  text-align:center;
+}

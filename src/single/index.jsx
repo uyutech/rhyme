@@ -131,6 +131,9 @@ function hashchange(hash) {
     }
     last = work;
     let id = hash.slice('#work'.length);
+    if(id !== '2757' && id !== '2758') {
+      return;
+    }
     work.setId(id);
     migi.eventBus.emit('changeBgi', 'work' + id);
     botNav.hideMenu();
