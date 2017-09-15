@@ -136,6 +136,7 @@ class Work extends migi.Component {
       if(ajax) {
         ajax.abort();
       }
+      self.ref.media.switchTo(1);
       ajax = util.postJSON('works/AddComment', {
         ParentID,
         RootID,

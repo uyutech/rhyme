@@ -284,6 +284,9 @@ class Media extends migi.Component {
       this.emit('switchSubWork', last.data);
     }
   }
+  switchTo(index) {
+    $(this.ref.tags.element).find('li').eq(index).click();
+  }
   open() {
     $(this.ref.left.element).addClass('on');
     $(this.ref.right.element).addClass('on');
