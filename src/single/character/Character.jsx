@@ -46,7 +46,7 @@ let HASH = {
     authorId: window.MI_ID,
     state: window.FOLLOW_MI,
     // img: '//192.168.0.7/mi_a.png',
-    img: `//${location.host}/src/single/character/mi_a.png`,
+    img: `//zhuanquan-pic.oss-cn-beijing.aliyuncs.com/mi_a.png`,
     w: 400,
     h: 600,
     n: 181
