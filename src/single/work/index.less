@@ -942,7 +942,6 @@
       box-sizing:border-box;
       height:100%;
       background:@colorBg;
-      border:1px solid #CCC;
       border-bottom:none;
       align-items:center;
       .reply{
@@ -985,10 +984,11 @@
       }
       button{
         margin-left:0.1rem;
-        width:0.4rem;
+        width:0.5rem;
         font-size:0.14rem;
         background:transparent;
-        border:none;
+        border:1px solid @colorM;
+        border-radius:0.1rem;
         color:@colorTxt;
         &.dis{
           opacity:0.3;

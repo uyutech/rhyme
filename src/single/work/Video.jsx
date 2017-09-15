@@ -5,8 +5,8 @@
 let de = document.documentElement;
 
 let hash = {
-  '2758': 'http://zhuanquan-pic.oss-cn-beijing.aliyuncs.com/rjrjs_cover.jpg',
-  '2761': 'http://zhuanquan-pic.oss-cn-beijing.aliyuncs.com/jrj_cover.jpg'
+  '2758': '//zhuanquan.xyz/rhymesland/rjrjs_cover.jpg',
+  '2761': '//zhuanquan.xyz/rhymesland/jrj_cover.jpg'
 };
 
 class Video extends migi.Component {

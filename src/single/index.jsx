@@ -46,7 +46,7 @@ let topNav = migi.render(
 
 let audio = migi.render(
   <audio autoplay="autoplay" loop="loop">
-    <source src="http://rhymesland.oss-cn-shanghai.aliyuncs.com/bgm/BGM.mp3" type="audio/mpeg"/>
+    <source src="//zhuanquan.xyz/rhymesland/bgm.mp3" type="audio/mpeg"/>
   </audio>,
   document.body
 );

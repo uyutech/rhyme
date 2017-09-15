@@ -3,7 +3,8 @@
  */
 
 let hash = {
-  '2757': `<p>出品：<a href="http://weibo.com/u/6276065571" target="_blank">结梦原创音乐团队</a></p>
+  '2757': `<p>当面纱揭开，当光芒闪现，从异世到现世，从我到你，这是一场命中注定的相遇，故事由此而生。</p>
+        <p><br/>出品：<a href="http://weibo.com/u/6276065571" target="_blank">结梦原创音乐团队</a></p>
         <p>演唱：<a href="http://weibo.com/740120222" target="_blank">慕寒</a>&nbsp;
           <a href="http://weibo.com/arielmelody" target="_blank">司夏</a>&nbsp;
           <a href="http://weibo.com/u/1750157883" target="_blank">河图</a>&nbsp;
@@ -25,8 +26,6 @@ let hash = {
         <p>海报：<a href="http://weibo.com/seoyutsuki" target="_blank">青凌</a>&nbsp;
         美术设计：<a href="http://weibo.com/520snc" target="_blank">念慈</a></p>
         <pre>
-
-文案：当面纱揭开，当光芒闪现，从异世到现世，从我到你，这是一场命中注定的相遇，故事由此而生。
 
 慕寒：世间浮生苦岁暮 日月化我梦浮生
 闻长歌 飒沓穿林过 忽现蜃楼沧海
@@ -64,7 +63,8 @@ midaho：是何人谓我 如蜉蝣 未敢越东岱
 君可知 风月争相来 人间我梦裁
 
 司夏：却不知 人间梦我 我梦人间裁</pre>`,
-  '2758': `<p>出品：<a href="http://weibo.com/u/6276065571" target="_blank">结梦原创音乐团队</a></p>
+  '2758': `<p>原来最永恒的热忱，最应该留在初见时分；<br/>原来看似最柔软的时光，最擅长将温存阅后即焚；<br/>原来最疯狂情浓的梦，最短暂如浮沫相逢。</p>
+        <p><br/>出品：<a href="http://weibo.com/u/6276065571" target="_blank">结梦原创音乐团队</a></p>
         <p>演唱：<a href="http://weibo.com/arielmelody" target="_blank">司夏</a></p>
         <p>作曲：<a href="http://weibo.com/menghunxiaoxiang" target="_blank">潇梦临</a>&nbsp;
         编曲：<a href="http://weibo.com/chenpengjie" target="_blank">陈鹏杰</a>&nbsp;
@@ -75,13 +75,9 @@ midaho：是何人谓我 如蜉蝣 未敢越东岱
         <p>修音：<a href="http://weibo.com/yaolaoso" target="_blank">幺唠</a>&nbsp;
         混音：<a href="http://weibo.com/princesscuttlefish" target="_blank">CuTTleFish</a></p>
         <p>PV：<a href="http://weibo.com/moirajia" target="_blank">冰镇甜豆浆</a></p>
-        <p>曲绘<a href="http://weibo.com/pudding131" target="_blank">黑色布丁_酱</a>&nbsp;
+        <p>曲绘：<a href="http://weibo.com/pudding131" target="_blank">黑色布丁_酱</a>&nbsp;
         <a href="http://weibo.com/muweiervv" target="_blank">VV丶SAMA</a></p>
         <pre>
-
-
-文案：原来最永恒的热忱，最应该留在初见时分；原来看似最柔软的时光，最擅长将温存阅后即焚；原来最疯狂情浓的梦，最短暂如浮沫相逢。
-
 
 不淡不深 不弃不珍
 碧海皎月 看老良辰
