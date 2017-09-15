@@ -88,6 +88,7 @@ class Work extends migi.Component {
     let self = this;
     self.id = id;
     let media = self.ref.media;
+    media.setId(id);
     let intro = self.ref.intro;
     intro.setId(id);
     util.postJSON('works/GetWorkDetails', { WorksID: id }, function(res) {

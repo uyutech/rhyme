@@ -9,6 +9,12 @@ let hash = {
   '2761': '//zhuanquan.xyz/rhymesland/jrj_cover.jpg'
 };
 
+let shareId;
+let hash2 = {
+  '2757': 'http://rhymesland.com/rhymes/rjrjs.html',
+  '2758': 'http://rhymesland.com/rhymes/jrj.html'
+};
+
 class Video extends migi.Component {
   constructor(...data) {
     super(...data);
@@ -21,6 +27,9 @@ class Video extends migi.Component {
     self.fileUrl = data[0].FileUrl;
     self.cover = hash[data[0].ItemID];
     return this;
+  }
+  setId(id) {
+    shareId = id;
   }
   show() {
     $(this.element).removeClass('fn-hide');
@@ -148,7 +157,7 @@ class Video extends migi.Component {
     }
   }
   clickShare() {
-    migi.eventBus.emit('share', location.href);
+    migi.eventBus.emit('share', hash2[shareId]);
   }
   clickScreen() {
     let video = this.ref.video.element;

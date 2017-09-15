@@ -176,6 +176,10 @@ class Media extends migi.Component {
       this.emit('switchSubWork', last.data);
     }
   }
+  setId(id) {
+    this.ref.audio.setId(id);
+    this.ref.video.setId(id);
+  }
   clickTag(e, vd, tvd) {
     let $ul = $(vd.element);
     let $li = $(tvd.element);
