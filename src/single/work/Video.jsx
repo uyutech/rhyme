@@ -33,10 +33,13 @@ class Video extends migi.Component {
   }
   show() {
     $(this.element).removeClass('fn-hide');
+    $(this.ref.btn.element).removeClass('fn-hide');
+    $(this.ref.poster.element).removeClass('fn-hide');
     return this;
   }
   hide() {
     $(this.element).addClass('fn-hide');
+    $(this.ref.btn.element).addClass('fn-hide');
     return this;
   }
   timeupdate(e) {
@@ -55,6 +58,7 @@ class Video extends migi.Component {
     this.emit('playing', {
       duration,
     });
+    $(this.ref.btn.element).addClass('fn-hide');
   }
   onpause() {
     this.emit('pause');
@@ -62,10 +66,12 @@ class Video extends migi.Component {
   play() {
     this.ref.video.element.play();
     $(this.ref.poster.element).addClass('fn-hide');
+    $(this.ref.btn.element).addClass('fn-hide');
     return this;
   }
   pause() {
     this.ref.video.element.pause();
+    $(this.ref.btn.element).removeClass('fn-hide');
     return this;
   }
   currentTime(t) {
@@ -196,7 +202,7 @@ class Video extends migi.Component {
       <div ref="poster" class="poster"
         style={ 'background-image:url(' + (this.cover || 'http://rhymesland.oss-cn-shanghai.aliyuncs.com/blank.png') + ')' }
         onClick={ this.clickPoster }/>
-      <ul class="btn">
+      <ul class="btn" ref="btn">
         <li class={ 'like' + (this.isLike ? ' has' : '') } onClick={ this.clickLike }/>
         <li class={ 'favor' + (this.isFavor ? ' has' : '') } onClick={ this.clickFavor }/>
         <li class="download"><a href={ this.fileUrl } download={ this.fileUrl } onClick={ this.clickDownload }/></li>
