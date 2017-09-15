@@ -146,6 +146,7 @@ class Work extends migi.Component {
         BarrageTime: barrageTime
       }, function(res) {
         if(res.success) {
+          self.ref.workComment.element.scrollIntoView();
           $input.val('');
           self.hasContent = false;
           if(RootID === -1) {
