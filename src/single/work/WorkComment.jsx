@@ -73,6 +73,9 @@ class WorkComment extends migi.Component {
         }
       }
       else {
+        if(res.code === 1000) {
+          migi.eventBus.emit('NEED_LOGIN');
+        }
         self.ref.comment.showComment();
         self.ref.comment.message = res.message || util.ERROR_MESSAGE;
       }

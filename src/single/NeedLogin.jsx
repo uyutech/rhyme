@@ -12,8 +12,9 @@ class NeedLogin extends migi.Component {
   hide() {
     $(this.element).addClass('fn-hide');
   }
-  clickLogin() {
-    $.cookie('hash', location.hash.replace(/^$/, ''));
+  clickLogin(e) {
+    let hash = location.hash.replace(/^#/, '');
+    $.cookie('hash', hash);
   }
   clickClose(e) {
     e.preventDefault();

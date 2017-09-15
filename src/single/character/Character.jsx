@@ -98,6 +98,7 @@ class Character extends migi.Component{
     let hash = HASH[name];
     showAnimate = true;
     index = 0;
+    this.ref.img.element.removeAttribute('style');
     if(hash.animate) {
       hash.animate();
     }
