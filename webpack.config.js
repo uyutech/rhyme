@@ -59,8 +59,8 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      ENV: process.env.NODE_ENV === 'development'
-        ? './development.js'
+      ENV: process.env.NODE_ENV === 'mock'
+        ? './mock.js'
         : (process.env.NODE_ENV === 'production'
           ? './production.js'
           : './dev.js'),
