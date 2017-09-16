@@ -12,14 +12,11 @@ class Rhyme extends migi.Component {
   hide() {
     $(this.element).addClass('fn-hide');
   }
-  click(e) {
-    e.preventDefault();
-  }
   render() {
     return <div class="main rhyme">
       <div class="c">
         <a href="#work2757" class="rjrjs"/>
-        <a href="#work2758" onClick={ this.click } class="jrj"/>
+        <a href="#work2758" class="jrj"/>
       </div>
     </div>;
   }
