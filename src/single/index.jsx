@@ -140,6 +140,7 @@ function hashchange(hash) {
     topNav.stop();
     if(window.IS_MOBILE) {
       botNav.hideBall();
+      botNav.hide();
     }
   }
   //单独评论特殊处理id
