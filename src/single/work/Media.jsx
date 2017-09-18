@@ -190,17 +190,19 @@ class Media extends migi.Component {
     }
   }
   clickPlay(e, vd) {
-    let $play = $(vd.element);
-    if($play.hasClass('pause')) {
-      last.pause();
+    if(this.canControl) {
+      let $play = $(vd.element);
+      if($play.hasClass('pause')) {
+        last.pause();
+      }
+      else {
+        last.play();
+      }
+      $play.toggleClass('pause');
     }
-    else {
-      last.play();
-    }
-    $play.toggleClass('pause');
   }
   clickProgress(e) {
-    if(e.target.className !== 'point') {
+    if(this.canControl && e.target.className !== 'point') {
       offsetX = $(this.ref.progress.element).offset().left;
       let x = e.pageX - offsetX;
       let percent = x / WIDTH;
@@ -209,7 +211,7 @@ class Media extends migi.Component {
     }
   }
   start(e) {
-    if(e.touches.length === 1) {
+    if(this.canControl && e.touches.length === 1) {
       isStart = true;
       last.pause();
       $(this.ref.play.element).removeClass('pause');
@@ -233,8 +235,10 @@ class Media extends migi.Component {
   }
   down(e) {
     e.preventDefault();
-    isStart = true;
-    offsetX = $(this.ref.progress.element).offset().left;
+    if(this.canControl) {
+      isStart = true;
+      offsetX = $(this.ref.progress.element).offset().left;
+    }
   }
   move2(e) {
     if(isStart) {
