@@ -176,9 +176,11 @@ class Video extends migi.Component {
     }
   }
   clickPoster() {
-    this.play();
-    this.emit('play');
-    $(this.ref.poster.element).addClass('fn-hide');
+    if(this.top.canControl) {
+      this.play();
+      this.emit('play');
+      $(this.ref.poster.element).addClass('fn-hide');
+    }
   }
   render() {
     return <div class="video fn-hide">
