@@ -4,15 +4,11 @@
 
 let de = document.documentElement;
 
-let hash = {
-  '2016000000000006': '//zhuanquan.xyz/rhymesland/rjrjs_cover.jpg',
-  '2016000000000002': '//zhuanquan.xyz/rhymesland/jrj_cover.jpg'
-};
-
 let shareId;
 let hash2 = {
   '2015000000000006': 'http://rhymesland.com/rhymes/rjrjs',
-  '2015000000000001': 'http://rhymesland.com/rhymes/jrj'
+  '2015000000000001': 'http://rhymesland.com/rhymes/jrj',
+  '2015000000000002': 'http://rhymesland.com/rhymes/shuomeng'
 };
 
 class Video extends migi.Component {
@@ -25,7 +21,7 @@ class Video extends migi.Component {
     self.isLike = data[0].ISLike;
     self.isFavor = data[0].ISFavor;
     self.fileUrl = data[0].FileUrl;
-    self.cover = hash[data[0].ItemID];
+    self.cover = data[0].ItemID.VideoCoverPic;
     return this;
   }
   setId(id) {

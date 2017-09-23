@@ -21,6 +21,7 @@ import Rhyme from './rhyme/Rhyme.jsx';
 import Work from './work/Work.jsx';
 import About from './history/About.jsx';
 import SComment from './scomment/SComment.jsx';
+import Grid from './grid/Grid.jsx';
 
 import qs from 'anima-querystring';
 let search = qs.parse(location.search.replace(/^\?/, ''));
@@ -70,6 +71,7 @@ let rhyme;
 let work;
 let about;
 let scomment;
+let grid;
 
 let botNav = migi.render(
   <BotNav/>,
@@ -131,9 +133,6 @@ function hashchange(hash) {
     }
     last = work;
     let id = hash.slice('#work'.length);
-    if(id !== '2015000000000006' && id !== '2015000000000001') {
-      return;
-    }
     work.setId(id);
     migi.eventBus.emit('changeBgi', 'work' + id);
     botNav.hideMenu();
@@ -269,6 +268,17 @@ function hashchange(hash) {
         last = about;
         migi.eventBus.emit('changeBgi', 'history');
         topNav.name = '关于';
+        break;
+      case '#grid':
+        if(!grid) {
+          grid = migi.render(
+            <Grid/>,
+            '#page'
+          );
+        }
+        last = grid;
+        migi.eventBus.emit('changeBgi', 'grid');
+        topNav.name = '皎然浮生';
         break;
       default:
         if(!index) {
