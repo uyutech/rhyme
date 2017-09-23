@@ -5,14 +5,14 @@
 let de = document.documentElement;
 
 let hash = {
-  '2758': '//zhuanquan.xyz/rhymesland/rjrjs_cover.jpg',
-  '2761': '//zhuanquan.xyz/rhymesland/jrj_cover.jpg'
+  '2016000000000006': '//zhuanquan.xyz/rhymesland/rjrjs_cover.jpg',
+  '2016000000000002': '//zhuanquan.xyz/rhymesland/jrj_cover.jpg'
 };
 
 let shareId;
 let hash2 = {
-  '2757': 'http://rhymesland.com/rhymes/rjrjs',
-  '2758': 'http://rhymesland.com/rhymes/jrj'
+  '2015000000000006': 'http://rhymesland.com/rhymes/rjrjs',
+  '2015000000000001': 'http://rhymesland.com/rhymes/jrj'
 };
 
 class Video extends migi.Component {

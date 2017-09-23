@@ -3,7 +3,7 @@
  */
 
 let hash = {
-  '2757': `<p>当面纱揭开，当光芒闪现，从异世到现世，从我到你，这是一场命中注定的相遇，故事由此而生。</p>
+  '2015000000000006': `<p>当面纱揭开，当光芒闪现，从异世到现世，从我到你，这是一场命中注定的相遇，故事由此而生。</p>
         <p><br/>出品：<a href="http://weibo.com/u/6276065571" target="_blank">结梦原创音乐团队</a></p>
         <p>演唱：<a href="http://weibo.com/740120222" target="_blank">慕寒</a>&nbsp;
           <a href="http://weibo.com/arielmelody" target="_blank">司夏</a>&nbsp;
@@ -63,7 +63,7 @@ midaho：是何人谓我 如蜉蝣 未敢越东岱
 君可知 风月争相来 人间我梦裁
 
 司夏：却不知 人间梦我 我梦人间裁</pre>`,
-  '2758': `<p>原来最永恒的热忱，最应该留在初见时分；<br/>原来看似最柔软的时光，最擅长将温存阅后即焚；<br/>原来最疯狂情浓的梦，最短暂如浮沫相逢。</p>
+  '2015000000000001': `<p>原来最永恒的热忱，最应该留在初见时分；<br/>原来看似最柔软的时光，最擅长将温存阅后即焚；<br/>原来最疯狂情浓的梦，最短暂如浮沫相逢。</p>
         <p><br/>出品：<a href="http://weibo.com/u/6276065571" target="_blank">结梦原创音乐团队</a></p>
         <p>演唱：<a href="http://weibo.com/arielmelody" target="_blank">司夏</a></p>
         <p>作曲：<a href="http://weibo.com/menghunxiaoxiang" target="_blank">潇梦临</a>&nbsp;

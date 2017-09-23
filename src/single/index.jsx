@@ -131,7 +131,7 @@ function hashchange(hash) {
     }
     last = work;
     let id = hash.slice('#work'.length);
-    if(id !== '2757' && id !== '2758') {
+    if(id !== '2015000000000006' && id !== '2015000000000001') {
       return;
     }
     work.setId(id);

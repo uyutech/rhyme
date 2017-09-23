@@ -15,8 +15,8 @@ class Rhyme extends migi.Component {
   render() {
     return <div class="main rhyme">
       <div class="c">
-        <a href="#work2757" class="rjrjs"/>
-        <a href="#work2758" class="jrj"/>
+        <a href="#work2015000000000006" class="rjrjs"/>
+        <a href="#work2015000000000001" class="jrj"/>
       </div>
     </div>;
   }
