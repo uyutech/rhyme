@@ -21,7 +21,7 @@ class Video extends migi.Component {
     self.isLike = data[0].ISLike;
     self.isFavor = data[0].ISFavor;
     self.fileUrl = data[0].FileUrl;
-    self.cover = data[0].ItemID.VideoCoverPic;
+    self.cover = data[0].VideoCoverPic;
     return this;
   }
   setId(id) {
