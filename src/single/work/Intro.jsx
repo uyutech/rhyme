@@ -138,7 +138,67 @@ midaho：是何人谓我 如蜉蝣 未敢越东岱
 <p>场景：_LEOX</p>
 <p>PV：冰镇甜豆浆</p>
 <p>题字：叹书</p>
-<p>海报：舒念慈</p>`
+<p>海报：舒念慈</p>`,
+  '2015000000001329': `<p>出品：<a href="http://weibo.com/u/6276065571" target="_blank">结梦原创音乐团队</a></p>
+        <p>演唱：<a href="http://weibo.com/bulasika" target="_blank">Braska</a></p>
+        <p>作曲：<a href="http://weibo.com/litterzy " target="_blank">Litterzy</a>&nbsp;
+        编曲：<a href="http://weibo.com/litterzy " target="_blank">Litterzy</a>&nbsp;
+        作词：<a href="http://weibo.com/mercuryco" target="_blank">Vagary </a></p>
+        <p>混音：<a href="http://weibo.com/bulasika" target="_blank">Braska</a></p>
+        <p>PV：<a href="http://weibo.com/moirajia" target="_blank">冰镇甜豆浆</a></p>
+        <p>曲绘：<a href="http://weibo.com/pudding131" target="_blank">黑色布丁_酱</a>&nbsp;
+        <a href="http://weibo.com/muweiervv" target="_blank">VV丶SAMA</a>
+		<a href="http://weibo.com/yukiart" target="_blank">木美人</a></p>
+		<p>题字：<a href="http://weibo.com/p/1005052515876194" target="_blank">颜池</a></p>
+		<p>海报：<a href="http://www.weibo.com/p/1005052018108743" target="_blank">舒念慈</a></p>
+        <pre>
+
+文案：臣服于世事相逼，他选择了苍生大义。回首这一生，才发觉一切在初见之时，就已尘埃落定。
+
+
+逃不开的梦魇 最珍贵
+一见钟情的迷惑 多妩媚
+没成真的誓言 太甜美
+你曾问我可有胆尽欢而醉
+
+九重宫阙巍巍 终与愿违
+当局懵懂却恋恋难退
+浮华流金点翠 过眼成灰
+剩一路红尘满地卑微
+
+假如我不辜负 黄粱永不熟
+你我一世在梦里凝眸
+我风波无阻 忘人间无数
+只为你六神无主
+
+或被命运窥透我不配
+才袖手将无悔放逐成误会
+
+九重宫阙巍巍 终与愿违
+当局懵懂却恋恋难退
+浮华流金点翠 过眼成灰
+剩一路红尘满地卑微
+
+假如我不辜负 黄粱永不熟
+你我一世在梦里凝眸
+我风波无阻 忘人间无数
+只为你六神无主
+
+纵 梦里无寒暑 心头有荣枯
+滔滔日月老去我眉目
+恨 惆怅难如初 痴情分今古
+我错过的谁能弥补
+
+此后独饮坎坷 是种因得果
+一恍惚多少然诺摧折
+用你的缄默 成全我失措
+只一梦白发蹉跎
+
+此生浮世消磨 听风灯石火
+一眨眼吹落王朝干戈
+须臾换山河 笑百岁几何
+把一枕黄粱叹破
+</pre>`,
 };
 
 class Intro extends migi.Component {
