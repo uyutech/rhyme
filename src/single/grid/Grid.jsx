@@ -29,7 +29,7 @@ class Grid extends migi.Component {
             </a>
           </li>
           <li>
-            <a href="#workID2015000000001329">
+            <a href="#work2015000000001329">
               <img src="http://zhuanquan.xyz/pic/e45a131fe3e858af6226958c4931f25b.jpg"/>
               <span>《黄粱梦》</span>
             </a>
