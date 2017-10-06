@@ -155,7 +155,7 @@ class Video extends migi.Component {
     }
   }
   clickShare() {
-    migi.eventBus.emit('share', hash2[shareId]);
+    migi.eventBus.emit('share', hash2[shareId] || location.href);
   }
   clickScreen() {
     let video = this.ref.video.element;

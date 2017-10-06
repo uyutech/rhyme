@@ -194,7 +194,7 @@ class Audio extends migi.Component {
     this.showLyricsMode = !this.showLyricsMode;
   }
   clickShare() {
-    migi.eventBus.emit('share', hash[shareId]);
+    migi.eventBus.emit('share', hash[shareId] || location.href);
   }
   clear() {
     this.duration = 0;
