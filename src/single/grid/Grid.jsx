@@ -34,6 +34,12 @@ class Grid extends migi.Component {
               <span>《黄粱梦》</span>
             </a>
           </li>
+          <li>
+            <a href="#work2015000000001329">
+              <img src="http://zhuanquan.xyz/pic/25fbb4c756a8e2c8f4175e8f53065b69.jpg"/>
+              <span>《梦黄粱》</span>
+            </a>
+          </li>
         </ul>
       </div>
     </div>;

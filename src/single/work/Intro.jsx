@@ -145,8 +145,8 @@ midaho：是何人谓我 如蜉蝣 未敢越东岱
         编曲：<a href="http://weibo.com/litterzy " target="_blank">Litterzy</a>&nbsp;
         作词：<a href="http://weibo.com/mercuryco" target="_blank">Vagary </a></p>
         <p>混音：<a href="http://weibo.com/bulasika" target="_blank">Braska</a></p>
-        <p>PV：<a href="http://weibo.com/moirajia" target="_blank">冰镇甜豆浆</a></p>
-        <p>曲绘：<a href="http://weibo.com/pudding131" target="_blank">黑色布丁_酱</a>&nbsp;
+        <p>PV：<a href="http://weibo.com/gylg" target="_blank">塚本故</a></p>
+        <p>曲绘<a href="http://weibo.com/pudding131" target="_blank">黑色布丁_酱</a>&nbsp;
         <a href="http://weibo.com/muweiervv" target="_blank">VV丶SAMA</a>
 		<a href="http://weibo.com/yukiart" target="_blank">木美人</a></p>
 		<p>题字：<a href="http://weibo.com/p/1005052515876194" target="_blank">颜池</a></p>
@@ -198,6 +198,66 @@ midaho：是何人谓我 如蜉蝣 未敢越东岱
 一眨眼吹落王朝干戈
 须臾换山河 笑百岁几何
 把一枕黄粱叹破
+</pre>`,
+  '2015000000001331': `<p>出品：<a href="http://weibo.com/u/6276065571" target="_blank">结梦原创音乐团队</a></p>
+        <p>演唱：<a href="http://weibo.com/bulasika" target="_blank">Braska</a></p>
+        <p>作曲：<a href="http://weibo.com/litterzy " target="_blank">Litterzy</a>&nbsp;
+        编曲：<a href="http://weibo.com/litterzy " target="_blank">Litterzy</a>&nbsp;
+        作词：<a href="http://weibo.com/mercuryco" target="_blank">Vagary </a></p>
+        <p>混音：<a href="http://weibo.com/bulasika" target="_blank">Braska</a></p>
+        <p>PV：<a href="http://weibo.com/gylg" target="_blank">塚本故</a></p>
+        <p>曲绘<a href="http://weibo.com/pudding131" target="_blank">黑色布丁_酱</a>&nbsp;
+        <a href="http://weibo.com/muweiervv" target="_blank">VV丶SAMA</a>
+		<a href="http://weibo.com/yukiart" target="_blank">木美人</a></p>
+		<p>海报：<a href="http://weibo.com/270137711" target="_blank">琅华令君</a></p>
+        <pre>
+
+
+文案：这一生，他们都只曾在梦里凝眸。
+
+
+逃不开的梦魇 最珍贵
+一意孤行的执拗 多妩媚
+没兑现的许愿 太甜美
+我曾盼你能有缘尽欢而醉
+
+红烛一线残灰 拾来画眉
+敝帚自珍了情怀憔悴
+泪光流珠散瑰 飘零似水
+有多华美就有多疲惫
+
+假如我不在乎 黄粱永不熟
+你我一世在梦里凝眸
+我逍遥不属  竟忘情不顾
+只为你万劫不复
+
+假如执着注定被枉费
+你究竟是我的无悔抑或误会
+
+红烛一线残灰 拾来画眉
+敝帚自珍了情怀憔悴
+泪光流珠散瑰 飘零似水
+有多华美就有多疲惫
+
+假如我不在乎 黄粱永不熟
+你我一世在梦里凝眸
+我逍遥不属  竟忘情不顾
+只为你万劫不复
+
+纵 梦里无寒暑 心头有荣枯
+滔滔日月老去你眉目
+笑 今夕怎如初 镜中花如故
+我错过的谁能领悟
+
+此前自斟坎坷 是种因得果
+一恍惚多少然诺摧折
+用我的萧瑟 成全你寥廓
+只一梦流离失所
+
+此身浮世穿梭 渡人海天河
+一转身湮没聚散消磨
+枕惊澜烟波 问百岁几何
+黄粱中可曾有我
 </pre>`,
 };
 

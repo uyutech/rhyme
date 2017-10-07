@@ -14,6 +14,7 @@ let hash = {
   '2015000000000001': 'http://rhymesland.com/rhymes/jrj',
   '2015000000000002': 'http://rhymesland.com/rhymes/shuomeng',
   '2015000000001329': 'http://rhymesland.com/rhymes/hlm',
+  '2015000000001331': 'http://rhymesland.com/rhymes/mhl',
 };
 
 class Audio extends migi.Component {

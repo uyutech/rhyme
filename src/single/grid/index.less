@@ -23,12 +23,15 @@
       position:absolute;
       left:50%;
       top:50%;
-      width:7.4rem;
+      width:9.8rem;
       transform:translate3d(-50%,-50%,0);
       li{
         float:left;
         margin-right:0.2rem;
         width:2.26rem;
+        &:last-child{
+          margin-right:0;
+        }
         a{
           display:block;
           width:100%;
@@ -41,6 +44,28 @@
             border:1px solid #d2c39c;
             border-radius:0.05rem;
           }
+        }
+      }
+    }
+  }
+}
+
+.mobile{
+  .main.grid{
+    .con{
+      position:static;
+      height:auto;
+      transform:none;
+      border:none;
+      ul{
+        position:static;
+        margin:0.8rem 0;
+        width:auto;
+        transform:none;
+        li{
+          float:none;
+          display:block;
+          margin:0 auto;
         }
       }
     }
