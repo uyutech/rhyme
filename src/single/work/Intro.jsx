@@ -206,7 +206,7 @@ midaho：是何人谓我 如蜉蝣 未敢越东岱
         作词：<a href="http://weibo.com/mercuryco" target="_blank">Vagary </a></p>
         <p>混音：<a href="http://weibo.com/bulasika" target="_blank">Braska</a></p>
         <p>PV：<a href="http://weibo.com/gylg" target="_blank">塚本故</a></p>
-        <p>曲绘<a href="http://weibo.com/pudding131" target="_blank">黑色布丁_酱</a>&nbsp;
+        <p>曲绘：<a href="http://weibo.com/pudding131" target="_blank">黑色布丁_酱</a>&nbsp;
         <a href="http://weibo.com/muweiervv" target="_blank">VV丶SAMA</a>
 		<a href="http://weibo.com/yukiart" target="_blank">木美人</a></p>
 		<p>海报：<a href="http://weibo.com/270137711" target="_blank">琅华令君</a></p>
