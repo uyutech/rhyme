@@ -1,0 +1,98 @@
+/**
+ * Created by army8735 on 2017/8/9.
+ */
+
+.cp-hotauthor{
+  position:relative;
+  h4{
+    padding:0 0.2rem;
+    height:0.36rem;
+    line-height:0.36rem;
+    background:@mainColor;
+    background-size:0.24rem auto;
+    font-size:0.14rem;
+    font-weight:400;
+    small{
+      margin-left:0.2rem;
+      font-size:0.12rem;
+      opacity:0.8;
+    }
+  }
+  .list{
+    margin-top:0.2rem;
+    margin-right:-0.72rem;
+    padding-bottom:0.2rem;
+    transform:translateX(0.5rem);
+    li{
+      float:left;
+      margin-right:0.2rem;
+      width:0.72rem;
+      .pic{
+        position:relative;
+        display:block;
+        margin:0 auto;
+        width:100%;
+        height:0.72rem;
+        background-color:#E1E3E4;
+        border-radius:100%;
+        overflow:hidden;
+        box-shadow:@headShadow;
+        &:hover{
+          box-shadow:@headHoverShadow;
+        }
+        img{
+          display:block;
+          width:100%;
+          height:100%;
+        }
+        b{
+          position:absolute;
+          display:block;
+          width:0.18rem;
+          height:0.18rem;
+          &:nth-of-type(1) {
+            right:0;
+            bottom:0;
+            z-index:3;
+          }
+          &:nth-of-type(2) {
+            right:-0.09rem;
+            bottom:0.1rem;
+            z-index:2;
+          }
+          &:nth-of-type(3) {
+            right:-0.04rem;
+            bottom:0.22rem;
+          }
+        }
+      }
+      .txt{
+        display:block;
+        margin-top:0.04rem;
+        font-size:0.1rem;
+        color:#2A2A2A;
+        text-align:center;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+        overflow:hidden;
+      }
+      .info{
+        font-size:0.1rem;
+        color:#B1C0C9;
+        text-align:center;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+        overflow:hidden;
+      }
+    }
+  }
+  .empty{
+    //margin-top:0.2rem;
+    //transform:translateX(0.4rem);
+    margin:0.2rem;
+    width:0.72rem;
+    height:0.72rem;
+    background-color:#E1E3E4;
+    border-radius:100%;
+  }
+}

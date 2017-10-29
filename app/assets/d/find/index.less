@@ -1,0 +1,89 @@
+/**
+ * Created by army8735 on 2017/9/21.
+ */
+@import '../common/var.less';
+@import '../component/hotwork/index.less';
+@import '../component/hotmusicalbum/index.less';
+@import '../component/hotauthor/index.less';
+@import '../component/hotphotoalbum/index.less';
+//@import '../component/doublecheck/index.less';
+//@import '../component/playlist/index.less';
+
+.find{
+  > .banner{
+    position:relative;
+    height:3rem;
+    overflow:hidden;
+    border-radius:0.1rem;
+    .list{
+      width:300%;
+      height:100%;
+      transition:transform 0.2s;
+      li{
+        float:left;
+        width:10rem;
+        height:100%;
+        img{
+          display:block;
+          width:100%;
+          height:100%;
+        }
+      }
+    }
+    .tags{
+      position:absolute;
+      left:0;
+      bottom:0.1rem;
+      width:100%;
+      text-align:center;
+      li{
+        display:inline-block;
+        margin:0 0.1rem;
+        width:0.1rem;
+        height:0.1rem;
+        border:1px solid #B1C0C9;
+        background:#FFF;
+        border-radius:100%;
+        text-indent:99rem;
+        overflow:hidden;
+        opacity:0.8;
+        &.cur{
+          background:#9ECDDB;
+        }
+        &:hover{
+          opacity:1;
+        }
+      }
+    }
+  }
+  > .hot{
+    margin:0.2rem 0;
+    box-shadow:@boxShadow;
+    border-radius:0.1rem;
+    > .cp-hotwork{
+      h4{
+        border-top-left-radius:0.1rem;
+        border-top-right-radius:0.1rem;
+      }
+    }
+    > .cp-hotauthor{
+      .list li .info{
+        display:none;
+      }
+    }
+  }
+  > .cp-doublecheck{
+    .l2{
+      box-shadow:@boxShadow;
+      border-top-right-radius:0.1rem;
+    }
+  }
+  > .cp-playlist{
+    position:relative;
+    padding:0.2rem;
+    background:#FFF;
+    box-shadow:@boxShadow;
+    border-bottom-left-radius:0.1rem;
+    border-bottom-right-radius:0.1rem;
+  }
+}

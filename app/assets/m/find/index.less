@@ -1,0 +1,43 @@
+/**
+ * Created by army8735 on 2017/7/31.
+ */
+
+@import '../../d/common/var';
+@import '../component/hotwork/index';
+@import '../component/hotphotoalbum/index';
+@import '../component/hotmusicalbum/index';
+@import '../component/hotauthor/index';
+//@import '../component/doublecheck/index';
+//@import '../component/playlist/index';
+
+.find{
+  > .banner{
+    position:relative;
+    height:1rem;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center;
+    overflow:hidden;
+    img{
+      display:block;
+      width:100%;
+      height:100%;
+      visibility:hidden;
+    }
+  }
+  > .cp-hotwork{
+    margin-top:0.1rem;
+  }
+  > .cp-hotmusicalbum{
+    margin-top:0.1rem;
+  }
+  > .cp-hotphotoalbum{
+    margin-top:0.1rem;
+  }
+  > .cp-hotauthor{
+    margin-top:0.1rem;
+    .list .c ul li .info{
+      display:none;
+    }
+  }
+}

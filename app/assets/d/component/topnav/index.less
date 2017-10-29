@@ -1,0 +1,92 @@
+/**
+ * Created by army8735 on 2017/9/20.
+ */
+
+.cp-topnav{
+  position:relative;
+  height:0.7rem;
+  background:url(//zhuanquan.xin/img/6ee7abe5d524c0302556dc55057e1a01.jpg) repeat-x 0 0;
+  background-size:auto 100%;
+  //background-size:0.89rem auto;
+  //background-size:contain;
+  z-index:999;
+  box-shadow:0 1px 2px rgba(0,0,0,0.2);
+  .c{
+    position:relative;
+    margin:0 1rem 0 1rem;
+    min-width:8rem;
+    height:100%;
+    line-height:0.7rem;
+  }
+  .logo{
+    position:absolute;
+    display:block;
+    left:-0.3rem;
+    top:0;
+    padding-left:1.5rem;
+    width:4rem;
+    height:0.7rem;
+    background:url(logo-beta-white.png) no-repeat 0 center;
+    background-size:1.34rem auto;
+    color:#ebf2f6;
+    font-size:0.12rem;
+    font-weight:400;
+  }
+  .search{
+    position:absolute;
+    top:0.2rem;
+    right:2rem;
+    padding:0 0.1rem 0 0.2rem;
+    box-sizing:border-box;
+    width:2.5rem;
+    height:0.32rem;
+    border:1px solid #ebf2f6;
+    border-radius:0.32rem;
+    line-height:1;
+    background:url(search.png) no-repeat 0.08rem center;
+    background-size:0.19rem auto;
+    input{
+      display:block;
+      margin:0;
+      padding:0 0.1rem;
+      border:none;
+      width:2.8rem;
+      height:0.3rem;
+      border-radius:0.3rem;
+      background:transparent;
+      color:#ebf2f6;
+      font-size:0.12rem;
+      &::-webkit-input-placeholder{
+        color:#ebf2f6;
+      }
+    }
+  }
+  .user{
+    position:absolute;
+    top:0;
+    right:-0.3rem;
+    display:block;
+    height:100%;
+    font-size:0.14rem;
+    color:@mainTextColor;
+    cursor:pointer;
+    span{
+      position:absolute;
+      right:0.9rem;
+      white-space:nowrap;
+    }
+    img{
+      position:absolute;
+      top:0.05rem;
+      right:0;
+      display:block;
+      box-sizing:border-box;
+      border:1px solid #4E8EB0;
+      width:0.8rem;
+      height:0.8rem;
+      background:#F1F6F9;
+      border-radius:100%;
+      vertical-align:middle;
+    }
+  }
+}
