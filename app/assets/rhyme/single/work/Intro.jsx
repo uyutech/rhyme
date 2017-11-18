@@ -330,6 +330,70 @@ midaho：是何人谓我 如蜉蝣 未敢越东岱
 祈一场生命的怒放
 千年寂寞太长 却念念不忘
 </pre>`,
+  '2015000000001586': `<p>出品：<a href="http://weibo.com/u/6276065571 " target="_blank">结梦原创团队</a></p>
+        <p>演唱：<a href="http://weibo.com/u/3106296895" target="_blank">Midaho</a>&nbsp;
+        和声：<a href="http://weibo.com/u/3106296895" target="_blank">Midaho</a></p>
+        <p>诵语：<a href="http://weibo.com/u/3106296895 " target="_blank">Midaho</a>&nbsp;
+          <a href="http://weibo.com/u/740120222 " target="_blank">慕寒</a></p>
+        <p>作曲：<a href="http://weibo.com/u/1606111614" target="_blank">横颜君</a>&nbsp;
+        <a href="http://weibo.com/u/3106296895" target="_blank">Midaho</a>&nbsp;
+       编曲：<a href="http://weibo.com/u/1606111614" target="_blank">横颜君</a></p>
+        <p>作词：<a href="http://weibo.com/u/1733936210" target="_blank">付遮书 </a>&nbsp;
+        文案：<a href="http://weibo.com/u/1733936210" target="_blank">付遮书 </a></p>
+        <p>混音：<a href="http://weibo.com/u/3106296895" target="_blank">Midaho</a></p>
+        <p>PV：<a href="http://weibo.com/u/2765566134" target="_blank">冰镇甜豆浆</a>&nbsp;
+        <a href="http://weibo.com/u/1372768254" target="_blank">中梓星音</a></p>
+        <p>立绘：<a href="http://weibo.com/u/1566961600" target="_blank">木美人</a>&nbsp;
+            CG：<a href="http://weibo.com/2105906481" target="_blank">VV丶SAMA</a>&nbsp;
+            <a href="http://weibo.com/u/5190275328" target="_blank">_LEOX</a>&nbsp;</p>
+        <p>海报：<a href="http://weibo.com/u/2018108743" target="_blank">念慈</a></p>
+        <pre>
+文案：
+有千年古木凋落了镜花，万里冰霜融化成水月。
+多少悲喜如一粒飞雪，从邈远之处仆仆飘至她心尖，晕开最纯净的魂魄。
+她用所触温暖，将余愿复燃；以满身皑皑，绘眸底明彩。
+至此，寒川解冻，前尘解梦。
+而那一场灼灼涅槃，终究于梦中清醒，在雪里清白。
+
+是霞光伐作遍地枯柴，
+是人间烟自青峰来，
+是一簇明火恰于怀中催开，
+照往昔灼彩。
+
+万重冰峦拟为镜台，有刺骨长风被梳开，
+我曾独善，也饮萍水而醉过仪态。
+梦里世人情义当鳃，争相潜进红尘苦海，
+我置身梦外。
+
+一梦檐上春雨乡音改，
+二梦瑶树有苦酒埋，
+三梦故人将川溪裁作袍带，
+忽而醒不来。
+
+倘若临别总该失态，只融雪哭湿我襟怀，
+应再无挂碍。
+
+是鼻息化万古煦风吹来，
+是心跳付鸟鸣泉潺，
+是朝云初升于冻红颊腮，
+生死又何哉？
+
+若非此身正如寒叶凋败，
+怎会撞入最暖的怀。
+若非此生也曾被孤独薄待，
+怎施梦慷慨。
+
+一梦有乌云倒回砚台，
+二梦萍水将枯枝灌溉，
+三梦这满身霜雪终披为铠，
+再不惧醒来。
+
+原来至寻常是风月作筷，
+遍尝过冷暖才算痛快。
+若你来时无意将簌叶轻踩，
+我听成万籁。
+
+啦啦啦~</pre>`
 };
 
 class Intro extends migi.Component {

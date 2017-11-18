@@ -18,6 +18,7 @@ class Rhyme extends migi.Component {
         <a href="#work2015000000000006" class="rjrjs"/>
         <a href="#grid" class="jrj"/>
         <a href="#work2015000000001368" class="wsffl"/>
+        <a href="#work2015000000001586" class="zx"/>
       </div>
     </div>;
   }
